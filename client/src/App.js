@@ -1,9 +1,21 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
+import { Route, Link, NavLink, Switch } from 'react-router-dom'
+import AddProduct from './pages/AddProduct'
+import IndexPage from './pages/IndexPage'
+import { ProductsProvider, ProductsContext } from './contexts/products.context'
+import Product from './pages/Product'
+import Routes from './routes/Routes'
 
-function App() {
+
+const App = () => {
+
+
   return (
     <div className="App">
-        <h1>test</h1>
+      <Link to="/products/add"><a>Add product</a></Link>
+      <ProductsProvider>
+        <Routes />
+      </ProductsProvider>
     </div>
   );
 }
