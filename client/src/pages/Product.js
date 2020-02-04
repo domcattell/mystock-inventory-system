@@ -26,7 +26,7 @@ const Product = (props) => {
             <h2>{category}</h2>
             <h2>{SKU}</h2>
             <button onClick={handleDelete}>Delete</button>
-            <EditProduct {...props} {...product}/>
+            <EditProduct {...products} {...props}/>
         </div>
     );
 }

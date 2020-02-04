@@ -1,6 +1,6 @@
 import {useState} from 'react';
 
-const useInputState = (init) => {
+const useInputState = () => {
     
     const [value, setValue] = useState({
             sku: "",

@@ -1,12 +1,12 @@
 const express = require("express"),
-router = express.Router(),
-db = require("../../database")
+    router = express.Router(),
+    db = require("../../database")
 
 //gets all products
 router.get("/all", (req, res) => {
     const sql = "SELECT * FROM mystock.products;";
     db.query(sql, (err, products) => {
-        if(err) {
+        if (err) {
             console.log(err)
         } else {
             res.json(products)
@@ -18,7 +18,7 @@ router.get("/all", (req, res) => {
 router.get("/:id", (req, res) => {
     const sql = `SELECT * FROM products WHERE FIND_IN_SET('${req.params.id}', id);`;
     db.query(sql, (err, product) => {
-        if(err) {
+        if (err) {
             console.log(err)
         } else {
             res.json(product)
@@ -27,14 +27,39 @@ router.get("/:id", (req, res) => {
 })
 
 //add new product
+// router.post("/add", async (req, res) => {
+//     let newProduct = {
+//         SKU: req.body.sku,
+//         name: req.body.name,
+//         qty: req.body.qty,
+//         category: req.body.category,
+//     }
+//     const sql = `INSERT INTO products (SKU,product_name,qty,category) VALUES (${req.body.sku},'${req.body.name}', ${req.body.qty}, '${req.body.category}');`;
+//     db.query(sql, (err, result) => {
+//         if (err) {
+//             console.log(err)
+//         } else {
+//             res.json(newProduct)
+//         }
+//     });
+// });
+
+// add new product
 router.post("/add", (req, res) => {
-    console.log("hit")
-    const sql = `INSERT INTO products (SKU,product_name,qty,category) VALUES (${req.body.sku},'${req.body.name}', ${req.body.qty}, '${req.body.category}');`;
+    const { sku, name, qty, category } = req.body;
+    const sql = `INSERT INTO products (SKU,product_name,qty,category) VALUES (${sku},'${name}', ${qty}, '${category}');`;
     db.query(sql, (err, result) => {
         if (err) {
             console.log(err)
         } else {
-            console.log(result)
+            const newProduct = {
+                SKU: sku,
+                product_name: name,
+                qty: qty,
+                category: category,
+                id: result.insertId
+            }
+            res.json(newProduct)
         }
     });
 });

@@ -4,23 +4,27 @@ import { ProductsContext } from '../contexts/products.context';
 
 
 const EditProduct = (props) => {
-    const [product, handleChange, reset] = useMultipleInputs()
-    const { editProduct } = useContext(ProductsContext)
+    let item = props[0] || {}
+    let {id} = item
+    console.log(item)
+
+    const [newProductValue, handleChange, reset] = useMultipleInputs(item)
+    const { editProduct, getProduct } = useContext(ProductsContext)
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        editProduct(product, props.match.params.id)
+        editProduct(newProductValue, props.match.params.id)
         reset();
     }
-
+    
     return (
         <div>
             <h1>edit product</h1>
             <form onSubmit={handleSubmit}>
-                <input type="text" name="sku" onChange={handleChange} value={product.sku} placeholder="SKU"/>
-                <input type="text" name="name" onChange={handleChange} value={product.name} placeholder="Name"/>
-                <input type="text" name="qty" onChange={handleChange} value={product.qty} placeholder="QTY"/>
-                <input type="text" name="category" onChange={handleChange} value={product.category} placeholder="Category"/>
+                <input type="text" name="sku" onChange={handleChange} value={newProductValue.sku} placeholder={"SKU"}/>
+                <input type="text" name="name" onChange={handleChange} value={newProductValue.name} placeholder="Name"/>
+                <input type="text" name="qty" onChange={handleChange} value={newProductValue.qty} placeholder="QTY"/>
+                <input type="text" name="category" onChange={handleChange} value={newProductValue.category} placeholder="Category"/>
                 <button>Update</button>
             </form>
         </div>

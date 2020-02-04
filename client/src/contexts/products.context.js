@@ -1,18 +1,15 @@
-import React, { createContext, useReducer, useCallback } from 'react';
+import React, { createContext, useReducer, useCallback, useEffect } from 'react';
 import productReducer from '../reducers/productReducer'
 import axios from 'axios'
 import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM } from '../actions/types'
 
-
 export const ProductsContext = createContext();
-
 
 export const ProductsProvider = (props) => {
 
     const initialState = {
-        loading: false,
+        isFetching: false,
         error: false,
-        editProduct: null,
         products: [],
     }
 
@@ -33,7 +30,7 @@ export const ProductsProvider = (props) => {
                 payload: err
             })
         }
-    }, [dispatch])
+    })
 
     const getProduct = useCallback(async itemID => {
         try {
@@ -52,9 +49,22 @@ export const ProductsProvider = (props) => {
         }
     }, [dispatch])
 
+    // const addProduct = async (product) => {
+    //     try {
+    //         const res = await axios.post("/api/products/add", product)
+    //         .then(dispatch({
+    //             type: ADD_ITEM,
+    //             payload: product
+    //         }))
+    //     } catch (err) {
+    //         console.log(err)
+    //     }
+    // }
+
     const addProduct = async (product) => {
-        try {
+         try {
             const res = await axios.post("/api/products/add", product)
+            console.log(res.data)
             dispatch({
                 type: ADD_ITEM,
                 payload: res.data
@@ -62,7 +72,6 @@ export const ProductsProvider = (props) => {
         } catch (err) {
             console.log(err)
         }
-        console.log("p r")
     }
 
     const deleteProduct = async (itemID) => {
@@ -90,6 +99,11 @@ export const ProductsProvider = (props) => {
             console.log(err)
         }
     }
+
+    useEffect(() => {
+        getProducts();
+    },[])
+
  
     return (
         <ProductsContext.Provider value={{ getProducts, getProduct, addProduct, deleteProduct, editProduct, products: state.products }}>

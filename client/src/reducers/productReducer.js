@@ -38,12 +38,14 @@ const reducer = (state, action) => {
         case EDIT_ITEM:
             return {
                 ...state,
-                products: state.products.map(product => product.id === action.id ? {...state.product, product} : product)
+                products: state.products.map(product => product.id === action.id ? action.payload : product)
             }
         
         default:
-            return state
+            return state 
+            
     }
+
 }
 
 export default reducer;

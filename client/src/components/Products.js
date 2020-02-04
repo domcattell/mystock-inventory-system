@@ -1,17 +1,14 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, memo } from 'react';
 import { ProductsContext, ProductsProvider } from '../contexts/products.context';
 import { Route, NavLink, Switch, Link } from 'react-router-dom'
 import Product from '../pages/Product'
+import AddProduct from '../pages/AddProduct'
 
 const Products = (props) => {
 
-    const { getProducts, products } = useContext(ProductsContext)
+    let { getProducts, products, addProduct } = useContext(ProductsContext)
 
-    useEffect(() => {
-        getProducts()
-    },[getProducts])
-
-    console.log(products)
+    
 
     return (
         <div>
@@ -26,10 +23,10 @@ const Products = (props) => {
                 </Link>
             ))}
 
-
+            <AddProduct />
         </div>
     );
 }
 
 
-export default Products;
+export default memo(Products);

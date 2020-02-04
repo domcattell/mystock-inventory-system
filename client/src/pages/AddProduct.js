@@ -1,18 +1,18 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import useMultipleInputs from '../hooks/useMultipleInputs'
 import { ProductsContext } from '../contexts/products.context';
 import Axios from 'axios';
 
-const AddProduct = () => {
+const AddProduct = (props) => {
     const [product, handleChange, reset] = useMultipleInputs("")
-    const { addProduct } = useContext(ProductsContext)
+    const { addProduct, getProducts } = useContext(ProductsContext)
 
     const handleSubmit = (e) => {
         e.preventDefault();
         addProduct(product)
         reset();
     }
-
+   
     return (
         <div>
             <form onSubmit={handleSubmit}>
