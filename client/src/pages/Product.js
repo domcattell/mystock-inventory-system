@@ -4,29 +4,42 @@ import EditProduct from '../components/EditProduct'
 
 
 const Product = (props) => {
-    const {products, getProduct, deleteProduct} = useContext(ProductsContext)
-    
+    const {products, deleteProduct, getProduct, itemsReset, isFetching} = useContext(ProductsContext)
     useEffect(() => {
         getProduct(props.match.params.id)
-    },[getProduct])
+        return () => {
+            itemsReset()
+        }
+    },[])
 
-    let product = products[0] || {}
-    const {id, product_name, qty, category, SKU} = product
+
+    console.log(isFetching)
+    // let product = products[0] || {}
+    // const {id, product_name, qty, category, SKU} = product
+    // console.log(product)
 
     const handleDelete = () => {
         deleteProduct(props.match.params.id)
         props.history.push("/")
     }
+    console.log(products)
+    const data = isFetching ? "Loading" : (
+        <div>
+            {products.map(p => (
+                <div>
+                    <h1>{p.id}</h1>
+                    <h4>{p.product_name}</h4>
+               </div>
+            ))}
+            <button onClick={handleDelete}>Delete</button>
+            <EditProduct {...props}/>
+        </div>
+    )
 
     return (
         <div>
-            <h1>{id}</h1>
-            <h2>{product_name}</h2>
-            <h2>{qty}</h2>
-            <h2>{category}</h2>
-            <h2>{SKU}</h2>
-            <button onClick={handleDelete}>Delete</button>
-            <EditProduct {...products} {...props}/>
+            
+            {data}
         </div>
     );
 }

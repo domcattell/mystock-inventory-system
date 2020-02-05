@@ -1,19 +1,25 @@
-import React, { createContext, useReducer, useCallback, useEffect } from 'react';
+import React, { createContext, useReducer, useCallback } from 'react';
 import productReducer from '../reducers/productReducer'
 import axios from 'axios'
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM } from '../actions/types'
+import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING } from '../actions/types'
 
 export const ProductsContext = createContext();
 
 export const ProductsProvider = (props) => {
 
     const initialState = {
-        isFetching: false,
+        isFetching: true,
         error: false,
         products: [],
     }
 
     const [state, dispatch] = useReducer(productReducer, initialState)
+
+    const itemsReset = () => {
+        dispatch({
+            type: ITEMS_LOADING
+        })
+    }
 
     const getProducts = useCallback(async () => {
         try {
@@ -22,53 +28,45 @@ export const ProductsProvider = (props) => {
             })
             dispatch({
                 type: GET_ITEMS,
-                payload: res.data
+                payload: res.data,
+                isFetching: false
             })
         } catch (err) {
             dispatch({
                 type: GET_ITEMS_FAILED,
-                payload: err
+                payload: err,
+                isFetching: false
             })
         }
     })
 
-    const getProduct = useCallback(async itemID => {
+    const getProduct = async itemID => {
         try {
             const res = await axios.get(`/api/products/${itemID}`, {
                 headers: { Accept: "application/json" }
             })
             dispatch({
                 type: GET_SINGLE_ITEM,
-                payload: res.data
+                payload: res.data,
+                isFetching: false
             })
         } catch (err) {
             dispatch({
                 type: GET_ITEMS_FAILED,
-                payload: err
+                payload: err,
+                isFetching: false
             })
         }
-    }, [dispatch])
-
-    // const addProduct = async (product) => {
-    //     try {
-    //         const res = await axios.post("/api/products/add", product)
-    //         .then(dispatch({
-    //             type: ADD_ITEM,
-    //             payload: product
-    //         }))
-    //     } catch (err) {
-    //         console.log(err)
-    //     }
-    // }
+    }
 
     const addProduct = async (product) => {
          try {
             const res = await axios.post("/api/products/add", product)
-            console.log(res.data)
             dispatch({
                 type: ADD_ITEM,
                 payload: res.data
             })
+            console.log(res.data)
         } catch (err) {
             console.log(err)
         }
@@ -94,19 +92,13 @@ export const ProductsProvider = (props) => {
                 payload: res.data,
                 id: itemID
             })
-            getProduct(product.id)
         } catch (err) {
             console.log(err)
         }
     }
-
-    useEffect(() => {
-        getProducts();
-    },[])
-
  
     return (
-        <ProductsContext.Provider value={{ getProducts, getProduct, addProduct, deleteProduct, editProduct, products: state.products }}>
+        <ProductsContext.Provider value={{ getProducts, getProduct, addProduct, deleteProduct, editProduct, itemsReset, products: state.products, isFetching: state.isFetching }}>
             {props.children}
         </ProductsContext.Provider>
     )

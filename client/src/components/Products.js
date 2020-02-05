@@ -8,8 +8,10 @@ const Products = (props) => {
 
     let { getProducts, products, addProduct } = useContext(ProductsContext)
 
+    useEffect(() => {
+        getProducts();
+    },[])
     
-
     return (
         <div>
             {products.map(product => (

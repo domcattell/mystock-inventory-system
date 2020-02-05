@@ -5,7 +5,7 @@ import Axios from 'axios';
 
 const AddProduct = (props) => {
     const [product, handleChange, reset] = useMultipleInputs("")
-    const { addProduct, getProducts } = useContext(ProductsContext)
+    const { addProduct } = useContext(ProductsContext)
 
     const handleSubmit = (e) => {
         e.preventDefault();

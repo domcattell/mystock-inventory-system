@@ -1,7 +1,13 @@
-import {GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM} from '../actions/types'
+import {GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING} from '../actions/types'
 
 const reducer = (state, action) => {
     switch(action.type) {
+        case ITEMS_LOADING:
+            return {
+                ...state,
+                isFetching: true,
+            }
+            
         case GET_ITEMS:
             return {
                 ...state,
@@ -38,7 +44,7 @@ const reducer = (state, action) => {
         case EDIT_ITEM:
             return {
                 ...state,
-                products: state.products.map(product => product.id === action.id ? action.payload : product)
+                products: state.products.map(product => product.id === action.id) ? [action.payload] : state.products
             }
         
         default:

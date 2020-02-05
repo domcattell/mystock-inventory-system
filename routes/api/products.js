@@ -26,24 +26,6 @@ router.get("/:id", (req, res) => {
     })
 })
 
-//add new product
-// router.post("/add", async (req, res) => {
-//     let newProduct = {
-//         SKU: req.body.sku,
-//         name: req.body.name,
-//         qty: req.body.qty,
-//         category: req.body.category,
-//     }
-//     const sql = `INSERT INTO products (SKU,product_name,qty,category) VALUES (${req.body.sku},'${req.body.name}', ${req.body.qty}, '${req.body.category}');`;
-//     db.query(sql, (err, result) => {
-//         if (err) {
-//             console.log(err)
-//         } else {
-//             res.json(newProduct)
-//         }
-//     });
-// });
-
 // add new product
 router.post("/add", (req, res) => {
     const { sku, name, qty, category } = req.body;
@@ -60,10 +42,12 @@ router.post("/add", (req, res) => {
                 id: result.insertId
             }
             res.json(newProduct)
+            console.log(result.rows)
         }
     });
 });
 
+// delete a single product
 router.delete("/:id", (req, res) => {
     const sql = `DELETE FROM products WHERE id = ${req.params.id};`
     db.query(sql, (err, result) => {
@@ -75,17 +59,25 @@ router.delete("/:id", (req, res) => {
     })
 })
 
+//update a single product
 router.put("/:id", (req, res) => {
-    const sql = `UPDATE products SET SKU = "${req.body.sku}", product_name = "${req.body.name}", qty = "${req.body.qty}", category = "${req.body.category}" where id = ${req.params.id}`
-    db.query(sql, (err, result) => {
-        if (err) {
-            console.log(err)
-        } else {
-            console.log(result)
-        }
+        const {sku, name, qty, category} = req.body
+        const sql = `UPDATE products SET SKU = "${sku}", product_name = "${name}", qty = "${qty}", category = "${category}" where id = ${req.params.id}`
+        db.query(sql, (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                const updatedProduct = {
+                    SKU: sku,
+                    product_name: name,
+                    qty: qty,
+                    category: category,
+                    id: req.params.id
+                }
+                
+                res.json(updatedProduct)
+            }
+        })
     })
-})
 
 module.exports = router
-
-// UPDATE products SET SKU = "1", product_name = "Shoes", qty = "10", category = "Shoes" where id = "42"

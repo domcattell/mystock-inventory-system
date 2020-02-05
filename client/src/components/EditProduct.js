@@ -1,15 +1,14 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import useMultipleInputs from '../hooks/useMultipleInputs'
 import { ProductsContext } from '../contexts/products.context';
 
 
 const EditProduct = (props) => {
-    let item = props[0] || {}
-    let {id} = item
-    console.log(item)
+    // let item = props[0] || {}
+    // let {id} = item
 
-    const [newProductValue, handleChange, reset] = useMultipleInputs(item)
-    const { editProduct, getProduct } = useContext(ProductsContext)
+    const [newProductValue, handleChange, reset] = useMultipleInputs()
+    const { editProduct } = useContext(ProductsContext)
 
     const handleSubmit = (e) => {
         e.preventDefault();
