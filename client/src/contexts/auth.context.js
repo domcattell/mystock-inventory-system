@@ -5,13 +5,22 @@ import axios from 'axios';
 
 export const AuthContext = createContext()
 
+const authToken = (token) => {
+    if(token) {
+        axios.defaults.headers.common['x-auth-token'] = token
+    } else {
+        delete axios.defaults.headers.common['x-auth-token']
+    }
+}
+
 export const AuthProvider = (props) => {
 
     const initialState = {
         fetchingUser: true,
-        userError: false,
+        error: null,
         isAuthenticated: false,
-        user: null
+        token: localStorage.getItem('token'),
+        currentUser: null
     }
 
     const [state, dispatch] = useReducer(authReducer, initialState)
@@ -24,8 +33,30 @@ export const AuthProvider = (props) => {
                 payload: res.data
             })
         } catch (err) {
-            console.log(err)
+            dispatch({
+                type: AUTH_ERROR,
+                payload: err.response.data.msg
+            })
         } 
+    }
+
+    const loadUser = async () => {
+        if(localStorage.token) {
+            authToken(localStorage.token)
+        }
+        
+        try {
+            const res = await axios.get('/checktoken')
+            dispatch({
+                type: USER_LOADED,
+                payload: res.data
+            })
+            console.log(res.data)
+        } catch (err) {
+            dispatch({
+                type: AUTH_ERROR
+            })
+        }
     }
 
     const loginUser = async (user) => {
@@ -33,18 +64,22 @@ export const AuthProvider = (props) => {
             const res = await axios.post("/api/login", user)
             if(res.status === 200) {
                 dispatch({
-                type: USER_LOADED,
+                type: LOGIN_SUCCESS,
                 payload: res.data
             })
-            console.log(res.data)
+            loadUser()
             } 
         } catch (err) {
-            console.log(err)
+            dispatch({
+                type: AUTH_ERROR
+            })
         }
     }
 
+    const logoutUser = () => dispatch({type: LOGOUT_SUCCESS})
+
     return (
-        <AuthContext.Provider value={{registerUser, loginUser, user: state.user}}>
+        <AuthContext.Provider value={{registerUser, logoutUser, loadUser, loginUser, currentUser: state.currentUser, isAuthenticated: state.isAuthenticated}}>
             {props.children}
         </AuthContext.Provider>
     )

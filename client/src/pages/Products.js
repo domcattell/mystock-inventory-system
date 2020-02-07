@@ -7,14 +7,17 @@ import AddProduct from './AddProduct'
 const Products = (props) => {
 
     let { getProducts, products, addProduct } = useContext(ProductsContext)
-    const {user} = useContext(AuthContext)
-    console.log(`from products front end ${user}`)
+    const {serverRes, loadUser, currentUser} = useContext(AuthContext)
+   
     useEffect(() => {
+        loadUser();
         getProducts();
     },[])
     
+    console.log(currentUser)
     return (
         <div>
+            {currentUser}
             {products.map(product => (
                 <Link to={`/products/${product.id}`}>
                 <div style={{margin: "40px"}}>

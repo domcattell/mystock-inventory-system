@@ -42,7 +42,6 @@ app.post("/api/register", (req, res) => {
     })
 })
 
-
 app.post("/api/login", async (req, res) => {
     let {username, password} = req.body;
     const sql = `SELECT * FROM users WHERE user_name = '${username}';`
@@ -55,16 +54,20 @@ app.post("/api/login", async (req, res) => {
         } else {
             if(!result.length) {
                 console.log("wrong username or password")
+                res.json({msg: "wrong username or password"})
             } else {
                 bcrpyt.compare(password, result[0].user_password, (err, result) => {
                     if (result == true) {
                         const payload = {username}
                         const token = jwt.sign(payload, secret, {
-                            expiresIn: 3600
+                            expiresIn: 36000
                         })
-                        res.cookie('token', token, {httpOnly: true})
+                        res.json({token})
+                        console.log(token)
+                        
+                        // res.cookie('token', token, {httpOnly: true})
+                        // res.json({msg: `welcome ${username},`, token: token})
                         console.log("LOGGED IN")
-                        res.json({msg: "it works"})
                     } else {
                         console.log("wrong password")
                         res.json({msg: "wrong username or password"})
@@ -75,28 +78,17 @@ app.post("/api/login", async (req, res) => {
     })
 })
 
-// bcrpyt.compare(password, result[0].user_password, (err, bResult) => {
-//     if (bResult == true) {
-//         const payload = {username}
-//         const token = jwt.sign(payload, secret, {
-//             expiresIn: 3600
-//         })
-//         res.cookie('token', token, {httpOnly: true})
-//         console.log("LOGGED IN")
-//         res.json({msg: "it works"})
-//     } else if (!result[0].user_name) {
-//          console.log("wrong username") 
-//     } else {
-//      console.log(err)
-//      console.log("wrong username or password")
-//      res.json({msg: "wrong username or password"})
-//  }
-// })
-
-
 app.get("/checktoken", auth, (req, res) => {
-    res.sendStatus(200)
+    const sql = `SELECT * FROM users WHERE user_name = '${req.username}';`
+    db.query(sql, (error, result) => {
+        if (error) {
+            console.log(err)
+        } 
+        let currentUser = result[0].user_name
+        res.json({currentUser})
+    })
 })
+
 //routes setup
 app.use('/api/products/', productRoutes)
 

@@ -2,7 +2,8 @@ const jwt = require("jsonwebtoken")
 const secret = "secret"
 
 const auth = (req, res, next) => {
-    const token = req.cookies.token
+    // const token = req.cookies.token
+    const token = req.header('x-auth-token')
 
     if(!token) {
         console.log("NO TOKEN PROVIDED!")

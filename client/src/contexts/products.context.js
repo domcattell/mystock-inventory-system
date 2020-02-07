@@ -21,7 +21,7 @@ export const ProductsProvider = (props) => {
         })
     }
 
-    const getProducts = useCallback(async () => {
+    const getProducts = async () => {
         try {
             const res = await axios.get("/api/products/all", {
                 headers: { Accept: "application/json" }
@@ -38,7 +38,7 @@ export const ProductsProvider = (props) => {
                 isFetching: false
             })
         }
-    })
+    }
 
     const getProduct = async itemID => {
         try {
