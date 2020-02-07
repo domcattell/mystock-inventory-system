@@ -33,7 +33,7 @@ const reducer = (state, action) => {
                 ...state,
                 isAuthenticated: false,
                 fetchingUser: false,
-                error: action.payload.msg
+                error: action.payload
             }
             
         case LOGOUT_SUCCESS:
