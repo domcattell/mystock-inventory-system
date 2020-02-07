@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useCallback } from 'react';
-import { USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS } from '../actions/types'
+import { USER_LOADED, USER_LOADING, AUTH_ERROR, CHECK_USERNAME, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS } from '../actions/types'
 import authReducer from '../reducers/authReducer'
 import axios from 'axios';
 
@@ -62,13 +62,11 @@ export const AuthProvider = (props) => {
     const loginUser = async (user) => {
         try {
             const res = await axios.post("/api/login", user)
-            if(res.status === 200) {
-                dispatch({
+            dispatch({
                 type: LOGIN_SUCCESS,
                 payload: res.data
             })
             loadUser()
-            } 
         } catch (err) {
             dispatch({
                 type: AUTH_ERROR
@@ -76,10 +74,22 @@ export const AuthProvider = (props) => {
         }
     }
 
+    const checkUsername = async (user) => {
+        try {
+            const res = await axios.post("/api/register/validation", user)
+            dispatch({
+                type: CHECK_USERNAME,
+                payload: res.data
+            })
+        } catch(err) {
+            console.log(err)
+        }
+    }
+
     const logoutUser = () => dispatch({type: LOGOUT_SUCCESS})
 
     return (
-        <AuthContext.Provider value={{registerUser, logoutUser, loadUser, loginUser, currentUser: state.currentUser, isAuthenticated: state.isAuthenticated}}>
+        <AuthContext.Provider value={{registerUser, logoutUser, loadUser, checkUsername, loginUser, currentUser: state.currentUser, isAuthenticated: state.isAuthenticated, error: state.error}}>
             {props.children}
         </AuthContext.Provider>
     )

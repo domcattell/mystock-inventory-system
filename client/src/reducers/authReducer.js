@@ -1,4 +1,4 @@
-import { USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS } from '../actions/types'
+import { USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS, CHECK_USERNAME } from '../actions/types'
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -24,6 +24,12 @@ const reducer = (state, action) => {
             return {
                 isAuthenticated: false,
                 fetchingUser: true,
+            }
+        }
+
+        case CHECK_USERNAME: {
+            return {
+                error: action.payload.msg
             }
         }
 

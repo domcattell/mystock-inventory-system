@@ -16,13 +16,28 @@ router.post("/register", (req, res) => {
         const sql = `INSERT INTO users (user_name, user_password) VALUES (?, ?);`;
         db.query(sql,[username, password], (error, result) => {
             if (error) res.status(400).json({msg: "Error connecting to the database"})
+            console.log(result)
         })
 
     })
 })
 
+router.post("/register/validation", (req, res) => {
+    let {username, password} = req.body;
+    const sql = "SELECT user_name FROM users WHERE user_name = ?";
+    db.query(sql,[username], (error, result) => {
+        if(error) console.log(error)
+        
+        if (!result.length) {
+            res.json({msg: "USERNAME AVAILABLE"})
+        } else if (username === result[0].user_name) {
+            res.json({msg: "USERNAME TAKEN"})
+        }
+    }) 
+})
+
 router.post("/login", async (req, res) => {
-    let { username, password } = req.body;
+    let { username, password } = req.body; 
     const sql = `SELECT * FROM users WHERE user_name = ?`
     db.query(sql,[username], (error, result) => {
         if (error) {
