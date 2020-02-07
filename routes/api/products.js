@@ -1,13 +1,15 @@
 const express = require("express"),
     router = express.Router(),
-    db = require("../../database")
+    db = require("../../database"),
+    auth = require("../../middleware/auth")
 
 //gets all products
-router.get("/all", (req, res) => {
+router.get("/all", auth, (req, res) => {
     const sql = "SELECT * FROM mystock.products;";
     db.query(sql, (err, products) => {
         if (err) {
-            console.log(err)
+            console.log(`from backend ${err}`)
+            res.json({msg: "error"})
         } else {
             res.json(products)
         }

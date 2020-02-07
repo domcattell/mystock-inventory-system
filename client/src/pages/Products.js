@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, memo } from 'react';
 import { ProductsContext, ProductsProvider } from '../contexts/products.context';
+import { AuthContext } from '../contexts/auth.context';
 import { Route, NavLink, Switch, Link } from 'react-router-dom'
-import Product from '../pages/Product'
-import AddProduct from '../pages/AddProduct'
+import AddProduct from './AddProduct'
 
 const Products = (props) => {
 
     let { getProducts, products, addProduct } = useContext(ProductsContext)
-
+    const {user} = useContext(AuthContext)
+    console.log(`from products front end ${user}`)
     useEffect(() => {
         getProducts();
     },[])
