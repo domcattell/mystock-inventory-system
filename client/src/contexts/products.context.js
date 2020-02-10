@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useCallback } from 'react';
+import React, { createContext, useReducer } from 'react';
 import productReducer from '../reducers/productReducer'
 import axios from 'axios'
 import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING } from '../actions/types'
