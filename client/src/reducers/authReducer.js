@@ -7,9 +7,10 @@ const reducer = (state, action) => {
             localStorage.setItem('token', action.payload.token)
             return {
                 ...state,
-                isAuthenticated: true,
                 fetchingUser: false,
-                currentUser: action.payload.currentUser
+                currentUser: action.payload.currentUser,
+                message: action.payload.msg,
+                errorMessage: action.payload.errorMsg
             }
             
         case USER_LOADED:
@@ -17,7 +18,7 @@ const reducer = (state, action) => {
                 ...state,
                 isAuthenticated: true,
                 fetchingUser: false,
-                currentUser: action.payload.currentUser
+                currentUser: action.payload.currentUser,
             }
 
         case USER_LOADING: {
@@ -29,7 +30,7 @@ const reducer = (state, action) => {
 
         case CHECK_USERNAME: {
             return {
-                error: action.payload.msg
+                message: action.payload.msg
             }
         }
 
@@ -39,7 +40,6 @@ const reducer = (state, action) => {
                 ...state,
                 isAuthenticated: false,
                 fetchingUser: false,
-                error: action.payload
             }
             
         case LOGOUT_SUCCESS:

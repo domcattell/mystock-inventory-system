@@ -6,7 +6,7 @@ import useRegisterInput from '../hooks/useRegisterInput';
 const Register = () => {
 
     const [newUser, handleChange, reset] = useRegisterInput("")
-    const {registerUser, checkUsername, error} = useContext(AuthContext)
+    const {registerUser, checkUsername, message, errorMessage} = useContext(AuthContext)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,17 +18,17 @@ const Register = () => {
         checkUsername(newUser) 
     },[newUser])
         
-    console.log(error)
+    console.log(message)
 
     return (
         <div>
-            <h2>{error}</h2>
+            <h2>{message}</h2>
+            <h2>{errorMessage}</h2>
             <form action="" onSubmit={handleSubmit}>
                 <input type="text" name="username" onChange={handleChange} value={newUser.username} placeholder="username"/>
                 <input type="password" name="password" onChange={handleChange} value={newUser.password} placeholder="password"/>
                 <input type="submit" value="Create" />
             </form>
-            <button >check</button>
         </div>
     );
 }

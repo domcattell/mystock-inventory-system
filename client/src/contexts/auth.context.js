@@ -17,7 +17,8 @@ export const AuthProvider = (props) => {
 
     const initialState = {
         fetchingUser: true,
-        error: null,
+        message: null,
+        errorMessage: null,
         isAuthenticated: false,
         token: localStorage.getItem('token'),
         currentUser: null
@@ -54,7 +55,8 @@ export const AuthProvider = (props) => {
             console.log(res.data)
         } catch (err) {
             dispatch({
-                type: AUTH_ERROR
+                type: AUTH_ERROR,
+                payload: err.response.data.msg
             })
         }
     }
@@ -89,7 +91,7 @@ export const AuthProvider = (props) => {
     const logoutUser = () => dispatch({type: LOGOUT_SUCCESS})
 
     return (
-        <AuthContext.Provider value={{registerUser, logoutUser, loadUser, checkUsername, loginUser, currentUser: state.currentUser, isAuthenticated: state.isAuthenticated, error: state.error}}>
+        <AuthContext.Provider value={{registerUser, logoutUser, loadUser, checkUsername, loginUser, currentUser: state.currentUser, isAuthenticated: state.isAuthenticated, message: state.message, errorMessage: state.errorMessage}}>
             {props.children}
         </AuthContext.Provider>
     )

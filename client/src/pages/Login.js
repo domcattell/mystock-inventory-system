@@ -5,7 +5,7 @@ import useRegisterInput from '../hooks/useRegisterInput';
 const Login = (props) => {
 
     const [user, handleChange, reset] = useRegisterInput("")
-    const {loginUser, currentUser, isAuthenticated, logoutUser} = useContext(AuthContext)
+    const {loginUser, currentUser, message, isAuthenticated, logoutUser} = useContext(AuthContext)
     
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,10 +18,12 @@ const Login = (props) => {
         logoutUser()
     }
 
+    console.log(message)
 
     return (
         <div>
             <h1>{currentUser}</h1>
+            <h2>{message}</h2>
             <form action="" onSubmit={handleSubmit} >
                 <input type="text" name="username" onChange={handleChange} value={user.username} autoComplete="username" placeholder="username"/>
                 <input type="password" name="password" onChange={handleChange} value={user.password} autoComplete="password" placeholder="password"/>
