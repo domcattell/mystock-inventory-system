@@ -1,0 +1,70 @@
+@import './GlobalStyles.scss';
+
+.menubarRoot {
+    width: 100%;
+    background-color: $secondaryColour;
+    display: flex;
+    color: white;
+    align-items: center;
+    padding: 3px;
+    font-family: 'Roboto', sans-serif;
+    padding: 5px 0 5px 0;
+}
+
+.menubarLogo {
+    h2 {
+        font-size: 24px;
+        font-weight: 400;
+        margin: 0;
+        margin-left: 15px;
+
+    }
+}
+
+.menubarToggle {
+    margin-right: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+    width: 40px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    transition: all 0.5s ease;
+
+    &:hover {
+        background-color: $secondaryHover;
+    }
+
+    i {
+        border-radius: 50%;
+        font-size: 18px;
+    }
+}
+
+.menubarUser {
+    position: absolute;
+    right: 0;
+    display: flex;
+    margin-right: 30px;
+    align-items: center;
+    font-size: 12px;
+
+    i {
+        background-color: white;
+        border-radius: 50%;
+        height: 25px;
+        width: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $secondaryColour;
+        margin-right: 10px;
+    }
+
+    h2 {
+        font-size: 16px;
+        margin: 0;
+    }
+}

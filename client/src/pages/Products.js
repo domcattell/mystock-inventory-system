@@ -1,8 +1,12 @@
-import React, { useContext, useEffect, memo } from 'react';
+import React, { useContext, useEffect, memo, useState } from 'react';
 import { ProductsContext, ProductsProvider } from '../contexts/products.context';
 import { AuthContext } from '../contexts/auth.context';
 import { Route, NavLink, Switch, Link } from 'react-router-dom'
 import AddProduct from './AddProduct'
+import Menubar from '../components/Menubar'
+import Navbar from '../components/Navbar'
+import Nav from '../components/Nav'
+import '../styles/Products.scss'
 
 const Products = (props) => {
 
@@ -13,11 +17,18 @@ const Products = (props) => {
         loadUser();
         getProducts();
     },[])
+
     
+    const [toggle, setToggle] = useState()
+
+    const navToggle = () => {
+        setToggle(!toggle)
+    }
+
     console.log(currentUser)
     return (
-        <div>
-            {currentUser}
+        <div className="productsRoot">
+            <div className="products">
             {products.map(product => (
                 <Link to={`/products/${product.id}`}>
                 <div style={{margin: "40px"}}>
@@ -30,6 +41,8 @@ const Products = (props) => {
             ))}
 
             <AddProduct />
+        </div>
+      
         </div>
     );
 }
