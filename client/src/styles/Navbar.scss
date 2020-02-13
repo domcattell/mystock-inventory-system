@@ -37,7 +37,6 @@
 .navbarItem {
     width: 100%;
     cursor: pointer;
-    padding: 14px;
     transition: background-color 0.3s ease;
 
     &:hover {
@@ -47,7 +46,6 @@
     &:active {
         background-color: rgb(238, 238, 238);
     }
-
 
     i {
         margin-right: 14px;
@@ -62,4 +60,10 @@
         padding: 0;
     }
 
+}
+
+.navbarLink {
+    display: block;
+    width: 100%;
+    padding: 14px;
 }

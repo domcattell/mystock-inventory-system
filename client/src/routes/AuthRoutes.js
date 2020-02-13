@@ -1,26 +1,43 @@
-import React from 'react';
-import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
-import AddProduct from '../pages/AddProduct'
+import React, {useContext, useEffect} from 'react';
+import { Route, Router, Switch, Redirect, withRouter } from 'react-router-dom';
+
+import {ProductsProvider} from '../contexts/products.context'
+import {AuthContext} from '../contexts/auth.context'
+import authToken from '../helpers/authToken'
+
+import AddProduct from '../components/AddProduct'
 import Product from '../pages/Product'
 import Products from '../pages/Products'
-// import AddCategory from '../pages/AddCategory'
-// import Categories from '../pages/Categories'
-// import Category from '../pages/Category'
 
+import Menubar from '../components/Menubar'
 
-const AuthRoutes = () => {
+const AuthRoutes = (props) => {
+    const {isAuthenticated, loadUser} = useContext(AuthContext)
+
+    // useEffect(() => {
+    //     loadUser();
+    // },[])
+
+    // console.log(isAuthenticated);
+
+    if(localStorage.token) {
+        authToken(localStorage.token);
+    }
+
     return (
-        <Switch>
-            <Route exact path="/products/all" render={() => <Products />} />
-            <Route exact path="/products/add" render={() => <AddProduct />} />
-            <Route exact path="/products/:id" render={(routeProps) => <Product {...routeProps}/>} />
-            {/* <Route exact path="/products/categories/add" render={() => <AddCategory />} />
-            <Route exact path="/products/categories/all" render={() => <Categories />} />
-            <Route exact path="/products/categories/:id" render={(routeProps) => <Category {...routeProps} />} /> */}
-        </Switch>
-    );
+        <div>
+            {!isAuthenticated && <Redirect to="/login" />}
+            <ProductsProvider>
+                <Switch>
+                    <Route exact path="/products/all"  render={() => <Products />}/>
+                    <Route exact path="/products/add" render={() => <AddProduct />} />
+                    <Route exact path="/products/:id" render={(routeProps) => <Product {...routeProps}/>} />
+                </Switch>
+            </ProductsProvider>
+        </div>
+    )   
 }
 
-export default AuthRoutes;
+export default withRouter(AuthRoutes);
 
 

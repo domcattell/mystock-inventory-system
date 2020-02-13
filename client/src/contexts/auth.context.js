@@ -1,22 +1,17 @@
-import React, { createContext, useReducer, useCallback } from 'react';
+import React, { createContext, useReducer, useEffect } from 'react';
 import { USER_LOADED, USER_LOADING, AUTH_ERROR, CHECK_USERNAME, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS } from '../actions/types'
 import authReducer from '../reducers/authReducer'
 import axios from 'axios';
+import authToken from '../helpers/authToken'
 
 export const AuthContext = createContext()
 
-const authToken = (token) => {
-    if(token) {
-        axios.defaults.headers.common['x-auth-token'] = token
-    } else {
-        delete axios.defaults.headers.common['x-auth-token']
-    }
-}
+console.log(axios.defaults.headers.common['x-auth-token'])
 
 export const AuthProvider = (props) => {
 
     const initialState = {
-        fetchingUser: true,
+        fetchingUser: false,
         message: null,
         errorMessage: null,
         isAuthenticated: false,
@@ -35,35 +30,43 @@ export const AuthProvider = (props) => {
             })
         } catch (err) {
             dispatch({
-                type: AUTH_ERROR,
-                payload: err.response.data.msg
+                type: AUTH_ERROR
             })
         } 
+    }
+
+    const userLoading = () => {
+        dispatch({
+            type: USER_LOADING
+        })
     }
 
     const loadUser = async () => {
         if(localStorage.token) {
             authToken(localStorage.token)
         }
-        
+    
         try {
             const res = await axios.get('/api/auth')
             dispatch({
                 type: USER_LOADED,
                 payload: res.data
             })
-            console.log(res.data)
         } catch (err) {
             dispatch({
-                type: AUTH_ERROR,
-                payload: err.response.data.msg
+                type: AUTH_ERROR
             })
         }
     }
 
     const loginUser = async (user) => {
+        const config = {
+            header: {
+                'Content-Type:': 'application/json'
+            }
+        }
         try {
-            const res = await axios.post("/api/login", user)
+            const res = await axios.post("/api/login", user, config)
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: res.data
@@ -89,9 +92,11 @@ export const AuthProvider = (props) => {
     }
 
     const logoutUser = () => dispatch({type: LOGOUT_SUCCESS})
+    
+    console.log(state.isAuthenticated)
 
     return (
-        <AuthContext.Provider value={{registerUser, logoutUser, loadUser, checkUsername, loginUser, currentUser: state.currentUser, isAuthenticated: state.isAuthenticated, message: state.message, errorMessage: state.errorMessage}}>
+        <AuthContext.Provider value={{registerUser, userLoading, logoutUser, loadUser, checkUsername, loginUser, currentUser: state.currentUser, isAuthenticated: state.isAuthenticated, message: state.message, errorMessage: state.errorMessage, fetchingUser: state.fetchingUser}}>
             {props.children}
         </AuthContext.Provider>
     )

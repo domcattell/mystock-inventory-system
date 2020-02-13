@@ -6,12 +6,8 @@ import useToggle from '../hooks/useToggle'
 
 const Menubar = (props) => {
 
-    const {serverRes, loadUser, currentUser} = useContext(AuthContext)
+    const {loadUser, currentUser } = useContext(AuthContext)
     const [navState, navToggle] = useToggle(false)
-
-    useEffect(() => {
-        loadUser();
-    },[currentUser])
 
     return (
         <div className="hellore">

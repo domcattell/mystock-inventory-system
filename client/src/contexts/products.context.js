@@ -15,7 +15,7 @@ export const ProductsProvider = (props) => {
 
     const [state, dispatch] = useReducer(productReducer, initialState)
 
-    const itemsReset = () => {
+    const loading = () => {
         dispatch({
             type: ITEMS_LOADING
         })
@@ -98,7 +98,7 @@ export const ProductsProvider = (props) => {
     }
  
     return (
-        <ProductsContext.Provider value={{ getProducts, getProduct, addProduct, deleteProduct, editProduct, itemsReset, products: state.products, isFetching: state.isFetching }}>
+        <ProductsContext.Provider value={{ getProducts, getProduct, addProduct, deleteProduct, editProduct, loading, products: state.products, isFetching: state.isFetching }}>
             {props.children}
         </ProductsContext.Provider>
     )
