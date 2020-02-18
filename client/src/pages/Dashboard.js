@@ -6,25 +6,27 @@ import PageContainer from '../components/PageContainer'
 import Widget from '../components/Widget'
 
 import { ProductsContext } from '../contexts/products.context';
+import { CategoryContext } from '../contexts/category.context';
 
 const Dashboard = (props) => {
 
-    const { products, getProducts } = useContext(ProductsContext)
+    const { products, getProducts, qtyAmount} = useContext(ProductsContext)
+    const { categories, getCategories } = useContext(CategoryContext)
 
     useEffect(() => {
         getProducts();
+        getCategories();
     },[])
 
-    console.log(products.length)
-
+    console.log(categories)
     return (
         <PageContainer> 
             <PageHeader title="Dashboard" />
             <div className="dashboardContent">
                 <div className="dashboardWidgetsContainer">
                     <Widget title="Total Products" content={products.length}/>
-                    <Widget title="Total Categories" />
-                    <Widget title="QTY In Hand" />
+                    <Widget title="Total Categories" content={categories.length} />
+                    <Widget title="total qty" content={qtyAmount}/>
                     <div className="dashboardStats">
 
                     </div>

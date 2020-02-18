@@ -17,7 +17,7 @@ const port = process.env.PORT || 5000;
 
 //routes setup
 app.use('/api/products/', productRoutes)
-app.use('/api/products/categories', productRoutes)
+app.use('/api/products/categories', categoryRoutes)
 app.use('/api/', authRoutes)
 
 app.listen(port, () => {

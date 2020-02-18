@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useCallback } from 'react';
-import categoryReducer from '../reducers/categoryReducer'
+import categoriesReducer from '../reducers/categoriesReducer'
 import axios from 'axios'
 import { CATEGORIES_LOADING, ADD_CATEGORY, GET_CATEGORIES, EDIT_CATEGORY, DELETE_CATEGORY, CATEGORIES_FAILED } from "../actions/types"
 
@@ -13,7 +13,7 @@ export const CategoryProvider = (props) => {
         categories: []
     }
 
-    const [state, dispatch] = useReducer(categoryReducer, initialState)
+    const [state, dispatch] = useReducer(categoriesReducer, initialState)
 
     const categoriesLoading = () => {
         dispatch({

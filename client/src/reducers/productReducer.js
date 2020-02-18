@@ -1,4 +1,4 @@
-import {SORT_AZ, SORT_ZA, GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING} from '../actions/types'
+import {TOTAL_QTY, SORT_AZ, SORT_ZA, GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING} from '../actions/types'
 
 const reducer = (state, action) => {
     switch(action.type) {
@@ -12,7 +12,7 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 isFetching: false,
-                products: action.payload
+                products: action.payload,
             }
         
         case GET_SINGLE_ITEM:
@@ -32,7 +32,8 @@ const reducer = (state, action) => {
         case ADD_ITEM:
             return {
                 ...state,
-                products: [...state.products, action.payload]
+                products: [...state.products, action.payload],
+                qtyAmount: state.qtyAmount + parseInt(action.payload.qty)
             }
         
         case DELETE_ITEM:
@@ -59,6 +60,12 @@ const reducer = (state, action) => {
                 ...state,
                 products: state.products.sort((a, b) => a.product_name.localeCompare(b.product_name)).reverse(),
                 sortProductsAZ: false
+            }
+
+        case TOTAL_QTY: 
+            return {
+                ...state,
+                qtyAmount: state.products.reduce((a, {qty}) => a + qty, 0)
             }
             
         default:

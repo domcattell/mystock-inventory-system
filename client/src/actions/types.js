@@ -21,5 +21,6 @@ export const CATEGORIES_FAILED = "CATEGORIES_FAILED"
 export const ADD_CATEGORY = "ADD_CATEGORY"
 export const SORT_AZ = "SORT_AZ"
 export const SORT_ZA = "SORT_ZA"
+export const TOTAL_QTY = "TOTAL_QTY"
 
 

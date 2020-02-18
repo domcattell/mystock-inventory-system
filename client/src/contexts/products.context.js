@@ -1,7 +1,8 @@
 import React, { createContext, useReducer } from 'react';
 import productReducer from '../reducers/productReducer'
 import axios from 'axios'
-import { SORT_AZ, SORT_ZA, GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING } from '../actions/types'
+import { TOTAL_QTY, SORT_AZ, SORT_ZA, GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING } from '../actions/types'
+import { StaticRouter } from 'react-router-dom';
 
 export const ProductsContext = createContext();
 
@@ -11,7 +12,8 @@ export const ProductsProvider = (props) => {
         isFetching: true,
         error: false,
         products: [],
-        sortProductsAZ: false
+        sortProductsAZ: false,
+        qtyAmount: null
     }
 
     const [state, dispatch] = useReducer(productReducer, initialState)
@@ -32,6 +34,7 @@ export const ProductsProvider = (props) => {
                 payload: res.data,
                 isFetching: false
             })
+            totalQty();
         } catch (err) {
             dispatch({
                 type: GET_ITEMS_FAILED,
@@ -67,7 +70,6 @@ export const ProductsProvider = (props) => {
                 type: ADD_ITEM,
                 payload: res.data
             })
-            console.log(res.data)
         } catch (err) {
             console.log(err)
         }
@@ -109,9 +111,15 @@ export const ProductsProvider = (props) => {
             type: SORT_ZA
         })
     }
- 
+
+    const totalQty = () => {
+        dispatch({
+            type: TOTAL_QTY
+        })
+    }
+  
     return (
-        <ProductsContext.Provider value={{ sortAZ, sortZA, getProducts, getProduct, addProduct, deleteProduct, editProduct, loading, products: state.products, isFetching: state.isFetching, sortProductsAZ: state.sortProductsAZ }}>
+        <ProductsContext.Provider value={{ totalQty, qtyAmount: state.qtyAmount, sortAZ, sortZA, getProducts, getProduct, addProduct, deleteProduct, editProduct, loading, products: state.products, isFetching: state.isFetching, sortProductsAZ: state.sortProductsAZ }}>
             {props.children}
         </ProductsContext.Provider>
     )
