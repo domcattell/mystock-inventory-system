@@ -1,4 +1,4 @@
-import {GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING} from '../actions/types'
+import {SORT_AZ, SORT_ZA, GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING} from '../actions/types'
 
 const reducer = (state, action) => {
     switch(action.type) {
@@ -46,12 +46,40 @@ const reducer = (state, action) => {
                 ...state,
                 products: state.products.map(product => product.id === action.id) ? [action.payload] : state.products
             }
+
+        case SORT_AZ: 
+            return {
+                ...state,
+                products: state.products.sort((a, b) => a.product_name.localeCompare(b.product_name)),
+                sortProductsAZ: true
+            }
         
+        case SORT_ZA:
+            return {
+                ...state,
+                products: state.products.sort((a, b) => a.product_name.localeCompare(b.product_name)).reverse(),
+                sortProductsAZ: false
+            }
+            
         default:
             return state 
-            
     }
 
 }
+
+
+// case SORT_AZ: 
+// return {
+//     ...state,
+//     products: state.products.sort((a, b) => {
+//         if(a.product_name.toLowerCase() < b.product_name.toLowerCase()) {
+//             return -1;
+//         }
+//         if(a.product_name.toLowerCase() > b.product_name.toLowerCase()) {
+//             return 1;
+//         }
+//         return 0;
+//     })
+// }
 
 export default reducer;

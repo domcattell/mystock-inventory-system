@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 import productReducer from '../reducers/productReducer'
 import axios from 'axios'
-import { GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING } from '../actions/types'
+import { SORT_AZ, SORT_ZA, GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING } from '../actions/types'
 
 export const ProductsContext = createContext();
 
@@ -11,6 +11,7 @@ export const ProductsProvider = (props) => {
         isFetching: true,
         error: false,
         products: [],
+        sortProductsAZ: false
     }
 
     const [state, dispatch] = useReducer(productReducer, initialState)
@@ -96,9 +97,21 @@ export const ProductsProvider = (props) => {
             console.log(err)
         }
     }
+
+    const sortAZ = () => {
+        dispatch({
+            type: SORT_AZ
+        })
+    }
+
+    const sortZA = () => {
+        dispatch({
+            type: SORT_ZA
+        })
+    }
  
     return (
-        <ProductsContext.Provider value={{ getProducts, getProduct, addProduct, deleteProduct, editProduct, loading, products: state.products, isFetching: state.isFetching }}>
+        <ProductsContext.Provider value={{ sortAZ, sortZA, getProducts, getProduct, addProduct, deleteProduct, editProduct, loading, products: state.products, isFetching: state.isFetching, sortProductsAZ: state.sortProductsAZ }}>
             {props.children}
         </ProductsContext.Provider>
     )

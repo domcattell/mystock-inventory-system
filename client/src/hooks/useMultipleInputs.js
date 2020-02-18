@@ -15,6 +15,7 @@ const useInputState = () => {
             [e.target.name]: e.target.value
         })
     }
+
     const reset = () => {
         setValue({
             sku: "",
@@ -23,6 +24,7 @@ const useInputState = () => {
             category: ""
         });
     }
+
     return [value, handleChange, reset]
 }
 export default useInputState;

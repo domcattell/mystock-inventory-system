@@ -8,17 +8,12 @@ import authToken from '../helpers/authToken'
 import AddProduct from '../components/AddProduct'
 import Product from '../pages/Product'
 import Products from '../pages/Products'
+import Dashboard from '../pages/Dashboard'
 
 import Menubar from '../components/Menubar'
 
 const AuthRoutes = (props) => {
-    const {isAuthenticated, loadUser} = useContext(AuthContext)
-
-    // useEffect(() => {
-    //     loadUser();
-    // },[])
-
-    // console.log(isAuthenticated);
+    const {isAuthenticated} = useContext(AuthContext)
 
     if(localStorage.token) {
         authToken(localStorage.token);
@@ -26,11 +21,12 @@ const AuthRoutes = (props) => {
 
     return (
         <div>
-            {!isAuthenticated && <Redirect to="/login" />}
             <ProductsProvider>
+            {props.location.pathname !== "/login" && "/register" && <Menubar />}
+            {!isAuthenticated && <Redirect to="/login" />}
                 <Switch>
+                    <Route exact path="/dashboard"  render={() => <Dashboard />}/>
                     <Route exact path="/products/all"  render={() => <Products />}/>
-                    <Route exact path="/products/add" render={() => <AddProduct />} />
                     <Route exact path="/products/:id" render={(routeProps) => <Product {...routeProps}/>} />
                 </Switch>
             </ProductsProvider>

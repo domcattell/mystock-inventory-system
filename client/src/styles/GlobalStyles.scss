@@ -1,7 +1,60 @@
 $primaryColour: #403F59;
 $secondaryColour: #F26666;
+$primaryAltColour: #011140;
 $secondaryHover: rgb(180, 79, 79);
+$fontSecondaryColour: rgb(236, 151, 148);
+$fontPrimaryColour: rgb(236, 151, 148);
 $grey: rgb(206, 206, 206);
 $menuTextColour: rgb(139, 127, 127);
 $menuTextColourHover: rgb(241, 241, 241);
 
+@mixin defaultBtn($width, $margin) {
+    border: none;
+    background-color: $secondaryColour;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 5px;
+    transition: all 0.5s ease;
+    margin-top: $margin;
+    width: $width;
+
+        &:hover {
+            background-color: $secondaryHover;
+        }
+}
+
+@mixin defaultInput($width, $padding) {
+    width: $width;
+    margin-bottom: 18px;
+    padding: $padding;
+    border-radius: 3px;
+    border: none;
+    border: 1px solid $grey;
+    background-color: rgb(243, 243, 243);
+}
+
+@mixin rootContainer() {
+    height: 100vh;
+    background-color: rgb(247, 247, 247);
+    overflow: scroll;
+}
+
+.pageContainer {
+    height: 100vh;
+    background-color: rgb(247, 247, 247);
+    overflow: scroll;
+}
+
+.pageHeader {
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    position: relative;
+
+    h3 {
+        margin: 0;
+        font-size: 32px;
+        color: $menuTextColour;
+    }
+}

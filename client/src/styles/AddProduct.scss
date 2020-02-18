@@ -1,0 +1,36 @@
+@import './GlobalStyles.scss';
+
+.AddProductBtn {
+    @include defaultBtn(100%, 0);
+    
+}
+
+.AddProductCloseBtn {
+    @include defaultBtn(15%, 10px);
+}
+
+.AddProductForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px; 
+    
+
+     input[type="text"] {
+        @include defaultInput(100%, 1.8%);
+
+     }
+
+     input[type="number"] {
+        @include defaultInput(20%, 1.8%);
+     }
+}
+
+.AddProductQty {
+   @include defaultInput(60%, 0);
+}
+
+.AddProductDialog {
+    width: 550px !important;
+}
+

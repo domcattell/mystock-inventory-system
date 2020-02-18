@@ -19,5 +19,7 @@ export const DELETE_CATEGORY = "DELETE_CATEGORY"
 export const EDIT_CATEGORY = "EDIT_CATEGORY"
 export const CATEGORIES_FAILED = "CATEGORIES_FAILED"
 export const ADD_CATEGORY = "ADD_CATEGORY"
+export const SORT_AZ = "SORT_AZ"
+export const SORT_ZA = "SORT_ZA"
 
 

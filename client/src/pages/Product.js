@@ -7,9 +7,9 @@ const Product = (props) => {
     const {products, deleteProduct, getProduct, itemsReset, isFetching} = useContext(ProductsContext)
     useEffect(() => {
         getProduct(props.match.params.id)
-        return () => {
-            itemsReset()
-        }
+        // return () => {
+        //     itemsReset()
+        // }
     },[])
 
 

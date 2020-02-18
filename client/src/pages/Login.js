@@ -17,17 +17,15 @@ const Login = (props) => {
         reset();
     }
 
-    console.log(`loading user... ${fetchingUser}`)
-    console.log(isAuthenticated)
-  
     return (
         <div className="Login-root">
             <div className="Login-logo">
                 <h1>myStock <span>Inventory System</span></h1>
             </div>
-            <div className="Login-form-wrapper">
-                <h3>{message}</h3>
-                <h5>{fetchingUser && "Loading"}</h5>
+            <div className={message ? "Login-form-wrapper shake" : "Login-form-wrapper"}>
+                <div className="loginMessage"> 
+                    <p className={message && "loginError"}>{message}</p>
+                </div>
                 <form className="Login-form" onSubmit={handleSubmit} >
                     <input type="text" name="username" onChange={handleChange} value={user.username} autoComplete="username" placeholder="username" />
                     <input type="password" name="password" onChange={handleChange} value={user.password} autoComplete="password" placeholder="password" />

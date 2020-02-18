@@ -11,15 +11,14 @@ const Routes = (props) => {
     console.log(isAuthenticated);
     
     return (
+        <div>
         <Switch>
-            <div>
-                {props.location.pathname !== "/login" && "/register" && <Menubar />}
-                {isAuthenticated && <Redirect to="/products/all" />}
+                {isAuthenticated && <Redirect to="/dashboard" />}
                 <Route exact path ="/register" render={() => <Register />} />
                 <Route exact path ="/login" render={(routeProps) => <Login {...routeProps}/>} />
                 <Route exact path="/" render={() => <Redirect to="/login" />} />
-            </div>
         </Switch>
+        </div>
     );
 }
 
