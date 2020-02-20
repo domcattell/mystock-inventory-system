@@ -23,5 +23,7 @@ export const SORT_AZ = "SORT_AZ"
 export const SORT_ZA = "SORT_ZA"
 export const TOTAL_QTY = "TOTAL_QTY"
 export const CLEAR_MESSAGES = "CLEAR_MESSAGES"
+export const ADD_ITEM_FAILED = "ADD_ITEM_FAILED"
+export const UPDATE_ITEM_FAILED = "UPDATE_ITEM_FAILED"
 
 

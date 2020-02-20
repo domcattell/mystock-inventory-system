@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 import productReducer from '../reducers/productReducer'
 import axios from 'axios'
-import { TOTAL_QTY, SORT_AZ, SORT_ZA, GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING } from '../actions/types'
+import { CLEAR_MESSAGES, ADD_ITEM_FAILED, UPDATE_ITEM_FAILED, TOTAL_QTY, SORT_AZ, SORT_ZA, GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING } from '../actions/types'
 import { StaticRouter } from 'react-router-dom';
 
 export const ProductsContext = createContext();
@@ -13,7 +13,8 @@ export const ProductsProvider = (props) => {
         error: false,
         products: [],
         sortProductsAZ: false,
-        qtyAmount: null
+        qtyAmount: null,
+        msg: {}
     }
 
     const [state, dispatch] = useReducer(productReducer, initialState)
@@ -71,7 +72,10 @@ export const ProductsProvider = (props) => {
                 payload: res.data
             })
         } catch (err) {
-            console.log(err)
+            dispatch({
+                type: ADD_ITEM_FAILED,
+                payload: err.response.data
+            })
         }
     }
 
@@ -83,7 +87,10 @@ export const ProductsProvider = (props) => {
                 payload: itemID
             })
         } catch (err) {
-            console.log(err)
+            dispatch({
+                type: GET_ITEMS_FAILED,
+                payload: err.response.data
+            })
         }
     }
 
@@ -96,7 +103,10 @@ export const ProductsProvider = (props) => {
                 id: itemID
             })
         } catch (err) {
-            console.log(err)
+            dispatch({
+                type: UPDATE_ITEM_FAILED,
+                payload: err.response.data
+            })
         }
     }
 
@@ -117,9 +127,11 @@ export const ProductsProvider = (props) => {
             type: TOTAL_QTY
         })
     }
+
+    const clearMessages = () => dispatch({type: CLEAR_MESSAGES})
   
     return (
-        <ProductsContext.Provider value={{ totalQty, qtyAmount: state.qtyAmount, sortAZ, sortZA, getProducts, getProduct, addProduct, deleteProduct, editProduct, loading, products: state.products, isFetching: state.isFetching, sortProductsAZ: state.sortProductsAZ }}>
+        <ProductsContext.Provider value={{ clearMessages, error: state.error, msg: state.msg, totalQty, qtyAmount: state.qtyAmount, sortAZ, sortZA, getProducts, getProduct, addProduct, deleteProduct, editProduct, loading, products: state.products, isFetching: state.isFetching, sortProductsAZ: state.sortProductsAZ }}>
             {props.children}
         </ProductsContext.Provider>
     )

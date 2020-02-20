@@ -6,17 +6,15 @@ import authToken from '../helpers/authToken'
 
 export const AuthContext = createContext()
 
-console.log(axios.defaults.headers.common['x-auth-token'])
-
 export const AuthProvider = (props) => {
 
     const initialState = {
         fetchingUser: false,
-        SuccessMsg: null,
-        errorMsg: null,
+        msg: "",
         isAuthenticated: false,
         token: localStorage.getItem('token'),
-        currentUser: null
+        currentUser: null,
+        error: false
     }
 
     const [state, dispatch] = useReducer(authReducer, initialState)
@@ -40,7 +38,8 @@ export const AuthProvider = (props) => {
             })
         } catch (err) {
             dispatch({
-                type: AUTH_ERROR
+                type: AUTH_ERROR,
+                payload: err.response.data
             })
         }
     }
@@ -103,7 +102,7 @@ export const AuthProvider = (props) => {
     console.log(state.isAuthenticated)
 
     return (
-        <AuthContext.Provider value={{clearMessages, registerUser, userLoading, logoutUser, loadUser, checkUsername, loginUser, currentUser: state.currentUser, isAuthenticated: state.isAuthenticated, successMsg: state.successMsg, errorMsg: state.errorMsg, fetchingUser: state.fetchingUser}}>
+        <AuthContext.Provider value={{clearMessages, error: state.error,  registerUser, userLoading, logoutUser, loadUser, checkUsername, loginUser, currentUser: state.currentUser, isAuthenticated: state.isAuthenticated, msg: state.msg, fetchingUser: state.fetchingUser}}>
             {props.children}
         </AuthContext.Provider>
     )

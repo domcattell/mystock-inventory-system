@@ -5,27 +5,26 @@ import "../styles/Login.scss"
 import {Link} from 'react-router-dom'
 
 
-const Login = (props) => {
+const Login = () => {
 
     const [user, handleChange, reset] = useRegisterInput("")
-    const { loginUser, clearMessages, currentUser, successMsg, isAuthenticated, loadUser, userLoading, fetchingUser,  errorMsg} = useContext(AuthContext)
+    const { loginUser, clearMessages, userLoading, msg, error} = useContext(AuthContext)
 
     const handleSubmit = (e) => {
         e.preventDefault();
         userLoading();
         loginUser(user);
         reset();
-        clearMessages();
     }
-
+    
     return (
         <div className="Login-root">
             <div className="Login-logo">
                 <h1>myStock <span>Inventory System</span></h1>
             </div>
-            <div className={errorMsg ? "Login-form-wrapper shake" : "Login-form-wrapper"}>
-                <div className="loginMessage"> 
-                    <p className={errorMsg && "loginError"}>{errorMsg}</p>
+            <div className={error ? "Login-form-wrapper shake" : "Login-form-wrapper"}>
+                <div className="loginMessage">
+                    {error && <p className="loginError">{msg.error}</p>} 
                 </div>
                 <form className="Login-form" onSubmit={handleSubmit} >
                     <input type="text" name="username" onChange={handleChange} value={user.username} autoComplete="username" placeholder="username" />
@@ -35,7 +34,7 @@ const Login = (props) => {
                 <h4>Not registered? Create an account <Link to="/register"><a>Here</a></Link></h4>
             </div>
         </div>
-    );
+    ); 
 }
 
 export default Login;

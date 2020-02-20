@@ -31,6 +31,11 @@
 }
 
 .AddProductDialog {
-    width: 550px !important;
+    width: 450px !important;
 }
 
+.AddProductError {
+    font-size: 16px;
+    color: $secondaryColour;
+    text-align: center;
+}

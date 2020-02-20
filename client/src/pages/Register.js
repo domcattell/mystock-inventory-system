@@ -5,23 +5,22 @@ import useRegisterInput from '../hooks/useRegisterInput';
 
 const Register = () => {
 
-    const [newUser, handleChange, reset] = useRegisterInput("")
-    const {registerUser, clearMessages, checkUsername, successMsg, errorMsg} = useContext(AuthContext)
+    const [newUser, handleChange] = useRegisterInput("")
+    const {registerUser, clearMessages, checkUsername, msg} = useContext(AuthContext)
 
     const handleSubmit = (e) => {
         e.preventDefault(); 
         registerUser(newUser)
-        clearMessages();
     }
 
     useEffect(() => {
         checkUsername(newUser)
     },[newUser])
-        
+    
     return (
-        <div>
-            <h4>{successMsg}</h4>
-            <h4>{errorMsg}</h4>
+        <div onClick={clearMessages}>
+            <h4>{msg.info}</h4>
+            <h4>{msg.error}</h4>
             <form action="" onSubmit={handleSubmit}>
                 <input type="text" name="username" onChange={handleChange} value={newUser.username} placeholder="username" required/>
                 <input type="password" name="password" onChange={handleChange} value={newUser.password} placeholder="password" required/>
