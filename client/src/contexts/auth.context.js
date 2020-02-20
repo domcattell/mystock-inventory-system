@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useEffect } from 'react';
-import { USER_LOADED, USER_LOADING, AUTH_ERROR, CHECK_USERNAME, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS } from '../actions/types'
+import { CLEAR_MESSAGES, USER_LOADED, USER_LOADING, AUTH_ERROR, CHECK_USERNAME, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS } from '../actions/types'
 import authReducer from '../reducers/authReducer'
 import axios from 'axios';
 import authToken from '../helpers/authToken'
@@ -12,8 +12,8 @@ export const AuthProvider = (props) => {
 
     const initialState = {
         fetchingUser: false,
-        message: null,
-        errorMessage: null,
+        SuccessMsg: null,
+        errorMsg: null,
         isAuthenticated: false,
         token: localStorage.getItem('token'),
         currentUser: null
@@ -97,11 +97,13 @@ export const AuthProvider = (props) => {
     }
 
     const logoutUser = () => dispatch({type: LOGOUT_SUCCESS})
+
+    const clearMessages = () => dispatch({type: CLEAR_MESSAGES})
     
     console.log(state.isAuthenticated)
 
     return (
-        <AuthContext.Provider value={{registerUser, userLoading, logoutUser, loadUser, checkUsername, loginUser, currentUser: state.currentUser, isAuthenticated: state.isAuthenticated, message: state.message, errorMessage: state.errorMessage, fetchingUser: state.fetchingUser}}>
+        <AuthContext.Provider value={{clearMessages, registerUser, userLoading, logoutUser, loadUser, checkUsername, loginUser, currentUser: state.currentUser, isAuthenticated: state.isAuthenticated, successMsg: state.successMsg, errorMsg: state.errorMsg, fetchingUser: state.fetchingUser}}>
             {props.children}
         </AuthContext.Provider>
     )

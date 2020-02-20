@@ -1,4 +1,4 @@
-import { USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS, CHECK_USERNAME } from '../actions/types'
+import { CLEAR_MESSAGES, USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS, CHECK_USERNAME } from '../actions/types'
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -9,7 +9,7 @@ const reducer = (state, action) => {
                 ...state,
                 fetchingUser: false,
                 currentUser: action.payload.currentUser,
-                message: action.payload,
+                successMsg: action.payload,
             }
             
         case USER_LOADED:
@@ -29,7 +29,7 @@ const reducer = (state, action) => {
 
         case CHECK_USERNAME: {
             return {
-                message: action.payload
+                successMsg: action.payload
             }
         }
 
@@ -39,7 +39,14 @@ const reducer = (state, action) => {
                 ...state,
                 isAuthenticated: false,
                 fetchingUser: false,
-                errorMessage: action.payload
+                errorMsg: action.payload
+            }
+        
+        case CLEAR_MESSAGES:
+            return {
+                ...state,
+                successMsg: null,
+                errorMsg: null
             }
             
         case LOGOUT_SUCCESS:

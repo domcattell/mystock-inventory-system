@@ -8,25 +8,24 @@ import {Link} from 'react-router-dom'
 const Login = (props) => {
 
     const [user, handleChange, reset] = useRegisterInput("")
-    const { loginUser, currentUser, message, isAuthenticated, loadUser, userLoading, fetchingUser,  errorMessage} = useContext(AuthContext)
+    const { loginUser, clearMessages, currentUser, successMsg, isAuthenticated, loadUser, userLoading, fetchingUser,  errorMsg} = useContext(AuthContext)
 
     const handleSubmit = (e) => {
         e.preventDefault();
         userLoading();
         loginUser(user);
         reset();
+        clearMessages();
     }
-
-    console.log(errorMessage)
 
     return (
         <div className="Login-root">
             <div className="Login-logo">
                 <h1>myStock <span>Inventory System</span></h1>
             </div>
-            <div className={errorMessage ? "Login-form-wrapper shake" : "Login-form-wrapper"}>
+            <div className={errorMsg ? "Login-form-wrapper shake" : "Login-form-wrapper"}>
                 <div className="loginMessage"> 
-                    <p className={errorMessage && "loginError"}>{errorMessage}</p>
+                    <p className={errorMsg && "loginError"}>{errorMsg}</p>
                 </div>
                 <form className="Login-form" onSubmit={handleSubmit} >
                     <input type="text" name="username" onChange={handleChange} value={user.username} autoComplete="username" placeholder="username" />
