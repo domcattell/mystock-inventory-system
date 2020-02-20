@@ -9,21 +9,22 @@ const Register = () => {
     const {registerUser, checkUsername, message, errorMessage} = useContext(AuthContext)
 
     const handleSubmit = (e) => {
-        e.preventDefault();
+        e.preventDefault(); 
         registerUser(newUser)
-        reset();
     }
 
     useEffect(() => {
         checkUsername(newUser) 
-    },[newUser])
+    },[newUser],[])
         
     console.log(message)
+    console.log(errorMessage); 
+    
 
     return (
         <div>
-            <h2>{message}</h2>
-            <h2>{errorMessage}</h2>
+            <h4>{message}</h4>
+            <h4>{errorMessage}</h4>
             <form action="" onSubmit={handleSubmit}>
                 <input type="text" name="username" onChange={handleChange} value={newUser.username} placeholder="username"/>
                 <input type="password" name="password" onChange={handleChange} value={newUser.password} placeholder="password"/>

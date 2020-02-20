@@ -5,68 +5,79 @@ const express = require("express"),
     jwt = require("jsonwebtoken"),
     auth = require("../../middleware/auth")
 
-
+//webtoken secret
 const secret = "secret"
 
 router.post("/register", (req, res) => {
-    let { username, password } = req.body;
+    let {username, password} = req.body;
+
+    //use bcrypt to encrypt user password field
     bcrpyt.hash(password, bcrpyt.genSaltSync(10), null, (err, hash) => {
         if (err) console.log(err)
-        const sql = `SELECT user_name FROM users WHERE user_name = ?`;
-        db.query(sql,[username], (error, result) => {
-            if (error) console.log(error)
-            if(!result.length) {
-                password = hash;
-                const sql = `INSERT INTO users (user_name, user_password) VALUES (?, ?);`;
-                db.query(sql, [username, password], (error, result) => {
-                    if (error) res.status(400).json({ msg: "Error connecting to the database" })
-                    console.log(result)
-                })
-            } else if (username === result[0].user_name) {
-                res.json({msg: "Username already exists"})
+        password = hash
+
+        const sql = `INSERT INTO users (user_name, user_password) VALUES (?, ?);`
+        db.query(sql, [username, password], (error, result) => {
+            if(error) {
+                //checks mysql error code and sends back appropriate message back to the client
+                if (error.errno == 1062) {
+                    console.log("Username already taken")
+                    res.status(401).json("Username already taken")
+                }
+                else if (error.errno == 1406) {
+                    console.log("Username too long. Max 25 characters")
+                    res.status(401).json("Username too long. Max 25 characters")
+                } else {
+                    console.log(error)
+                    res.status(500).send("Database error occured!")
+                }
             } 
-        })
+            res.status(200)
+            console.log(result) 
+        }) 
     })
 })
 
+// checks if user already exists. sends request on state change in react to dynamically tell user if the username is available
 router.post("/register/validation", async (req, res) => {
     let { username } = req.body;
     const sql = "SELECT user_name FROM users WHERE user_name = ?";
     await db.query(sql, [username], (error, result) => {
-        if (error) console.log(error)
+        if (error) res.status(500).send("Database error occured!")
 
         if (!result.length) {
-            res.json({ msg: "USERNAME AVAILABLE" })
+            res.status(200).json("Username available")
         } else if (username === result[0].user_name) {
-            res.json({ msg: "USERNAME TAKEN" })
+            res.status(200).json("Username taken") 
         }
     })
 })
 
+//login
 router.post("/login", async (req, res) => {
     let { username, password } = req.body;
     const sql = `SELECT * FROM users WHERE user_name = ?`
     db.query(sql, [username], (error, result) => {
         if (error) {
-            console.log("ERROR!")
             console.log(error)
-            res.status(400).json({ msg: "Error connecting to the database" })
+            res.status(500).json("Database error has occured!")
         } else {
             if (!result.length) {
                 console.log("wrong username or password")
-                res.json({ msg: "Wrong username or password" })
+                res.status(401).json("Wrong username or password");
             } else {
                 bcrpyt.compare(password, result[0].user_password, (err, result) => {
                     if (result == true) {
                         const payload = { username }
                         const token = jwt.sign(payload, secret, {
                             expiresIn: 36000
-                        })
-                        res.json({ token })
+                        });
+                        res.json({ token });
+                        res.status(200);
                         console.log("LOGGED IN")
                     } else {
-                        console.log("wrong password")
-                        res.json({ msg: "Wrong username or password" })
+                        console.log("wrong username or password")
+                        res.status(401).json("Wrong username or password");
                     }
                 })
             }
@@ -74,14 +85,18 @@ router.post("/login", async (req, res) => {
     })
 })
 
+
+//auth route. also gets username
 router.get("/auth", auth, (req, res) => {
     const sql = `SELECT * FROM users WHERE user_name = ?;`
     db.query(sql, [req.username], (error, result) => {
         if (error) {
-            console.log(err)
+            console.log(error)
+            res.status(500).json("Database error has occured!")
         }
         const currentUser = result[0].user_name
         res.json({ currentUser })
+        res.status(200)
     })
 })
 

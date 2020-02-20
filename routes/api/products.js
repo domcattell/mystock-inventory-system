@@ -8,9 +8,12 @@ router.all('*', auth)
 
 //gets all products
 router.get("/all", (req, res) => {
-    const sql = "SELECT * FROM mystock.products;";
+    const sql = `SELECT products.id, products.product_name, products.qty, products.SKU, products.created_at, categories.category 
+                FROM products 
+                INNER JOIN categories 
+                ON products.category_id = categories.id;`
     db.query(sql, (err, products) => {
-        if (err) res.json({ msg: `Database error occured: ${err}` })
+        if (err) res.json({ msg: `Database error occured` })
 
         res.json(products)
     })
@@ -18,7 +21,9 @@ router.get("/all", (req, res) => {
 
 //get single product
 router.get("/:id", (req, res) => {
-    const sql = `SELECT * FROM products WHERE FIND_IN_SET('${req.params.id}', id);`;
+    const sql = `SELECT products.id, products.product_name, products.qty, products.SKU, products.created_at, categories.category 
+                FROM products JOIN categories ON products.category_id = categories.id 
+                WHERE products.id = ${req.params.id};`;
     db.query(sql, (err, product) => {
         if (err) {
             console.log(err)
@@ -31,10 +36,18 @@ router.get("/:id", (req, res) => {
 // add new product
 router.post("/add", (req, res) => {
     const { sku, name, qty, category } = req.body;
-    const sql = `INSERT INTO products (SKU,product_name,qty,category) VALUES (${sku},'${name}', ${qty}, '${category}');`;
-    db.query(sql, (err, result) => {
+    const sql = `INSERT INTO products (category_id, product_name, qty, SKU)
+                SELECT categories.id, ?, ?, ?
+                FROM categories
+                WHERE categories.category = ?;`
+    db.query(sql,[name, qty, sku, category], (err, result) => {
         if (err) {
-            console.log(err)
+            if(err.errno = 1062) {
+                res.json({msg: `Error: "${name}" already exists as a product`})
+                console.log(`Error: ${name} already exists as a product`)
+            } else {
+                res.json({msg: "Database error occured"})
+            }
         } else {
             const newProduct = {
                 SKU: sku,
@@ -44,7 +57,6 @@ router.post("/add", (req, res) => {
                 id: result.insertId
             }
             res.json(newProduct)
-            console.log(result.rows)
         }
     });
 });
@@ -61,10 +73,19 @@ router.delete("/:id", (req, res) => {
 //update a single product
 router.put("/:id", (req, res) => {
     const { sku, name, qty, category } = req.body
-    const sql = `UPDATE products SET SKU = "${sku}", product_name = "${name}", qty = "${qty}", category = "${category}" where id = ${req.params.id}`
-    db.query(sql, (err, result) => {
+    const sql = `UPDATE products SET 
+                SKU = ?, 
+                product_name = ?, 
+                qty = ?, 
+                category_id = (SELECT categories.id FROM categories WHERE categories.category = ?)
+                WHERE id = ?`
+    // const sql = `UPDATE products SET SKU = "${sku}", product_name = "${name}", qty = "${qty}", category = "${category}" where id = ${req.params.id}`
+    db.query(sql,[sku, name, qty, category, req.params.id], (err, result) => {
         if (err) {
-            console.log(err)
+            if(err.errno = 1062) {
+                res.json({msg: `Error: "${name}" already exists as a product`})
+                console.log(`Error: ${name} already exists as a product`)
+            }
         } else {
             const updatedProduct = {
                 SKU: sku,
@@ -73,7 +94,6 @@ router.put("/:id", (req, res) => {
                 category: category,
                 id: req.params.id
             }
-
             res.json(updatedProduct)
         }
     })

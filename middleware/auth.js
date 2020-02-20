@@ -10,12 +10,11 @@ const auth = (req, res, next) => {
     } else {
         jwt.verify(token, secret, function(err, decoded) {
             if(err) {
-                res.status(401).send("ERROR")
+                res.status(401)
                 console.log("TOKEN ERROR")
             } else {
                 req.username = decoded.username
                 next();
-
             }
         })
     }

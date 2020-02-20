@@ -21,20 +21,6 @@ export const AuthProvider = (props) => {
 
     const [state, dispatch] = useReducer(authReducer, initialState)
 
-    const registerUser = async (newUser) => {
-        try {
-            const res = await axios.post("/api/register", newUser)
-            dispatch({
-                type: REGISTER_SUCCESS,
-                payload: res.data
-            })
-        } catch (err) {
-            dispatch({
-                type: AUTH_ERROR
-            })
-        } 
-    }
-
     const userLoading = () => {
         dispatch({
             type: USER_LOADING
@@ -74,20 +60,39 @@ export const AuthProvider = (props) => {
             loadUser()
         } catch (err) {
             dispatch({
-                type: AUTH_ERROR
+                type: AUTH_ERROR,
+                payload: err.response.data
             })
         }
+    }
+
+    const registerUser = async (newUser) => {
+        try {
+            const res = await axios.post("/api/register", newUser)
+            dispatch({
+                type: REGISTER_SUCCESS,
+                payload: res.data
+            })
+        } catch (err) {
+            dispatch({
+                type: REGISTER_FAIL,
+                payload: err.response.data
+            })
+        } 
     }
 
     const checkUsername = async (user) => {
         try {
             const res = await axios.post("/api/register/validation", user)
-            dispatch({
-                type: CHECK_USERNAME,
+            dispatch({ 
+                type: CHECK_USERNAME, 
                 payload: res.data
             })
-        } catch(err) {
-            console.log(err)
+        } catch(err) { 
+            dispatch({
+                type: REGISTER_FAIL,
+                payload: err.response.data
+            })
         }
     }
 

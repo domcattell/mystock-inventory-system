@@ -12,15 +12,15 @@ import PageContainer from '../components/PageContainer';
 const Products = (props) => {
 
     const { getProducts, products, addProduct, loading, isFetching, sortAZ, sortZA, sortProductsAZ } = useContext(ProductsContext)
-    const {serverRes, loadUser, currentUser} = useContext(AuthContext)
-        const [addProductShowing, toggleAddProduct] = useToggle(false);
+    const { serverRes, loadUser, currentUser } = useContext(AuthContext)
+    const [addProductShowing, toggleAddProduct] = useToggle(false);
 
-    
+
     useEffect(() => {
         loadUser();
         loading();
         getProducts();
-    },[])
+    }, [])
 
     const sortBtn = () => {
         if (!sortProductsAZ) {
@@ -38,11 +38,11 @@ const Products = (props) => {
                 {sortBtn()}
             </div>
             <div className="products">
-                    {products.map(product => (
-                        <Link className="productLink" to={`/products/${product.id}`}>
-                        <ProductCard key={product.id} name={product.product_name} sku={product.SKU} qty={product.qty} category={product.category}/>
-                        </Link>
-                    ))}
+                {products.map(product => (
+                    <Link className="productLink" to={`/products/${product.id}`}>
+                        <ProductCard key={product.id} name={product.product_name} sku={product.SKU} qty={product.qty} category={product.category} />
+                    </Link>
+                ))}
             </div>
             {/* <AddProduct show={addProductShowing} onHide={toggleAddProduct}/> */}
         </PageContainer>

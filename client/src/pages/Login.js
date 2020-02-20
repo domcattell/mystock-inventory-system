@@ -17,14 +17,16 @@ const Login = (props) => {
         reset();
     }
 
+    console.log(errorMessage)
+
     return (
         <div className="Login-root">
             <div className="Login-logo">
                 <h1>myStock <span>Inventory System</span></h1>
             </div>
-            <div className={message ? "Login-form-wrapper shake" : "Login-form-wrapper"}>
+            <div className={errorMessage ? "Login-form-wrapper shake" : "Login-form-wrapper"}>
                 <div className="loginMessage"> 
-                    <p className={message && "loginError"}>{message}</p>
+                    <p className={errorMessage && "loginError"}>{errorMessage}</p>
                 </div>
                 <form className="Login-form" onSubmit={handleSubmit} >
                     <input type="text" name="username" onChange={handleChange} value={user.username} autoComplete="username" placeholder="username" />

@@ -18,7 +18,6 @@ const Dashboard = (props) => {
         getCategories();
     },[])
 
-    console.log(categories)
     return (
         <PageContainer> 
             <PageHeader title="Dashboard" />
