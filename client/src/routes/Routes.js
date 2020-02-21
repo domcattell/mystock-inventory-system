@@ -13,7 +13,7 @@ const Routes = (props) => {
     return (
         <div>
         <Switch>
-                {isAuthenticated && <Redirect to="/dashboard" />}
+                {isAuthenticated ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
                 <Route exact path ="/register" render={() => <Register />} />
                 <Route exact path ="/login" render={(routeProps) => <Login {...routeProps}/>} />
                 <Route exact path="/" render={() => <Redirect to="/login" />} />

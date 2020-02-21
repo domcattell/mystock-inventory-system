@@ -17,6 +17,11 @@ const Login = () => {
         reset();
     }
     
+    useEffect(() => {
+        clearMessages()
+        console.log("fired")
+    },[])
+
     return (
         <div className="Login-root">
             <div className="Login-logo">

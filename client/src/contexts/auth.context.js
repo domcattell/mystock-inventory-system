@@ -98,8 +98,6 @@ export const AuthProvider = (props) => {
     const logoutUser = () => dispatch({type: LOGOUT_SUCCESS})
 
     const clearMessages = () => dispatch({type: CLEAR_MESSAGES})
-    
-    console.log(state.isAuthenticated)
 
     return (
         <AuthContext.Provider value={{clearMessages, error: state.error,  registerUser, userLoading, logoutUser, loadUser, checkUsername, loginUser, currentUser: state.currentUser, isAuthenticated: state.isAuthenticated, msg: state.msg, fetchingUser: state.fetchingUser}}>

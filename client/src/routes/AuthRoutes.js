@@ -23,7 +23,9 @@ const AuthRoutes = (props) => {
 
     return (
         <div>
-            {props.location.pathname !== "/login" && "/register" && <Menubar />}
+            
+            
+            {props.location.pathname !== "/login" && <Menubar />}
             {/* {!isAuthenticated && <Redirect to="/login" />} */}
             <Switch>
                 <Route exact path="/dashboard" render={() => <Dashboard />} />

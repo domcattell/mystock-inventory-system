@@ -9,7 +9,7 @@ const reducer = (state, action) => {
                 ...state,
                 fetchingUser: false,
                 currentUser: action.payload.currentUser,
-                msg: action.payload,
+                msg: action.payload
             }
             
         case USER_LOADED:
@@ -46,7 +46,8 @@ const reducer = (state, action) => {
         case CLEAR_MESSAGES:
             return {
                 ...state,
-                msg: {}
+                msg: "",
+                error: false
             }
             
         case LOGOUT_SUCCESS:
