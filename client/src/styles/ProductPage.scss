@@ -1,0 +1,7 @@
+@import './GlobalStyles.scss';
+
+.ProductWidgetContainer {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 30px 30px;
+}

@@ -1,26 +1,25 @@
 import React, {useContext, useEffect} from 'react';
 import { Route, Router, Switch, Redirect, withRouter } from 'react-router-dom';
 
+import {AuthContext} from '../contexts/auth.context'
+
+import authToken from '../helpers/authToken'
+import PrivateRoute from '../helpers/PrivateRoute'
+
 import Product from '../pages/Product'
 import Products from '../pages/Products'
 import Dashboard from '../pages/Dashboard'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
-import Menubar from '../components/Menubar'
 
-import PrivateRoute from '../components/PrivateRoute'
-
-import {AuthContext} from '../contexts/auth.context'
-
-import authToken from '../helpers/authToken'
-
+import Menubar from '../components/navbar/Menubar'
 
 const Routes = (props) => {
     if (localStorage.token) {
         authToken(localStorage.token);
     }
 
-    const {checkAuth, isAuthenticated, userLoading, authLoading} = useContext(AuthContext);
+    const {checkAuth, isAuthenticated, userLoading, authLoading, token} = useContext(AuthContext);
 
     useEffect(() => {
         checkAuth();
@@ -29,6 +28,7 @@ const Routes = (props) => {
 
     console.log(isAuthenticated)
     console.log(authLoading)
+    console.log(token)
 
     return (
         <Switch>

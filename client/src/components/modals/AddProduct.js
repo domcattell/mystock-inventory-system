@@ -1,9 +1,11 @@
 import React, {useContext, useEffect, useState} from 'react';
-import useMultipleInputs from '../hooks/useMultipleInputs'
-import { ProductsContext } from '../contexts/products.context';
-import Axios from 'axios';
+
+import useMultipleInputs from '../../hooks/useMultipleInputs'
+
+import { ProductsContext } from '../../contexts/products.context';
 import {Modal, Alert} from 'react-bootstrap'
-import '../styles/AddProduct.scss'
+
+import '../../styles/AddProduct.scss'
 
 const AddProduct = (props) => {
   const [product, handleChange, reset] = useMultipleInputs("")

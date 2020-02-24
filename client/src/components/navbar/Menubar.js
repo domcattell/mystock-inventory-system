@@ -1,8 +1,12 @@
 import React, { useState, useContext, useEffect } from 'react';
-import '../styles/Menubar.scss'
+
+import { AuthContext } from '../../contexts/auth.context';
+
+import useToggle from '../../hooks/useToggle'
+
 import Navbar from './Navbar'
-import { AuthContext } from '../contexts/auth.context';
-import useToggle from '../hooks/useToggle'
+
+import '../../styles/Menubar.scss'
 
 const Menubar = (props) => {
 
@@ -19,7 +23,7 @@ const Menubar = (props) => {
                     <h2>myStock</h2>
                 </div>
                 <div className="menubarUser">
-                    <i class="fas fa-user"></i>
+                    <i className="fas fa-user"></i>
                     <h2>{currentUser}</h2>
                 </div>
             </div>

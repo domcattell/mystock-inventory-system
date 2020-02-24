@@ -10,15 +10,15 @@ const reducer = (state, action) => {
                 authLoading: false,
                 currentUser: action.payload.currentUser,
                 msg: action.payload,
-                isAuthenticated: true
+                token: localStorage.getItem('token')
             }
             
         case USER_LOADED:
             return {
                 ...state,
-                isAuthenticated: true,
                 authLoading: false,
                 currentUser: action.payload.currentUser,
+                token: localStorage.getItem('token')
             }
 
         case USER_LOADING: {
@@ -39,17 +39,18 @@ const reducer = (state, action) => {
         case AUTH_ERROR:
             return {
                 ...state,
-                isAuthenticated: false,
                 authLoading: false,
                 msg: action.payload,
                 error: true
             }
         
         case CHECK_AUTH_ERROR:
+            localStorage.removeItem('token')
             return {
                 ...state,
-                isAuthenticated: false,
-                authLoading: false
+                authLoading: false,
+                msg: action.payload,
+                token: null
             }
 
         case CLEAR_MESSAGES:
@@ -63,7 +64,6 @@ const reducer = (state, action) => {
             localStorage.removeItem('token')
             return {
                 ...state,
-                isAuthenticated: false,
                 authLoading: false,
                 currentUser: null,
                 token: null,

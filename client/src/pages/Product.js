@@ -1,43 +1,44 @@
 import React, {useEffect, useContext} from 'react';
 import { ProductsContext} from '../contexts/products.context'
-import EditProduct from '../components/EditProduct'
 
+import EditProduct from '../components/EditProduct'
+import PageHeader from '../components/layout/PageHeader'
+import PageContainer from '../components/layout/PageContainer'
+import PageContent from '../components/layout/PageContent'
+import Widget from '../components/Widget'
+
+import '../styles/ProductPage.scss'
 
 const Product = (props) => {
-    const {products, deleteProduct, getProduct, itemsReset, isFetching} = useContext(ProductsContext)
+    const {product, deleteProduct, getProduct, isFetching} = useContext(ProductsContext)
+
     useEffect(() => {
         getProduct(props.match.params.id)
     },[])
 
-    console.log(props.match.params.id)
-
-    // console.log(isFetching)
-    // let product = products[0] || {}
-    // const {id, product_name, qty, category, SKU} = product
-    // console.log(product)
+    const {id, product_name, qty, category, SKU} = product || {}
 
     const handleDelete = () => {
         deleteProduct(props.match.params.id)
         props.history.push("/")
     }
-    const data = isFetching ? "Loading" : (
-        <div>
-            {products.map(p => (
-                <div>
-                    <h1>{p.id}</h1>
-                    <h4>{p.product_name}</h4>
-               </div>
-            ))}
-            <button onClick={handleDelete}>Delete</button>
-            <EditProduct {...props}/>
-        </div>
-    )
+
+    console.log(product)
 
     return (
-        <div>
-            
-            {data}
-        </div>
+        <PageContainer>
+            <PageHeader title={product_name} />
+                <PageContent>
+                    <div className="ProductWidgetContainer">
+                        <Widget title="QTY" content={qty}/>
+                        <Widget title="Category" content={category}/>
+                        <Widget title="SKU" content={SKU}/>
+                    </div>
+                    <div>
+                   
+                    </div>
+                </PageContent>
+        </PageContainer>
     );
 }
 

@@ -8,7 +8,7 @@ import {Link, Redirect} from 'react-router-dom'
 const Login = (props) => {
 
     const [user, handleChange, reset] = useRegisterInput("")
-    const { loginUser, clearMessages, userLoading, msg, error, checkAuth, isAuthenticated, fetchingUser} = useContext(AuthContext)
+    const { loginUser, token, clearMessages, userLoading, msg, error, checkAuth, isAuthenticated, fetchingUser} = useContext(AuthContext)
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -18,11 +18,13 @@ const Login = (props) => {
 
     useEffect(() => {
         clearMessages()
-
-        // isAuthenticated && props.history.push("/dashboard")
         console.log("yo")
     },[])
-    
+
+    console.log(token)
+
+    token && props.history.push("/dashboard")
+
     return ( 
         <div className="Login-root">
             <div className="Login-logo">
@@ -39,7 +41,6 @@ const Login = (props) => {
                 </form>
                 <h4>Not registered? Create an account <Link to="/register"><a>Here</a></Link></h4>
             </div>
-            {isAuthenticated && props.history.push("/dashboard")}
         </div>
     ); 
 }

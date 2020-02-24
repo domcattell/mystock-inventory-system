@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import { Link, Redirect } from 'react-router-dom'
-import '../styles/Navbar.scss'
-import {AuthContext} from '../contexts/auth.context'
-import {ProductsContext} from '../contexts/products.context'
-import useToggle from '../hooks/useToggle';
-import AddProduct from '../components/AddProduct'
+
+import {AuthContext} from '../../contexts/auth.context'
+
+import useToggle from '../../hooks/useToggle';
+
+import AddProduct from '../../components/modals/AddProduct';
+
+import '../../styles/Navbar.scss'
 
 const Navbar = (props) => {
     const {logoutUser} = useContext(AuthContext)

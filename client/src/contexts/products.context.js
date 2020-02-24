@@ -12,9 +12,10 @@ export const ProductsProvider = (props) => {
         isFetching: true,
         error: false,
         products: [],
+        product: null,
         sortProductsAZ: false,
         qtyAmount: null,
-        msg: {}
+        msg: null
     }
 
     const [state, dispatch] = useReducer(productReducer, initialState)
@@ -131,7 +132,24 @@ export const ProductsProvider = (props) => {
     const clearMessages = () => dispatch({type: CLEAR_MESSAGES})
   
     return (
-        <ProductsContext.Provider value={{ clearMessages, error: state.error, msg: state.msg, totalQty, qtyAmount: state.qtyAmount, sortAZ, sortZA, getProducts, getProduct, addProduct, deleteProduct, editProduct, loading, products: state.products, isFetching: state.isFetching, sortProductsAZ: state.sortProductsAZ }}>
+        <ProductsContext.Provider value={{ 
+                clearMessages, 
+                totalQty, 
+                sortAZ, 
+                sortZA, 
+                getProducts, 
+                getProduct, 
+                addProduct, 
+                deleteProduct, 
+                editProduct, 
+                loading, 
+                error: state.error, 
+                msg: state.msg, 
+                qtyAmount: state.qtyAmount, 
+                products: state.products,
+                product: state.product,
+                isFetching: state.isFetching, 
+                sortProductsAZ: state.sortProductsAZ }}>
             {props.children}
         </ProductsContext.Provider>
     )

@@ -11,7 +11,6 @@ export const AuthProvider = (props) => {
     const initialState = {
         authLoading: true,
         msg: "",
-        isAuthenticated: null,
         token: localStorage.getItem('token'),
         currentUser: null,
         error: false
@@ -113,7 +112,6 @@ export const AuthProvider = (props) => {
                 token: state.token, 
                 error: state.error,  
                 currentUser: state.currentUser, 
-                isAuthenticated: state.isAuthenticated, 
                 msg: state.msg, 
                 authLoading: state.authLoading}}>
             {props.children}

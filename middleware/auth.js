@@ -11,7 +11,7 @@ const auth = (req, res, next) => {
     } else {
         jwt.verify(token, secret, function(err, decoded) {
             if(err) {
-                res.status(401).json({ error: "Error with token" });
+                res.status(403).json({ error: "Session expired" });
                 console.log("TOKEN ERROR")
             } else {
                 req.username = decoded.username

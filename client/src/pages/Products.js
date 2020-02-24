@@ -1,13 +1,17 @@
 import React, { useContext, useEffect, memo, useState } from 'react';
+import { Link } from 'react-router-dom'
+
 import { ProductsContext, ProductsProvider } from '../contexts/products.context';
 import { AuthContext } from '../contexts/auth.context';
-import { Link } from 'react-router-dom'
-import AddProduct from '../components/AddProduct'
-import '../styles/Products.scss'
-import ProductCard from '../components/ProductCard'
+
 import useToggle from '../hooks/useToggle';
-import PageHeader from '../components/PageHeader';
-import PageContainer from '../components/PageContainer';
+
+import AddProduct from '../components/modals/AddProduct'
+import ProductCard from '../components/ProductCard'
+import PageHeader from '../components/layout/PageHeader';
+import PageContainer from '../components/layout/PageContainer';
+
+import '../styles/Products.scss'
 
 const Products = (props) => {
 

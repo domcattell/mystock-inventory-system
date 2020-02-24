@@ -1,8 +1,8 @@
 import React, {useContext, useEffect, memo} from 'react';
 import '../styles/Dashboard.scss';
 
-import PageHeader from '../components/PageHeader'
-import PageContainer from '../components/PageContainer'
+import PageHeader from '../components/layout/PageHeader'
+import PageContainer from '../components/layout/PageContainer'
 import Widget from '../components/Widget'
 
 import { ProductsContext } from '../contexts/products.context';

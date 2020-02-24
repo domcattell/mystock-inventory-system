@@ -19,7 +19,7 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 isFetching: false,
-                products: action.payload
+                product: action.payload[0]
             }
 
         case GET_ITEMS_FAILED:
