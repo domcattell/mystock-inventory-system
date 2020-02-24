@@ -20,6 +20,10 @@ app.use('/api/products/', productRoutes)
 app.use('/api/products/categories', categoryRoutes)
 app.use('/api/', authRoutes)
 
+app.get('*', (req, res) => {
+    res.sendfile(path.join(__dirname, './client/public', 'index.html'));
+});
+
 app.listen(port, () => {
     console.log("server started")
 })

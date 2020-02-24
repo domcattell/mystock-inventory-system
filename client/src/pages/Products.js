@@ -12,12 +12,10 @@ import PageContainer from '../components/PageContainer';
 const Products = (props) => {
 
     const { getProducts, products, addProduct, loading, isFetching, sortAZ, sortZA, sortProductsAZ } = useContext(ProductsContext)
-    const { serverRes, loadUser, currentUser } = useContext(AuthContext)
     const [addProductShowing, toggleAddProduct] = useToggle(false);
-
+    const {checkAuth} = useContext(AuthContext);
 
     useEffect(() => {
-        loadUser();
         loading();
         getProducts();
     }, [])

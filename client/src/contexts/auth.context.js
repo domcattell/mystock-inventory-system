@@ -1,5 +1,5 @@
 import React, { createContext, useReducer, useEffect } from 'react';
-import { CLEAR_MESSAGES, USER_LOADED, USER_LOADING, AUTH_ERROR, CHECK_USERNAME, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS } from '../actions/types'
+import { CHECK_AUTH_ERROR, CLEAR_MESSAGES, USER_LOADED, USER_LOADING, AUTH_ERROR, CHECK_USERNAME, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS } from '../actions/types'
 import authReducer from '../reducers/authReducer'
 import axios from 'axios';
 import authToken from '../helpers/authToken'
@@ -9,9 +9,9 @@ export const AuthContext = createContext()
 export const AuthProvider = (props) => {
 
     const initialState = {
-        fetchingUser: false,
+        authLoading: true,
         msg: "",
-        isAuthenticated: false,
+        isAuthenticated: null,
         token: localStorage.getItem('token'),
         currentUser: null,
         error: false
@@ -25,7 +25,7 @@ export const AuthProvider = (props) => {
         })
     }
 
-    const loadUser = async () => {
+    const checkAuth = async () => {
         if(localStorage.token) {
             authToken(localStorage.token)
         }
@@ -36,11 +36,13 @@ export const AuthProvider = (props) => {
                 type: USER_LOADED,
                 payload: res.data
             })
+            console.log("SSSUCCESSS")
         } catch (err) {
             dispatch({
-                type: AUTH_ERROR,
+                type: CHECK_AUTH_ERROR,
                 payload: err.response.data
             })
+            console.log("ERRRORORED")
         }
     }
 
@@ -56,7 +58,7 @@ export const AuthProvider = (props) => {
                 type: LOGIN_SUCCESS,
                 payload: res.data
             })
-            loadUser()
+            checkAuth();
         } catch (err) {
             dispatch({
                 type: AUTH_ERROR,
@@ -100,7 +102,20 @@ export const AuthProvider = (props) => {
     const clearMessages = () => dispatch({type: CLEAR_MESSAGES})
 
     return (
-        <AuthContext.Provider value={{clearMessages, error: state.error,  registerUser, userLoading, logoutUser, loadUser, checkUsername, loginUser, currentUser: state.currentUser, isAuthenticated: state.isAuthenticated, msg: state.msg, fetchingUser: state.fetchingUser}}>
+        <AuthContext.Provider value={{
+                clearMessages, 
+                registerUser, 
+                userLoading, 
+                logoutUser, 
+                checkAuth, 
+                checkUsername, 
+                loginUser, 
+                token: state.token, 
+                error: state.error,  
+                currentUser: state.currentUser, 
+                isAuthenticated: state.isAuthenticated, 
+                msg: state.msg, 
+                authLoading: state.authLoading}}>
             {props.children}
         </AuthContext.Provider>
     )

@@ -1,4 +1,4 @@
-import { CLEAR_MESSAGES, USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS, CHECK_USERNAME } from '../actions/types'
+import { CHECK_AUTH_ERROR, CLEAR_MESSAGES, USER_LOADED, USER_LOADING, AUTH_ERROR, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS, CHECK_USERNAME } from '../actions/types'
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -7,28 +7,30 @@ const reducer = (state, action) => {
             localStorage.setItem('token', action.payload.token)
             return {
                 ...state,
-                fetchingUser: false,
+                authLoading: false,
                 currentUser: action.payload.currentUser,
-                msg: action.payload
+                msg: action.payload,
+                isAuthenticated: true
             }
             
         case USER_LOADED:
             return {
                 ...state,
                 isAuthenticated: true,
-                fetchingUser: false,
+                authLoading: false,
                 currentUser: action.payload.currentUser,
             }
 
         case USER_LOADING: {
             return {
-                isAuthenticated: false,
-                fetchingUser: true,
+                ...state,
+                authLoading: true,
             }
         }
 
         case CHECK_USERNAME: {
             return {
+                ...state,
                 msg: action.payload
             }
         }
@@ -38,11 +40,18 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 isAuthenticated: false,
-                fetchingUser: false,
+                authLoading: false,
                 msg: action.payload,
                 error: true
             }
         
+        case CHECK_AUTH_ERROR:
+            return {
+                ...state,
+                isAuthenticated: false,
+                authLoading: false
+            }
+
         case CLEAR_MESSAGES:
             return {
                 ...state,
@@ -55,7 +64,7 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 isAuthenticated: false,
-                fetchingUser: false,
+                authLoading: false,
                 currentUser: null,
                 token: null,
             }

@@ -1,25 +1,51 @@
-import React, {useContext, useEffect, useState} from 'react';
-import { Route, NavLink, Switch, Redirect, withRouter } from 'react-router-dom'
+import React, {useContext, useEffect} from 'react';
+import { Route, Router, Switch, Redirect, withRouter } from 'react-router-dom';
+
+import Product from '../pages/Product'
+import Products from '../pages/Products'
+import Dashboard from '../pages/Dashboard'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
-import {AuthContext} from '../contexts/auth.context';
 import Menubar from '../components/Menubar'
 
-const Routes = (props) => {
-    const {isAuthenticated, loadUser} = useContext(AuthContext);
+import PrivateRoute from '../components/PrivateRoute'
 
-    console.log(isAuthenticated);
-    
+import {AuthContext} from '../contexts/auth.context'
+
+import authToken from '../helpers/authToken'
+
+
+const Routes = (props) => {
+    if (localStorage.token) {
+        authToken(localStorage.token);
+    }
+
+    const {checkAuth, isAuthenticated, userLoading, authLoading} = useContext(AuthContext);
+
+    useEffect(() => {
+        checkAuth();
+        console.log("hello")
+    },[])
+
+    console.log(isAuthenticated)
+    console.log(authLoading)
+
     return (
-        <div>
         <Switch>
-                {isAuthenticated ? <Redirect to="/dashboard" /> : <Redirect to="/login" />}
-                <Route exact path ="/register" render={() => <Register />} />
-                <Route exact path ="/login" render={(routeProps) => <Login {...routeProps}/>} />
-                <Route exact path="/" render={() => <Redirect to="/login" />} />
+            <Route exact path="/" render={() => <Redirect to="/login" />} />
+            <Route exact path ="/login" render={(routeProps) => <Login {...routeProps}/>} />
+            <Route exact path ="/register" render={() => <Register />} />
+            <>
+                <Menubar />
+                <Switch>
+                    <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                    <PrivateRoute exact path="/products/all" component={Products}/>
+                    <PrivateRoute exact path="/products/:id" component={Product} />} />
+                </Switch>
+            </>
         </Switch>
-        </div>
     );
 }
 
-export default withRouter(Routes);
+export default Routes;
+

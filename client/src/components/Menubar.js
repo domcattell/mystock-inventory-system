@@ -6,7 +6,7 @@ import useToggle from '../hooks/useToggle'
 
 const Menubar = (props) => {
 
-    const {loadUser, currentUser } = useContext(AuthContext)
+    const { currentUser } = useContext(AuthContext)
     const [navState, navToggle] = useToggle(false)
 
     return (

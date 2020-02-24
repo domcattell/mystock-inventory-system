@@ -7,13 +7,11 @@ const Product = (props) => {
     const {products, deleteProduct, getProduct, itemsReset, isFetching} = useContext(ProductsContext)
     useEffect(() => {
         getProduct(props.match.params.id)
-        // return () => {
-        //     itemsReset()
-        // }
     },[])
 
+    console.log(props.match.params.id)
 
-    console.log(isFetching)
+    // console.log(isFetching)
     // let product = products[0] || {}
     // const {id, product_name, qty, category, SKU} = product
     // console.log(product)
@@ -22,7 +20,6 @@ const Product = (props) => {
         deleteProduct(props.match.params.id)
         props.history.push("/")
     }
-    console.log(products)
     const data = isFetching ? "Loading" : (
         <div>
             {products.map(p => (

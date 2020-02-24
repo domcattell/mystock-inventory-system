@@ -7,11 +7,13 @@ import Widget from '../components/Widget'
 
 import { ProductsContext } from '../contexts/products.context';
 import { CategoryContext } from '../contexts/category.context';
+import { AuthContext } from '../contexts/auth.context';
 
 const Dashboard = (props) => {
 
     const { products, getProducts, qtyAmount} = useContext(ProductsContext)
     const { categories, getCategories } = useContext(CategoryContext)
+ 
 
     useEffect(() => {
         getProducts();
