@@ -1,0 +1,25 @@
+@import './GlobalStyles.scss';
+
+.productControls {
+    background-color: rgb(255, 255, 255);
+    height: 40px;
+    margin: 30px;
+    -webkit-box-shadow: 2px 2px 5px -1px rgba(0,0,0,0.11);
+    -moz-box-shadow: 2px 2px 5px -1px rgba(0,0,0,0.11);
+    box-shadow: 2px 2px 5px -1px rgba(0,0,0,0.11);
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    color: $menuTextColour;
+
+    i {
+        margin: 0 15px;
+        cursor: pointer;
+    }
+
+    p {
+        margin: 0;
+        font-size: 16px;
+        margin-left: 25px;
+    }
+}

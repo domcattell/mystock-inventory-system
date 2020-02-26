@@ -1,7 +1,107 @@
 @import './GlobalStyles.scss';
 
-.ProductWidgetContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 30px 30px;
+.ProductPageWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ProductPageDetails {
+    background-color: white;
+    display: inline-block;
+    // border: 1px solid $grey;
+    padding: 20px;
+    width: 60%;
+}
+
+.ProductPageDetailsList {
+    margin: 0;
+
+    li {
+        background-color: $primaryColour;
+        color: white; 
+        margin: 14px;
+        border-radius: 3px;
+        padding: 8px 20px;
+    }
+}
+
+.ProductPageDeleteBtn {
+    @include defaultBtn(100px, 0);
+    margin-left: 14px;
+}
+
+.ProductPageStat {
+    margin: 0;
+    display: inline-block;
+    width: 120px;
+    // border-right: 1px solid rgb(255, 255, 255);
+}
+
+.ProductDetail {
+    padding-left: 10px;
+}
+
+.ProductPageForm {
+    background-color: white;
+    border: 1px solid $grey;
+    display: inline-block;
+    padding: 30px;
+    margin-left: 30px;
+    width: 40%;
+    color: $menuTextColour;
+    position: relative;
+    
+    form {
+        display: flex;
+        flex-direction: column;
+
+        input[type="text"] {
+            @include defaultInput(82%, 1%)
+        }
+
+        input[type="number"] {
+            @include defaultInput(20%, 1%)
+        }
+
+        button {
+            @include defaultBtn(100%, 10px)
+        }
+
+        button:disabled {
+            background-color: $menuTextColour;
+            color: white;
+        }
+
+        input:disabled {
+            border-color: $menuTextColour;
+        }
+    }
+
+    h5 {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+}
+
+.ProductPageFormLock {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 25px;
+    font-size: 18px;
+    color: $menuTextColour;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.FormInput {
+    display: inline;
+
+    label {
+        display: inline-block;
+        width: 18%;
+        text-align: right;
+        padding-right: 5%;
+        
+    }
 }

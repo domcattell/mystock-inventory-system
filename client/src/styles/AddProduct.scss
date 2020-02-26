@@ -7,6 +7,7 @@
 
 .AddProductCloseBtn {
     @include defaultBtn(15%, 10px);
+    background-color: $primaryColour;
 }
 
 .AddProductForm {

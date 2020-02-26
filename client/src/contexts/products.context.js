@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 import productReducer from '../reducers/productReducer'
 import axios from 'axios'
-import { CLEAR_MESSAGES, ADD_ITEM_FAILED, UPDATE_ITEM_FAILED, TOTAL_QTY, SORT_AZ, SORT_ZA, GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING } from '../actions/types'
+import { CLEAR_SINGLE_ITEM, CLEAR_MESSAGES, ADD_ITEM_FAILED, UPDATE_ITEM_FAILED, TOTAL_QTY, SORT_AZ, SORT_ZA, GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING } from '../actions/types'
 import { StaticRouter } from 'react-router-dom';
 
 export const ProductsContext = createContext();
@@ -12,7 +12,7 @@ export const ProductsProvider = (props) => {
         isFetching: true,
         error: false,
         products: [],
-        product: null,
+        product: {},
         sortProductsAZ: false,
         qtyAmount: null,
         msg: null
@@ -63,6 +63,12 @@ export const ProductsProvider = (props) => {
                 isFetching: false
             })
         }
+    }
+
+    const clearProduct = () => {
+        dispatch({
+            type: CLEAR_SINGLE_ITEM
+        })
     }
 
     const addProduct = async (product) => {
@@ -142,7 +148,8 @@ export const ProductsProvider = (props) => {
                 addProduct, 
                 deleteProduct, 
                 editProduct, 
-                loading, 
+                loading,
+                clearProduct,
                 error: state.error, 
                 msg: state.msg, 
                 qtyAmount: state.qtyAmount, 

@@ -3,6 +3,7 @@ import '../styles/Dashboard.scss';
 
 import PageHeader from '../components/layout/PageHeader'
 import PageContainer from '../components/layout/PageContainer'
+import PageContent from '../components/layout/PageContent'
 import Widget from '../components/Widget'
 
 import { ProductsContext } from '../contexts/products.context';
@@ -23,16 +24,18 @@ const Dashboard = (props) => {
     return (
         <PageContainer> 
             <PageHeader title="Dashboard" />
-            <div className="dashboardContent">
-                <div className="dashboardWidgetsContainer">
-                    <Widget title="Total Products" content={products.length}/>
-                    <Widget title="Total Categories" content={categories.length} />
-                    <Widget title="total qty" content={qtyAmount}/>
-                    <div className="dashboardStats">
+                <PageContent>
+                    <div className="dashboardContent">
+                        <div className="dashboardWidgetsContainer">
+                            <Widget title="Total Products" content={products.length}/>
+                            <Widget title="Total Categories" content={categories.length} />
+                            <Widget title="total qty" content={qtyAmount}/>
+                            <div className="dashboardStats">
 
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </PageContent>
         </PageContainer> 
     );
 }

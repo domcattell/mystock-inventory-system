@@ -1,11 +1,15 @@
-import {useState} from 'react';
+import {useState, useContext} from 'react';
+import {ProductsContext} from '../contexts/products.context'
 
-const useInputState = () => {
-    
+const useInputState = (p) => {
+
+    const {product} = useContext(ProductsContext)
+
     const [value, setValue] = useState({
             sku: "",
             name: "",
             qty: "",
+            price: "",
             category: ""
     })
 
@@ -21,10 +25,21 @@ const useInputState = () => {
             sku: "",
             name: "",
             qty: "",
+            price: "",
             category: ""
         });
     }
 
-    return [value, handleChange, reset]
+    const edit = () => {
+        setValue({
+            sku: p.SKU,
+            name: p.product_name,
+            qty: p.qty,
+            price: p.price,
+            category: p.category
+        });
+    }
+
+    return [value, handleChange, reset, edit]
 }
 export default useInputState;

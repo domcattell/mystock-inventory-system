@@ -42,6 +42,7 @@ const AddProduct = (props) => {
             <input type="text" name="sku" onChange={handleChange} value={product.sku} placeholder="SKU" required/>
             <input type="text" name="name" onChange={handleChange} value={product.name} placeholder="Name" required/>
             <input type="text" name="category" onChange={handleChange} value={product.category} placeholder="Category" required/>
+            <input type="number" name="price" onChange={handleChange} value={product.price} placeholder="Price" required/>
             <input type="number" name="qty" onChange={handleChange} value={product.qty} placeholder="QTY" required/>
             <button className="AddProductBtn">Add</button>
           </form>

@@ -11,7 +11,7 @@ import '../../styles/Menubar.scss'
 const Menubar = (props) => {
 
     const { currentUser } = useContext(AuthContext)
-    const [navState, navToggle] = useToggle(false)
+    const [navState, navToggle] = useToggle(true)
 
     return (
         <div className="hellore">

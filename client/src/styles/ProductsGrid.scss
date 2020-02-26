@@ -1,0 +1,12 @@
+@import './GlobalStyles.scss';
+
+.products {
+    margin: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    grid-gap: 30px 30px;
+}
+
+.productLink:hover {
+    text-decoration: none;
+}

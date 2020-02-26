@@ -1,4 +1,4 @@
-import {CLEAR_MESSAGES, ADD_ITEM_FAILED, UPDATE_ITEM_FAILED, TOTAL_QTY, SORT_AZ, SORT_ZA, GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING} from '../actions/types'
+import {CLEAR_SINGLE_ITEM, CLEAR_MESSAGES, ADD_ITEM_FAILED, UPDATE_ITEM_FAILED, TOTAL_QTY, SORT_AZ, SORT_ZA, GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING} from '../actions/types'
 
 const reducer = (state, action) => {
     switch(action.type) {
@@ -20,6 +20,13 @@ const reducer = (state, action) => {
                 ...state,
                 isFetching: false,
                 product: action.payload[0]
+            }
+
+        case CLEAR_SINGLE_ITEM: 
+            return {
+                ...state,
+                product: {},
+                isFetching: true
             }
 
         case GET_ITEMS_FAILED:
@@ -54,7 +61,8 @@ const reducer = (state, action) => {
         case EDIT_ITEM:
             return {
                 ...state,
-                products: state.products.map(product => product.id === action.id) ? [action.payload] : state.products
+                products: state.products.map(product => product.id === action.id) ? [action.payload.updatedProduct] : state.products,
+                product: action.payload.updatedProduct
             }
 
         case SORT_AZ: 

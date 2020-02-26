@@ -1,14 +1,13 @@
 @import './GlobalStyles.scss';
 
 .navbarRoot {
-    background-color: white;
     width: 0px;
     height: 100vh;
     transform: translateX(-100%);
     transition: all 0.5s ease;
     display: flex;
     justify-content: center;
-    font-size: 18px;
+    font-size: 15px;
     float: left;
     overflow-x: hidden;
     border-right: 1px solid $grey;
@@ -26,11 +25,11 @@
 .navbarRoot.open {
     transform: translateX(0);
     float: left;
-    width: 300px;
+    width: 220px;
 }
 
 .navbarUl {
-    width: 300px;
+    width: 220px;
     position: absolute;
 }
 
@@ -65,5 +64,5 @@
 .navbarLink {
     display: block;
     width: 100%;
-    padding: 15px;
+    padding: 14px;
 }

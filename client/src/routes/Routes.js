@@ -5,6 +5,7 @@ import {AuthContext} from '../contexts/auth.context'
 
 import authToken from '../helpers/authToken'
 import PrivateRoute from '../helpers/PrivateRoute'
+import { ProductsContext } from '../contexts/products.context';
 
 import Product from '../pages/Product'
 import Products from '../pages/Products'
