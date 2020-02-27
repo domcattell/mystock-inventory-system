@@ -1,0 +1,42 @@
+@import './GlobalStyles.scss';
+
+.ProductDetailsRoot {
+    background-color: white;
+    display: inline-block;
+    padding: 20px;
+    width: 60%;
+}
+
+.ProductPageDetailsList {
+    margin: 0;
+
+    li {
+        background-color: $primaryColour;
+        color: white; 
+        margin: 14px;
+        border-radius: 3px;
+        padding: 8px 20px;
+    }
+}
+
+.ProductPageDeleteBtn {
+    @include defaultBtn(100px, 0);
+    margin-left: 14px;
+}
+
+.ProductPageStat {
+    margin: 0;
+    display: inline-block;
+    width: 120px;
+    border-right: 1px solid rgb(255, 255, 255);
+}
+
+.ProductDetail {
+    padding-left: 10px;
+}
+
+.ProductDetailsRoot.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

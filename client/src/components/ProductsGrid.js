@@ -1,5 +1,6 @@
 import React, {useContext, useEffect} from 'react';
 import {Link} from 'react-router-dom';
+import FadeIn from 'react-fade-in'
 
 import ProductCard from '../components/ProductCard';
 

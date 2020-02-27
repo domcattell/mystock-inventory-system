@@ -1,15 +1,12 @@
-import React, { useContext, useEffect, memo, useState } from 'react';
+import React, { memo } from 'react';
 
 import ProductsGrid from '../components/ProductsGrid'
 import ProductsSortBy from '../components/ProductsSortBy'
-import ProductCard from '../components/ProductCard'
 import PageHeader from '../components/layout/PageHeader';
 import PageContainer from '../components/layout/PageContainer';
 import PageContent from '../components/layout/PageContent';
 
-import '../styles/Products.scss'
-
-const Products = (props) => {
+const Products = () => {
     return (
         <PageContainer>
             <PageHeader title="Products" />

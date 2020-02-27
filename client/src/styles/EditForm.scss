@@ -1,0 +1,74 @@
+@import './GlobalStyles.scss';
+
+.EditFormRoot {
+    background-color: white;
+    border: 1px solid $grey;
+    display: inline-block;
+    padding: 30px;
+    margin-left: 30px;
+    width: 40%;
+    color: $menuTextColour;
+    position: relative;
+    box-shadow: 2px 2px 5px -1px rgba(0,0,0,0.2);
+
+    
+    form {
+        display: flex;
+        flex-direction: column;
+
+        input[type="text"] {
+            @include defaultInput(82%, 1%)
+        }
+
+        input[type="number"] {
+            @include defaultInput(20%, 1%)
+        }
+
+        button {
+            @include defaultBtn(25%, 10px)
+
+        }
+
+        button:disabled {
+            background-color: $menuTextColour;
+            color: white;
+        }
+
+        input:disabled {
+            border-color: $menuTextColour;
+        }
+    }
+
+    h5 {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+}
+
+.EditFormRoot.loading {
+    display: flex;
+    justify-content: center;
+}
+
+.ProductPageFormLock {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 25px;
+    font-size: 18px;
+    color: $menuTextColour;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.FormInput {
+    display: inline;
+
+    label {
+        display: inline-block;
+        width: 18%;
+        text-align: right;
+        padding-right: 5%;
+        
+    }
+}

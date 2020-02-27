@@ -2,33 +2,27 @@
 
 .productRoot {
 	height: 200px;
-	background-color: $secondaryColour;
+	background-color: $primaryColour;
     box-shadow: 2px 2px 5px -1px rgba(0,0,0,0.2);
     cursor: pointer;
     transition: transform 0.3s ease;
-    position: relative;
 
     &:hover {
         transform: scale(1.03);
     } 
 }
 
-.productsLoading {
-    height: 200px;
-	background-color: $secondaryColour;
-    box-shadow: 2px 2px 5px -1px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
-    position: relative;
+.productRoot.loading {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .productName {
     padding: 14px;
     display: flex;
     align-items: center;
-    background-color: $altColour;
+    background-color: $primaryAltColour;
     color: white;
 
     i {

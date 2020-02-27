@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { Spinner } from 'react-bootstrap';
+import ReactLoading from 'react-loading'
 
 import { ProductsContext } from '../contexts/products.context'
 
-import '../styles/Product.scss'
+import '../styles/ProductCard.scss'
 
 const Product = (props) => {
 
@@ -11,19 +11,9 @@ const Product = (props) => {
     const { qty, sku, name, category } = props;
 
     return (
-        isFetching
-
-            ?
-
-            <div className="productsLoading">
-                <Spinner animation="border" role="status" variant="dark">
-                    <span className="sr-only">Loading...</span>
-                </Spinner>
-            </div>
-
-            :
-
-            <div className="productRoot">
+        <div className={`productRoot ${isFetching && "loading"}`}>
+            {isFetching ? <ReactLoading type="spin" color="white" /> :
+            <div>
                 <div className="productName">
                     <i class="fas fa-tshirt"></i>
                     <h4>{name}</h4>
@@ -34,9 +24,10 @@ const Product = (props) => {
                     <h5>Category: {category}</h5>
                 </div>
             </div>
-
-
+            }       
+        </div>
     );
 }
 
 export default Product;
+
