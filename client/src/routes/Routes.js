@@ -6,7 +6,6 @@ import {CategoryContext} from '../contexts/category.context'
 
 import authToken from '../helpers/authToken'
 import PrivateRoute from '../helpers/PrivateRoute'
-import { ProductsContext } from '../contexts/products.context';
 
 import Product from '../pages/Product'
 import Products from '../pages/Products'
@@ -14,16 +13,16 @@ import Dashboard from '../pages/Dashboard'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Categories from '../pages/Categories';
+import Category from '../pages/Category';
 
 import Menubar from '../components/navbar/Menubar'
 
-const Routes = (props) => {
+const Routes = () => {
       if (localStorage.token) {
         authToken(localStorage.token);
     }
 
     const {checkAuth, token} = useContext(AuthContext);
-    const {getCategories} = useContext(CategoryContext);
 
     useEffect(() => {
         checkAuth();
@@ -40,9 +39,10 @@ const Routes = (props) => {
                 <Menubar />
                 <Switch>
                     <PrivateRoute exact path="/dashboard" component={Dashboard} />
-                    <PrivateRoute exact path="/categories/all" component={Categories} />} />
-                    <PrivateRoute exact path="/products/all" component={Products}/>
-                    <PrivateRoute exact path="/products/:id" component={Product} />} />
+                    <PrivateRoute exact path="/categories/all" component={Categories} />
+                    <PrivateRoute exact path="/categories/all" component={Category} />
+                    <PrivateRoute exact path="/products/all" component={Products} />
+                    <PrivateRoute exact path="/products/:id" component={Product} />
                 </Switch>
             </>
         </Switch>

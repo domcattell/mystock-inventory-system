@@ -1,6 +1,6 @@
 import React, {memo} from 'react';
 
-import ProductsGrid from '../components/ProductsGrid'
+import AllProducts from '../components/AllProducts'
 import ProductsSortBy from '../components/ProductsSortBy'
 import PageHeader from '../components/layout/PageHeader';
 import PageContainer from '../components/layout/PageContainer';
@@ -12,7 +12,7 @@ const Products = () => {
             <PageHeader title="Products" />
             <ProductsSortBy />
             <PageContent>
-            <ProductsGrid />
+            <AllProducts />
             </PageContent>
         </PageContainer>
     );

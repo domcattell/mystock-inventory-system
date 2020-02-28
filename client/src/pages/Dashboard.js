@@ -10,10 +10,8 @@ import { ProductsContext } from '../contexts/products.context';
 import { CategoryContext } from '../contexts/category.context';
 
 const Dashboard = (props) => {
-
     const { products, getProducts, qtyAmount} = useContext(ProductsContext)
     const { categories, getCategories } = useContext(CategoryContext)
- 
 
     useEffect(() => {
         getProducts();
