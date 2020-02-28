@@ -15,7 +15,7 @@ const Product = (props) => {
             {isFetching ? <ReactLoading type="spin" color="white" /> :
             <div>
                 <div className="productName">
-                    <i class="fas fa-tshirt"></i>
+                    <i className="fas fa-tshirt"></i>
                     <h4>{name}</h4>
                 </div>
                 <div className="productDetails">

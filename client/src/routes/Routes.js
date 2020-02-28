@@ -2,6 +2,7 @@ import React, {useContext, useEffect} from 'react';
 import { Route, Router, Switch, Redirect, withRouter } from 'react-router-dom';
 
 import {AuthContext} from '../contexts/auth.context'
+import {CategoryContext} from '../contexts/category.context'
 
 import authToken from '../helpers/authToken'
 import PrivateRoute from '../helpers/PrivateRoute'
@@ -12,23 +13,22 @@ import Products from '../pages/Products'
 import Dashboard from '../pages/Dashboard'
 import Login from '../pages/Login'
 import Register from '../pages/Register'
+import Categories from '../pages/Categories';
 
 import Menubar from '../components/navbar/Menubar'
 
 const Routes = (props) => {
-    if (localStorage.token) {
+      if (localStorage.token) {
         authToken(localStorage.token);
     }
 
-    const {checkAuth, isAuthenticated, userLoading, authLoading, token} = useContext(AuthContext);
+    const {checkAuth, token} = useContext(AuthContext);
+    const {getCategories} = useContext(CategoryContext);
 
     useEffect(() => {
         checkAuth();
-        console.log("hello")
     },[])
 
-    console.log(isAuthenticated)
-    console.log(authLoading)
     console.log(token)
 
     return (
@@ -40,6 +40,7 @@ const Routes = (props) => {
                 <Menubar />
                 <Switch>
                     <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                    <PrivateRoute exact path="/categories/all" component={Categories} />} />
                     <PrivateRoute exact path="/products/all" component={Products}/>
                     <PrivateRoute exact path="/products/:id" component={Product} />} />
                 </Switch>

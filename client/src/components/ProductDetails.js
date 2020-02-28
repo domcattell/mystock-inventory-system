@@ -22,7 +22,7 @@ const ProductPageDetails = (props) => {
 
     return (
         <div className={`ProductDetailsRoot ${isFetching && "loading"}`}>
-            {isFetching ? <ReactLoading type="spin" color="black" /> :
+            {isFetching ? <ReactLoading type="bars" color="gray"/> :
                  <ul className="ProductPageDetailsList">
                  <li><p className="ProductPageStat">SKU</p> <span className="ProductDetail">{SKU}</span></li>
                  <li><p  className="ProductPageStat">Product Name</p> <span className="ProductDetail">{product_name}</span></li>

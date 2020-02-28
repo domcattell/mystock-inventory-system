@@ -1,6 +1,5 @@
 import React, {useContext, useEffect} from 'react';
 import {Link} from 'react-router-dom';
-import FadeIn from 'react-fade-in'
 
 import ProductCard from '../components/ProductCard';
 
@@ -8,14 +7,13 @@ import { ProductsContext } from '../contexts/products.context';
 
 import '../styles/ProductsGrid.scss'
 
-
 const ProductsGrid = () => {
-
     const { getProducts, products, loading } = useContext(ProductsContext)
 
     useEffect(() => {
         loading();
         getProducts();
+        console.log("yo")
     }, [])
 
     return (

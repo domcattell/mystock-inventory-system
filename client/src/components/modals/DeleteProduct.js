@@ -1,12 +1,11 @@
 import React, {useContext} from 'react';
-import {Modal, Alert} from 'react-bootstrap'
+import {Modal} from 'react-bootstrap'
 
 import { ProductsContext} from '../../contexts/products.context'
 
 import '../../styles/DeleteProduct.scss'
 
 const DeleteProduct = (props) => {
-
     const {deleteProduct} = useContext(ProductsContext)
 
     const handleDelete = () => {

@@ -11,11 +11,11 @@
     margin: 0;
 
     li {
-        background-color: $primaryColour;
-        color: white; 
+        border: 1px solid $grey;
+        color: $menuTextColour; 
         margin: 14px;
         border-radius: 3px;
-        padding: 8px 20px;
+        padding: 10px 20px;
     }
 }
 
@@ -28,7 +28,7 @@
     margin: 0;
     display: inline-block;
     width: 120px;
-    border-right: 1px solid rgb(255, 255, 255);
+    border-right: 1px solid $grey;
 }
 
 .ProductDetail {

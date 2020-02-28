@@ -59,6 +59,7 @@ $altColour: #B34B4B;
     height: 100vh;
     background-color: rgb(243, 243, 243);
     overflow: scroll;
+    position: relative;
 }
 
 .pageHeader {
@@ -80,6 +81,28 @@ $altColour: #B34B4B;
     background-color: white;
     border: 1px solid $grey;
     padding: 15px;
+}
+
+.AuthPageContainer {
+    background-color: $primaryColour;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+
+    .AuthPageLogo {
+        color: white;
+        font-size: 42px;
+        font-weight: 700;
+        margin: 20px;
+    
+        span {
+            font-size: 18px;
+            font-weight: 400;
+        }
+    }
 }
 
 

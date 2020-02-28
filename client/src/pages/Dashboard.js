@@ -8,7 +8,6 @@ import Widget from '../components/Widget'
 
 import { ProductsContext } from '../contexts/products.context';
 import { CategoryContext } from '../contexts/category.context';
-import { AuthContext } from '../contexts/auth.context';
 
 const Dashboard = (props) => {
 
@@ -30,9 +29,6 @@ const Dashboard = (props) => {
                             <Widget title="Total Products" content={products.length}/>
                             <Widget title="Total Categories" content={categories.length} />
                             <Widget title="total qty" content={qtyAmount}/>
-                            <div className="dashboardStats">
-
-                            </div>
                         </div>
                     </div>
                 </PageContent>

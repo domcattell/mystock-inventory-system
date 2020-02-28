@@ -36,9 +36,16 @@
     position: relative;
 
         h4 {
-            font-size: 14px;
-            text-align: center;
-            padding: 5px;
+          color: $menuTextColour;
+          font-size: 20px;
+          text-align: center;
+          padding: 5px;
+        }
+
+        .LoginRegisterLink {
+          font-size: 14px;
+          text-align: center;
+          padding: 5px;
         }
 }
 
@@ -53,7 +60,7 @@
 
 .loginError {
     font-size: 16px;
-    padding: 3px 10px;
+    padding: 4px;
     background-color: $secondaryColour;
     color: white;
     width: 100%;
@@ -70,27 +77,10 @@
 
         input[type="text"],
         input[type="password"] {
-            width: 60%;
-            margin: 6px;
-            padding: 1.8%;
-            border-radius: 3px;
-            border: none;
-            border: 1px solid $grey;
-            background-color: rgb(243, 243, 243);
+            @include defaultInput(60%, 1.8%);
         }
 
         input[type="submit"] {
-            border: none;
-            background-color: $secondaryColour;
-            color: white;
-            padding: 10px 60px;
-            border-radius: 5px;
-            transition: all 0.5s ease;
-            margin-top: 25px;
-            width: 60%;
-
-            &:hover {
-                background-color: $secondaryHover;
-            }
+            @include defaultBtn(60%, 0);
         }
 }

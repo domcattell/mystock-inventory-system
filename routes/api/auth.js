@@ -8,6 +8,8 @@ const express = require("express"),
 //webtoken secret
 const secret = "secret"
 
+
+//register user using bcrypt to encrypt the password
 router.post("/register", (req, res) => {
     let {username, password} = req.body;
 
@@ -17,12 +19,12 @@ router.post("/register", (req, res) => {
         password = hash
 
         const sql = `INSERT INTO users (user_name, user_password) VALUES (?, ?);`
-        db.query(sql, [username, password], (error, result) => {
+        db.query(sql, [username.toLowerCase(), password], (error, result) => {
             if(error) {
                 //checks mysql error code and sends back appropriate message back to the client
                 if (error.errno == 1062) {
                     console.log("Username already taken")
-                    res.status(401).json({ error: "Username already taken" })
+                    res.status(401).json({ created: false })
                 }
                 else if (error.errno == 1406) {
                     console.log("Username too long. Max 25 characters")
@@ -32,7 +34,7 @@ router.post("/register", (req, res) => {
                     res.status(500).send({ error: "Database error occured!" })
                 }
             } 
-            res.status(200)
+            res.status(200).json({created: true})
             console.log(result) 
         }) 
     })
@@ -46,9 +48,9 @@ router.post("/register/validation", async (req, res) => {
         if (error) res.status(500).send({ error: "Database error occured!" })
 
         if (!result.length) {
-            res.status(200).json({ info: "Username available" })
-        } else if (username === result[0].user_name) {
-            res.status(200).json({ info: "Username taken" }) 
+            res.status(200).json({ userTaken: false})
+        } else if (username.toLowerCase() === result[0].user_name) {
+            res.status(200).json({ userTaken: true })   
         }
     })
 })
@@ -57,7 +59,7 @@ router.post("/register/validation", async (req, res) => {
 router.post("/login", async (req, res) => {
     let { username, password } = req.body;
     const sql = `SELECT * FROM users WHERE user_name = ?`
-    db.query(sql, [username], (error, result) => {
+    db.query(sql, [username.toLowerCase()], (error, result) => {
         if (error) {
             console.log(error)
             res.status(500).json({ error: "Database error has occured!" })

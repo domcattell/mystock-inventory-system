@@ -6,6 +6,8 @@
     box-shadow: 2px 2px 5px -1px rgba(0,0,0,0.2);
     cursor: pointer;
     transition: transform 0.3s ease;
+    border-radius: 3px;
+    overflow: hidden;
 
     &:hover {
         transform: scale(1.03);

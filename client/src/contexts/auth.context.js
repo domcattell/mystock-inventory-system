@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useEffect } from 'react';
+import React, { createContext, useReducer} from 'react';
 import { CHECK_AUTH_ERROR, CLEAR_MESSAGES, USER_LOADED, USER_LOADING, AUTH_ERROR, CHECK_USERNAME, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS } from '../actions/types'
 import authReducer from '../reducers/authReducer'
 import axios from 'axios';
@@ -74,7 +74,7 @@ export const AuthProvider = (props) => {
                 payload: res.data
             })
         } catch (err) {
-            dispatch({
+            dispatch({ 
                 type: REGISTER_FAIL,
                 payload: err.response.data
             })

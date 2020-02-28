@@ -55,7 +55,7 @@ router.post("/add", (req, res) => {
                 id: result.insertId
             };
             res.status(201);
-            res.json(newProduct);
+            res.json({newProduct, msg: {success: "Product added"}});
         }
     });
 });
@@ -86,7 +86,7 @@ router.put("/:id", (req, res) => {
                 res.status(400).json({ error: `"${name}" already exists as a product` })
                 console.log(`Error: ${name} already exists as a product`)
             }
-            res.status(400)
+            res.status(400).json({ error: "Something went wrong" })
             console.log("database error")
         } else {
             const updatedProduct = {
@@ -98,7 +98,7 @@ router.put("/:id", (req, res) => {
                 id: req.params.id
             }
 
-            res.status(200).json({updatedProduct, success:"Updated product"})
+            res.status(200).json({updatedProduct, msg: {success: `successfully updated ${updatedProduct.product_name}`}})
         }
     })
 })

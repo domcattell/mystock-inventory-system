@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, {  useContext } from 'react';
 
 import { AuthContext } from '../../contexts/auth.context';
 
@@ -8,7 +8,7 @@ import Navbar from './Navbar'
 
 import '../../styles/Menubar.scss'
 
-const Menubar = (props) => {
+const Menubar = () => {
 
     const { currentUser } = useContext(AuthContext)
     const [navState, navToggle] = useToggle(true)
@@ -17,7 +17,7 @@ const Menubar = (props) => {
         <div className="hellore">
             <div className="menubarRoot">
                 <div onClick={navToggle} className="menubarToggle">
-                    <i class="fas fa-bars"></i>
+                    <i className="fas fa-bars"></i>
                 </div>
                 <div className="menubarLogo">
                     <h2>myStock</h2>

@@ -10,9 +10,9 @@ const ProductsSortBy = () => {
 
     const sortBtn = () => {
         if (!sortProductsAZ) {
-            return <i onClick={sortAZ} class="fas fa-sort-alpha-up"></i>
+            return <i onClick={sortAZ} className="fas fa-sort-alpha-up"></i>
         } else {
-            return <i onClick={sortZA} class="fas fa-sort-alpha-up-alt"></i>
+            return <i onClick={sortZA} className="fas fa-sort-alpha-up-alt"></i>
         }
     }
     

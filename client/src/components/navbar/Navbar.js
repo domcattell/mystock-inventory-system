@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link, Redirect } from 'react-router-dom'
+import { NavLink, Link, Redirect } from 'react-router-dom'
 
 import {AuthContext} from '../../contexts/auth.context'
 
@@ -21,39 +21,33 @@ const Navbar = (props) => {
         <nav className={props.visible ? "navbarRoot open" : "navbarRoot"}>
             <ul className="navbarUl">
                 <li className="navbarItem">
-                    <Link to="/dashboard" className="navbarLink">
-                        <a><i class="fas fa-tachometer-alt">
-                        </i>Dashboard</a>
-                    </Link>
+                    <NavLink to="/dashboard" className="navbarLink">
+                        <i className="fas fa-tachometer-alt"></i>Dashboard
+                    </NavLink>
                 </li >
                 <li className="navbarItem">
-                    <Link to="/products/all" className="navbarLink">
-                        <a><i class="fas fa-th">
-                        </i>Products</a>
-                    </Link>
+                    <NavLink to="/products/all" className="navbarLink">
+                        <i className="fas fa-th"></i>Products
+                    </NavLink>
                 </li>
                 <li className="navbarItem">
-                    <Link className="navbarLink">
-                        <a><i class="fas fa-box-open">
-                        </i>Categories</a>
-                    </Link>
+                    <NavLink to="/categories/all" className="navbarLink">
+                        <i className="fas fa-box-open"></i>Categories
+                    </NavLink>
                 </li>
                 <li onClick={toggleAddProduct} className="navbarItem">
                     <Link className="navbarLink">
-                        <a><i class="fas fa-cart-plus">
-                        </i>Add Product</a>
+                        <i className="fas fa-cart-plus"></i>Add Product
                     </Link>
                 </li>
                 <li className="navbarItem">
                     <Link className="navbarLink">
-                        <a><i class="fas fa-plus">
-                        </i>Add Category</a>
+                        <i className="fas fa-plus"></i>Add Category
                     </Link>
                 </li>
                 <li className="navbarItem">
                     <Link className="navbarLink" onClick={logout}>
-                        <a><i class="fas fa-sign-out-alt">
-                        </i>Sign Out</a>
+                        <i className="fas fa-sign-out-alt"></i>Sign Out
                     </Link>
                 </li>
             </ul>

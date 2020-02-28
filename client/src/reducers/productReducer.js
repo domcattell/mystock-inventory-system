@@ -41,7 +41,8 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 products: [...state.products, action.payload],
-                qtyAmount: state.qtyAmount + parseInt(action.payload.qty)
+                qtyAmount: state.qtyAmount + parseInt(action.payload.qty),
+                msg: action.payload.msg
             }
         
         case UPDATE_ITEM_FAILED:
@@ -61,8 +62,9 @@ const reducer = (state, action) => {
         case EDIT_ITEM:
             return {
                 ...state,
-                products: state.products.map(product => product.id === action.id) ? [action.payload.updatedProduct] : state.products,
-                product: action.payload.updatedProduct
+                // products: state.products.map(product => product.id === action.id) ? [action.payload.updatedProduct] : state.products,
+                product: action.payload.updatedProduct,
+                msg: action.payload.msg
             }
 
         case SORT_AZ: 
@@ -88,7 +90,7 @@ const reducer = (state, action) => {
         case CLEAR_MESSAGES:
             return {
                 ...state,
-                msg: {},
+                msg: null,
                 error: false
             }
             

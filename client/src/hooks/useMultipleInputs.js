@@ -1,9 +1,6 @@
-import {useState, useContext} from 'react';
-import {ProductsContext} from '../contexts/products.context'
+import {useState} from 'react';
 
 const useInputState = (p) => {
-
-    const {product} = useContext(ProductsContext)
 
     const [value, setValue] = useState({
             sku: "",

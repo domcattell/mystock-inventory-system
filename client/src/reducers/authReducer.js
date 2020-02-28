@@ -2,7 +2,6 @@ import { CHECK_AUTH_ERROR, CLEAR_MESSAGES, USER_LOADED, USER_LOADING, AUTH_ERROR
 
 const reducer = (state, action) => {
     switch (action.type) {
-        case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
             localStorage.setItem('token', action.payload.token)
             return {
@@ -13,6 +12,14 @@ const reducer = (state, action) => {
                 token: localStorage.getItem('token')
             }
             
+        case REGISTER_SUCCESS:
+            return {
+                ...state,
+                authLoading: false,
+                currentUser: action.payload.currentUser,
+                msg: action.payload,
+            }
+    
         case USER_LOADED:
             return {
                 ...state,
@@ -50,7 +57,7 @@ const reducer = (state, action) => {
                 ...state,
                 authLoading: false,
                 msg: action.payload,
-                token: null
+                token: null,
             }
 
         case CLEAR_MESSAGES:
