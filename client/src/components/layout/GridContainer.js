@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../../styles/GridContainer.scss';
+import '../../styles/GlobalStyles.scss';
 
 const GridContainer = (props) => {
     return (

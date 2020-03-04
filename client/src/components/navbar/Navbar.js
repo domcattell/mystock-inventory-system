@@ -6,12 +6,14 @@ import {AuthContext} from '../../contexts/auth.context'
 import useToggle from '../../hooks/useToggle';
 
 import AddProduct from '../../components/modals/AddProduct';
+import AddCategory from '../../components/modals/AddCategory';
 
 import '../../styles/Navbar.scss'
 
 const Navbar = (props) => {
     const {logoutUser} = useContext(AuthContext)
     const [addProductShowing, toggleAddProduct] = useToggle(false);
+    const [addCategoryShowing, toggleAddCategory] = useToggle(false);
 
     const logout = () => {
         logoutUser();
@@ -40,7 +42,7 @@ const Navbar = (props) => {
                         <i className="fas fa-cart-plus"></i>Add Product
                     </Link>
                 </li>
-                <li className="navbarItem">
+                <li onClick={toggleAddCategory} className="navbarItem">
                     <Link className="navbarLink">
                         <i className="fas fa-plus"></i>Add Category
                     </Link>
@@ -52,6 +54,7 @@ const Navbar = (props) => {
                 </li>
             </ul>
             <AddProduct show={addProductShowing} onHide={toggleAddProduct}/>
+            <AddCategory show={addCategoryShowing} onHide={toggleAddCategory}/>
         </nav>
     );
 }

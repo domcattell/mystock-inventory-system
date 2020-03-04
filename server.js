@@ -16,9 +16,9 @@ app.use(express.urlencoded({
 const port = process.env.PORT || 5000;
 
 //routes setup
+app.use('/api/', authRoutes)
 app.use('/api/products/', productRoutes)
 app.use('/api/products/categories', categoryRoutes)
-app.use('/api/', authRoutes)
 
 // app.get('*', (req, res) => {
 //     res.sendfile(path.join(__dirname, './client/public', 'index.html'));

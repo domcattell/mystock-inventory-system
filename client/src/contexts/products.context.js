@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 import productReducer from '../reducers/productReducer'
 import axios from 'axios'
-import { CLEAR_SINGLE_ITEM, CLEAR_MESSAGES, ADD_ITEM_FAILED, UPDATE_ITEM_FAILED, TOTAL_QTY, SORT_AZ, SORT_ZA, GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING } from '../actions/types'
+import { CLEAR_SINGLE_ITEM, CLEAR_MESSAGES, ADD_ITEM_FAILED, UPDATE_ITEM_FAILED, TOTAL_QTY, SORT_AZ, SORT_ZA, GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING, GET_CATEGORY_PRODUCTS } from '../actions/types'
 
 export const ProductsContext = createContext();
 
@@ -45,6 +45,23 @@ export const ProductsProvider = (props) => {
         }
     }
 
+    const getCategoryProducts = async categoryID => {
+        try {
+            const res = await axios.get(`/api/products/categories/${categoryID}`, {
+                headers: { Accept: "application/json" }
+            })
+            dispatch({
+                type: GET_CATEGORY_PRODUCTS,
+                payload: res.data
+            })
+        } catch (err) {
+            dispatch({
+                type: GET_ITEMS_FAILED,
+                payload: err
+            })
+        }
+    }
+
     const getProduct = async itemID => {
         try {
             const res = await axios.get(`/api/products/${itemID}`, {
@@ -53,7 +70,6 @@ export const ProductsProvider = (props) => {
             dispatch({
                 type: GET_SINGLE_ITEM,
                 payload: res.data,
-                isFetching: false
             })
         } catch (err) {
             dispatch({
@@ -149,6 +165,7 @@ export const ProductsProvider = (props) => {
                 editProduct, 
                 loading,
                 clearProduct,
+                getCategoryProducts,
                 error: state.error, 
                 msg: state.msg, 
                 qtyAmount: state.qtyAmount, 

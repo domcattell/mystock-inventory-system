@@ -22,7 +22,7 @@ const AllProducts = () => {
                         key={product.id} 
                         name={product.product_name} 
                         itemOne="SKU"
-                        itemTwo="QTY"
+                        itemTwo="Quantity"
                         itemThree="Category"
                         itemOneContent={product.SKU}
                         itemTwoContent={product.qty}

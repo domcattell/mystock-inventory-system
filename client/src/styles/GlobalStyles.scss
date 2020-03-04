@@ -1,10 +1,12 @@
-$primaryColour: #403F59;
+// $primarycColour: #403F59;
+// $primaryaAltColour: #011140;
+$primaryColour: #B34B4B;
+$primaryAltColour: #733030;
 $secondaryColour: #F26666;
-$primaryAltColour: #011140;
 $secondaryHover: rgb(180, 79, 79);
 $fontSecondaryColour: rgb(236, 151, 148);
 $fontPrimaryColour: rgb(236, 151, 148);
-$grey: rgb(206, 206, 206);
+$grey: rgb(221, 221, 221);
 $menuTextColour: rgb(85, 82, 82);
 $menuTextColourHover: rgb(241, 241, 241);
 $altColour: #B34B4B;
@@ -41,7 +43,7 @@ $altColour: #B34B4B;
 
 @mixin defaultInput($width, $padding) {
     width: $width;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
     padding: $padding;
     border-radius: 3px;
     border: none;
@@ -84,7 +86,11 @@ $altColour: #B34B4B;
 }
 
 .AuthPageContainer {
-    background-color: $primaryColour;
+    //background SVG from SVGBackgrounds.com
+    background-color: #403f59;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23f26666' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23aa4848' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23dd5d5d' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23b84e4e' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%23c85454' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%23c65454' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%23b44c4c' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%23d55a5a' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%23a04343' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%23e36060' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%238c3b3b' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23f26666' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -105,4 +111,19 @@ $altColour: #B34B4B;
     }
 }
 
+.GridContainer {
+    margin: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+    grid-gap: 30px 30px;
 
+    a:hover {
+        text-decoration: none;
+    }
+}
+
+
+// background-color: #403f59;
+// background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23f26666' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23aa4848' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23dd5d5d' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23b84e4e' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%23c85454' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%23c65454' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%23b44c4c' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%23d55a5a' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%23a04343' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%23e36060' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%238c3b3b' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23f26666' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
+// background-attachment: fixed;
+// background-size: cover;

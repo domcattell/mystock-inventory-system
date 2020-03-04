@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { AuthContext } from '../contexts/auth.context'
 import useRegisterInput from '../hooks/useRegisterInput';
-import "../styles/Login.scss"
 import {Link} from 'react-router-dom'
 import '../styles/LoginFormStyles.scss'
 

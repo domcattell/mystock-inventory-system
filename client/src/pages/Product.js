@@ -8,6 +8,7 @@ import PageContainer from '../components/layout/PageContainer';
 import PageContent from '../components/layout/PageContent';
 import ProductDetails from '../components/ProductDetails';
 import EditForm from '../components/EditForm';
+// import ProductsSortBy from '../components/ProductsSortBy';
 
 import '../styles/ProductPage.scss';
 
@@ -21,6 +22,7 @@ const Product = (props) => {
         <PageContainer>
             <PageHeader title={isFetching ? "Loading..." : product_name} />
                 <PageContent className="ProductPageWrapper">
+                    {/* <ProductsSortBy /> */}
                     <ProductDetails {...props}/>
                     <EditForm {...props} toast={toast} setToast={setToast}/>  
                 </PageContent>

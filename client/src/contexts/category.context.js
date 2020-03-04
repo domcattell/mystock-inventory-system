@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 import categoriesReducer from '../reducers/categoriesReducer'
 import axios from 'axios'
-import { CATEGORIES_LOADING, ADD_CATEGORY, GET_CATEGORIES, EDIT_CATEGORY, DELETE_CATEGORY, CATEGORIES_FAILED } from "../actions/types"
+import { CLEAR_MESSAGES, CATEGORIES_LOADING, ADD_CATEGORY, GET_CATEGORIES, EDIT_CATEGORY, DELETE_CATEGORY, CATEGORIES_FAILED } from "../actions/types"
 
 export const CategoryContext = createContext();
 
@@ -9,8 +9,9 @@ export const CategoryProvider = (props) => {
 
     const initialState = {
         fetchingCategories: true,
-        error: false,
-        categories: []
+        categoryError: false,
+        categories: [],
+        categoryMsg: null
     }
 
     const [state, dispatch] = useReducer(categoriesReducer, initialState)
@@ -30,7 +31,8 @@ export const CategoryProvider = (props) => {
             })
         } catch (err) {
             dispatch({
-                type: CATEGORIES_FAILED
+                type: CATEGORIES_FAILED,
+                payload: err.response.data
             })
         }
     }
@@ -44,7 +46,8 @@ export const CategoryProvider = (props) => {
             })
         } catch (err) {
             dispatch({
-                type: CATEGORIES_FAILED
+                type: CATEGORIES_FAILED,
+                payload: err.response.data
             })
         }
     }
@@ -73,13 +76,26 @@ export const CategoryProvider = (props) => {
             })
         } catch (err) {
             dispatch({
-                type: CATEGORIES_FAILED
+                type: CATEGORIES_FAILED,
+                payload: err.response.data
             })
         }
     }
 
+    const clearCategoryMessages = () => {dispatch({type: CLEAR_MESSAGES})}
+
     return (
-        <CategoryContext.Provider value={{editCategory, categoriesLoading, deleteCategory, addCategory, getCategories, fetchingCategories: state.fetchingCategories, categories: state.categories, error: state.error}}>
+        <CategoryContext.Provider value={{
+                clearCategoryMessages, 
+                editCategory, 
+                categoriesLoading, 
+                deleteCategory, 
+                addCategory, 
+                getCategories, 
+                fetchingCategories: state.fetchingCategories, 
+                categories: state.categories,
+                categoryError: state.categoryError, 
+                categoryMsg: state.categoryMsg}}>
             {props.children}
         </CategoryContext.Provider>
     )

@@ -40,11 +40,14 @@ const Routes = () => {
                 <Switch>
                     <PrivateRoute exact path="/dashboard" component={Dashboard} />
                     <PrivateRoute exact path="/categories/all" component={Categories} />
-                    <PrivateRoute exact path="/categories/all" component={Category} />
+                    <PrivateRoute exact path="/categories/:id" component={Category} />
                     <PrivateRoute exact path="/products/all" component={Products} />
                     <PrivateRoute exact path="/products/:id" component={Product} />
+                    <Route>{`404`}</Route>
+
                 </Switch>
             </>
+            <Route>{`404`}</Route>
         </Switch>
     );
 }

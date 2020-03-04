@@ -33,11 +33,12 @@ router.get("/:id", (req, res) => {
 // add new product
 router.post("/add", (req, res) => {
     const { sku, name, qty, category, price } = req.body;
+    generatedSku = `${name.toUpperCase()}-${category.toUpperCase()}`
     const sql = `INSERT INTO products (category_id, product_name, qty, SKU, price)
                 SELECT categories.id, ?, ?, ?, ?
                 FROM categories
                 WHERE categories.category = ?;`
-    db.query(sql,[name, qty, sku, price, category], (err, result) => {
+    db.query(sql,[name, qty, generatedSku, price, category], (err, result) => {
         if (err) {
             if(err.errno = 1062) {
                 console.log(`Error: ${name} already exists as a product`)
@@ -47,7 +48,7 @@ router.post("/add", (req, res) => {
             }
         } else {
             const newProduct = {
-                SKU: sku,
+                SKU: generatedSku,
                 product_name: name,
                 qty: qty,
                 category: category,
@@ -97,7 +98,6 @@ router.put("/:id", (req, res) => {
                 price: price,
                 id: req.params.id
             }
-
             res.status(200).json({updatedProduct, msg: {success: `successfully updated ${updatedProduct.product_name}`}})
         }
     })

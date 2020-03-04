@@ -1,0 +1,60 @@
+@import './GlobalStyles.scss';
+
+.ToolbarRoot {
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid $grey;
+    margin: 0 30px;
+    height: 40px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    color: $menuTextColour;
+}
+
+.Actions {
+    position: absolute;
+    left: 0;
+    margin-left: 10px;
+}
+
+#ActionsToggle {
+    background-color: transparent;
+    border: none;
+    color: $menuTextColour;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+
+    &:focus {
+        box-shadow: none;
+    }
+
+    &:hover {
+        background-color: rgb(245, 245, 245);
+    }
+}
+
+#ActionsToggle::after {
+    margin-left: 20px;
+}
+
+#ActionsDropDownItem {
+    color: $menuTextColour;
+
+    &:active {
+        box-shadow: none;
+        color: $menuTextColour;
+        outline: none;
+    }
+
+    &:hover {
+        background-color: rgb(245, 245, 245);
+    }
+
+    &:focus {
+        background-color: rgb(238, 238, 238);
+        box-shadow: none;
+        outline: none;
+    }
+}

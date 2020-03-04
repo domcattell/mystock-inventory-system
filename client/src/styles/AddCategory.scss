@@ -1,0 +1,35 @@
+@import './GlobalStyles.scss';
+
+.AddCategoryForm {
+    display: flex;
+    justify-content: center;
+    flex-direction: column; 
+
+    .AddCategoryBtn {
+        @include defaultBtn(20%, 0);
+        display: inline-block;
+    }
+
+    .AddCategoryInput {
+        @include defaultInput(70%, 1.8%);
+        margin: 0;
+    }
+
+    .AddCategoryFormWrapper {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .AddCategoryError {
+        text-align: center;
+    }
+}
+
+.AddCategoryCloseBtn {
+    @include defaultBtn(15%, 0);
+    background-color: $primaryColour;
+
+    &:hover {
+        background-color: $primaryAltColour;
+    }
+}

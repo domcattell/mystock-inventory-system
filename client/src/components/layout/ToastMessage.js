@@ -3,7 +3,6 @@ import {Toast} from 'react-bootstrap';
 
 import { ProductsContext } from '../../contexts/products.context';
 
-
 const ToastMessage = (props) => {
 
     const {msg, clearMessages} = useContext(ProductsContext)

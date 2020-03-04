@@ -1,17 +1,21 @@
 import {useState} from 'react';
 
 const useInputState = (init) => {
-    const [value, setValue] = useState(init)
+    const [newValue, setValue] = useState({init})
 
     const handleChange = (e) => {
-        const value = e.target.value
-        setValue(value)
+        const {name, value} = e.target
+        setValue(prev => ({
+            ...prev,
+            [name]: value
+        }))
     }
 
     const reset = () => {
-        setValue("");
+        setValue({init});
     }
     
-    return [value, handleChange, reset]
+    return [newValue, handleChange, reset]
 }
+
 export default useInputState;
