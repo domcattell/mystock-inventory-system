@@ -26,7 +26,12 @@ const Product = (props) => {
                     <ProductDetails {...props}/>
                     <EditForm {...props} toast={toast} setToast={setToast}/>  
                 </PageContent>
-                {msg && <ToastMessage title="Update Status" showToast={toast} toggleToast={setToast} />}
+                {msg && <ToastMessage 
+                    title="Update Status" 
+                    message={msg} 
+                    showToast={toast}
+                    toggleToast={setToast}
+                />}
         </PageContainer>
     );
 }

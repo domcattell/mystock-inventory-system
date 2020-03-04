@@ -70,7 +70,7 @@ const reducer = (state, action) => {
         case EDIT_ITEM:
             return {
                 ...state,
-                // products: state.products.map(product => product.id === action.id) ? [action.payload.updatedProduct] : state.products,
+                products: state.products.map(product => product.id === action.id) ? [action.payload.updatedProduct] : state.products,
                 product: action.payload.updatedProduct,
                 msg: action.payload.msg
             }

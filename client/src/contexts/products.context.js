@@ -47,7 +47,7 @@ export const ProductsProvider = (props) => {
 
     const getCategoryProducts = async categoryID => {
         try {
-            const res = await axios.get(`/api/products/categories/${categoryID}`, {
+            const res = await axios.get(`/api/products/categories/${categoryID}/category_products`, {
                 headers: { Accept: "application/json" }
             })
             dispatch({

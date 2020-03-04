@@ -11,7 +11,7 @@ const Products = () => {
         <PageContainer>
             <PageHeader title="Products" />
             <PageContent>
-            <Toolbar />
+            <Toolbar sort={true}/>
             <AllProducts />
             </PageContent>
         </PageContainer>

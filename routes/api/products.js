@@ -87,7 +87,7 @@ router.put("/:id", (req, res) => {
                 res.status(400).json({ error: `"${name}" already exists as a product` })
                 console.log(`Error: ${name} already exists as a product`)
             }
-            res.status(400).json({ error: "Something went wrong" })
+            res.status(400).json({  error: "Something went wrong" })
             console.log("database error")
         } else {
             const updatedProduct = {

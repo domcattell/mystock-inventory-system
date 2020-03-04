@@ -1,0 +1,52 @@
+@import './GlobalStyles.scss';
+
+.CategoryDetailsRoot {
+    color: $menuTextColour;
+    margin: 30px 30px 0 30px;
+}
+
+
+.CategoryDetailsHeader {
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+.CategoryDetailsItem {
+    border-bottom: 1px solid rgb(235, 235, 235);
+    padding: 15px 0;
+}
+
+.CategoryDetailsItem:first-child {
+    border-top: 1px solid rgb(235, 235, 235);
+}
+
+.CategoryDetailsTitle {
+    font-size: 16px;
+
+    i {
+        margin-right: 10px;
+    }
+}
+
+.CategoryDetailsContent {
+    color: rgb(141, 141, 141);
+    float: right;
+}
+
+
+.CategoryDetailsBtn {
+    @include defaultBtn(160px, 0);
+    margin-left: 15px;
+}
+
+.CategoryDetailsInput {
+    @include defaultInput(300px, 9px);
+}
+
+.CategoryDetailsFormLabel {
+    padding-right: 15px;
+}
+
+.CategoryDetailsForm {
+    margin: 0;
+}

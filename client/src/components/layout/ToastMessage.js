@@ -13,6 +13,8 @@ const ToastMessage = (props) => {
         clearMessages();
     }
 
+    console.log(props.message)
+
     return (
         <Toast 
             show={props.showToast} 
@@ -24,7 +26,7 @@ const ToastMessage = (props) => {
         <Toast.Header>
             <strong className="mr-auto">{props.title}</strong>
         </Toast.Header>
-        <Toast.Body>{msg.success ? msg.success : msg.error}</Toast.Body>
+        <Toast.Body>{props.messsage.success ? props.message.success : props.message.error}</Toast.Body>
         </Toast>
     );
 }

@@ -1,4 +1,4 @@
-import { CATEGORIES_LOADING, ADD_CATEGORY, GET_CATEGORIES, EDIT_CATEGORY, DELETE_CATEGORY, CATEGORIES_FAILED, CLEAR_MESSAGES } from "../actions/types"
+import { GET_CATEGORY, CATEGORIES_LOADING, ADD_CATEGORY, GET_CATEGORIES, EDIT_CATEGORY, DELETE_CATEGORY, CATEGORIES_FAILED, CLEAR_MESSAGES } from "../actions/types"
 
 const reducer = (state, action) => {
     switch(action.type) {
@@ -14,6 +14,14 @@ const reducer = (state, action) => {
                 ...state,
                 fetchingCategories: false,
                 categories: action.payload
+            }
+        }
+
+        case GET_CATEGORY: {
+            return {
+                ...state,
+                fetchingCategories: false,
+                category: action.payload[0]
             }
         }
 
@@ -34,7 +42,9 @@ const reducer = (state, action) => {
         case EDIT_CATEGORY: {
             return {
                 ...state,
-                categories: state.categories.map(category => category.id === action.id) ? [action.payload] : state.categories
+                categories: state.categories.map(category => category.id === action.id) ? [action.payload.updatedCategory] : state.categories,
+                category: action.payload.updatedCategory,
+                categoryMsg: action.payload.success
             }
         }
 

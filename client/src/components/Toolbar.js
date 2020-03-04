@@ -3,51 +3,69 @@ import {DropdownButton, Dropdown} from 'react-bootstrap'
 
 import { ProductsContext } from '../contexts/products.context';
 
+import useToggle from '../hooks/useToggle';
+
+import DeleteModal from '../components/modals/DeleteModal';
+
 import '../styles/Toolbar.scss';
 
-const Toolbar = () => {
+const Toolbar = (props) => {
+    const {sortAZ, sortZA, sortProductsAZ } = useContext(ProductsContext);
+    const [deleteModal, toggleDeleteModal] = useToggle(false);
 
-    const {sortAZ, sortZA, sortProductsAZ } = useContext(ProductsContext)
-
-    const sortBtn = () => {
-        if (!sortProductsAZ) {
-            return <i onClick={sortAZ} className="fas fa-sort-alpha-up"></i>
-        } else {
-            return <i onClick={sortZA} className="fas fa-sort-alpha-up-alt"></i>
-        }
-    }
-
+    // The logical conditional statements in this component make it slightly 
+    // hard to follow, but also make it easily re-usable across the app.
     return (
         <div className="ToolbarRoot">
-            {/* <div className="SortBy">
-                <p>Sort by name:</p>
-                {sortBtn()}
-            </div> */}
-            <div className="Actions">
+            {/* only render the modal if the actions prop is set to true */}
+            {props.actions &&
+                <DeleteModal 
+                    show={deleteModal} 
+                    onHide={toggleDeleteModal}
+                    id={props.id}
+                    deleteFunction={props.deleteFunction}
+                />
+            }
+
+            {/* Only render the actions menu if props.actions is true */}
+            {props.actions &&
+            <div className="ToolbarMenu">
                 <Dropdown>
-                    <Dropdown.Toggle id="ActionsToggle">Actions</Dropdown.Toggle>
+                    <Dropdown.Toggle id="ToolbarToggle">Actions</Dropdown.Toggle>
                     <Dropdown.Menu id="ActionsDropDown">
-                        <Dropdown.Item id="ActionsDropDownItem" as="button" onClick={!sortProductsAZ ? sortAZ : sortZA}>{!sortProductsAZ ? "Sort AZ" : "Sort ZA"}</Dropdown.Item>
-                        <Dropdown.Item id="ActionsDropDownItem" as="button">Rename</Dropdown.Item>
-                        <Dropdown.Item id="ActionsDropDownItem" as="button">Delete</Dropdown.Item>
+
+                            <Dropdown.Item 
+                            id="ActionsDropDownItem"
+                            onClick={toggleDeleteModal} 
+                            as="button">
+                            Delete
+                            </Dropdown.Item>
+
                     </Dropdown.Menu>
                 </Dropdown>
-            </div>
+            </div>}
+            
+            {/* Only render if props.sort is set to true */}
+            {props.sort &&
+            <div className="ToolbarMenu">
+                <Dropdown>
+                    <Dropdown.Toggle id="ToolbarToggle">Sort By</Dropdown.Toggle>
+                    <Dropdown.Menu id="ActionsDropDown">
+
+                        {props.sort && 
+                        <Dropdown.Item 
+                            id="DropDownItem" 
+                            as="button" 
+                            onClick={!sortProductsAZ ? sortAZ : sortZA}>
+                            Name {!sortProductsAZ ? "AZ" : "ZA"}
+                        </Dropdown.Item> }
+
+                    </Dropdown.Menu>
+                </Dropdown>
+            </div>}
+
         </div>
     );
 }
 
 export default Toolbar;
-
-
-{/* <DropdownButton 
-                    id="dropdown-basic-button"
-                    title="Actions"
-                    size="sm"
-                    variant="secondary"
-                    bsPrefix="DropDownBtn"
-                    >
-                    <Dropdown.Item className="DropDownItem" as="button" onClick={!sortProductsAZ ? sortAZ : sortZA}>{!sortProductsAZ ? "Sort AZ" : "Sort ZA"}</Dropdown.Item>
-                    <Dropdown.Item as="button">Rename</Dropdown.Item>
-                    <Dropdown.Item as="button">Delete</Dropdown.Item>
-                </DropdownButton> */}

@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from 'react';
 import categoriesReducer from '../reducers/categoriesReducer'
 import axios from 'axios'
-import { CLEAR_MESSAGES, CATEGORIES_LOADING, ADD_CATEGORY, GET_CATEGORIES, EDIT_CATEGORY, DELETE_CATEGORY, CATEGORIES_FAILED } from "../actions/types"
+import { GET_CATEGORY, CLEAR_MESSAGES, CATEGORIES_LOADING, ADD_CATEGORY, GET_CATEGORIES, EDIT_CATEGORY, DELETE_CATEGORY, CATEGORIES_FAILED, GET_CATEGORY_PRODUCTS } from "../actions/types"
 
 export const CategoryContext = createContext();
 
@@ -11,6 +11,7 @@ export const CategoryProvider = (props) => {
         fetchingCategories: true,
         categoryError: false,
         categories: [],
+        category: {},
         categoryMsg: null
     }
 
@@ -27,6 +28,21 @@ export const CategoryProvider = (props) => {
             const res = await axios.get("/api/products/categories/all")
             dispatch({
                 type: GET_CATEGORIES,
+                payload: res.data
+            })
+        } catch (err) {
+            dispatch({
+                type: CATEGORIES_FAILED,
+                payload: err.response.data
+            })
+        }
+    }
+
+    const getCategory = async (categoryID) => {
+        try {
+            const res = await axios.get(`/api/products/categories/${categoryID}`)
+            dispatch({
+                type: GET_CATEGORY,
                 payload: res.data
             })
         } catch (err) {
@@ -72,7 +88,6 @@ export const CategoryProvider = (props) => {
             dispatch({
                 type: EDIT_CATEGORY,
                 payload: res.data,
-                id: categoryID
             })
         } catch (err) {
             dispatch({
@@ -91,10 +106,12 @@ export const CategoryProvider = (props) => {
                 categoriesLoading, 
                 deleteCategory, 
                 addCategory, 
-                getCategories, 
+                getCategories,
+                getCategory,
                 fetchingCategories: state.fetchingCategories, 
                 categories: state.categories,
-                categoryError: state.categoryError, 
+                categoryError: state.categoryError,
+                category: state.category,
                 categoryMsg: state.categoryMsg}}>
             {props.children}
         </CategoryContext.Provider>

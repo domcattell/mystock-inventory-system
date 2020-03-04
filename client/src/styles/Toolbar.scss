@@ -12,13 +12,12 @@
     color: $menuTextColour;
 }
 
-.Actions {
-    position: absolute;
+.ToolbarMenu {
     left: 0;
     margin-left: 10px;
 }
 
-#ActionsToggle {
+#ToolbarToggle {
     background-color: transparent;
     border: none;
     color: $menuTextColour;
@@ -35,11 +34,11 @@
     }
 }
 
-#ActionsToggle::after {
-    margin-left: 20px;
+#ToolbarToggle::after {
+    margin-left: 10px;
 }
 
-#ActionsDropDownItem {
+#DropDownItem {
     color: $menuTextColour;
 
     &:active {
