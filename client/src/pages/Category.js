@@ -17,19 +17,20 @@ import ToastMessage from '../components/layout/ToastMessage';
 
 const Category = (props) => {
     const {products, getCategoryProducts, isFetching, loading} = useContext(ProductsContext);
-    const {category, deleteCategory, getCategory, categoryMsg} = useContext(CategoryContext);
+    const {category, deleteCategory, getCategory, categoryMsg, clearCategoryMessages, categoriesLoading, fetchingCategories} = useContext(CategoryContext);
     const [toast, setToast] = useToggle(false);
 
 
     useEffect(() => {
         loading();
-        getCategory(props.match.params.id);
+        categoriesLoading();
         getCategoryProducts(props.match.params.id);
+        getCategory(props.match.params.id);
     },[])
 
     return (
         <PageContainer>
-            <PageHeader title={category.category}/>
+            <PageHeader title={fetchingCategories ? "Loading..." : category.category}/>
 
             <PageContent>
                 <Toolbar 
@@ -38,7 +39,7 @@ const Category = (props) => {
                     id={props.match.params.id}
                     deleteFunction={deleteCategory}
                 />
-                <CategoryDetails {...props}/>
+                <CategoryDetails {...props} toast={toast} setToast={setToast}/>
             </PageContent>
 
             <PageContent>
@@ -64,6 +65,7 @@ const Category = (props) => {
                     message={categoryMsg} 
                     showToast={toast}
                     toggleToast={setToast}
+                    clear={clearCategoryMessages}
                 />}
             </PageContent>
         </PageContainer>

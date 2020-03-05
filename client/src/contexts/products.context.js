@@ -122,7 +122,6 @@ export const ProductsProvider = (props) => {
             dispatch({
                 type: EDIT_ITEM,
                 payload: res.data,
-                id: itemID
             })
         } catch (err) {
             dispatch({

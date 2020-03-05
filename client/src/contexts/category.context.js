@@ -8,8 +8,7 @@ export const CategoryContext = createContext();
 export const CategoryProvider = (props) => {
 
     const initialState = {
-        fetchingCategories: true,
-        categoryError: false,
+        fetchingCategories: false,
         categories: [],
         category: {},
         categoryMsg: null
@@ -110,7 +109,6 @@ export const CategoryProvider = (props) => {
                 getCategory,
                 fetchingCategories: state.fetchingCategories, 
                 categories: state.categories,
-                categoryError: state.categoryError,
                 category: state.category,
                 categoryMsg: state.categoryMsg}}>
             {props.children}

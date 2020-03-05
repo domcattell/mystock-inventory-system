@@ -6,7 +6,6 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 fetchingCategories: true,
-                categoryError: false
             }
         
         case GET_CATEGORIES: {
@@ -44,7 +43,7 @@ const reducer = (state, action) => {
                 ...state,
                 categories: state.categories.map(category => category.id === action.id) ? [action.payload.updatedCategory] : state.categories,
                 category: action.payload.updatedCategory,
-                categoryMsg: action.payload.success
+                categoryMsg: action.payload.msg
             }
         }
 
@@ -53,7 +52,7 @@ const reducer = (state, action) => {
                 ...state,
                 categoryError: true,
                 categoriesFetching: false,
-                categoryMsg: action.payload
+                categoryMsg: action.payload.msg
             }
         }
 

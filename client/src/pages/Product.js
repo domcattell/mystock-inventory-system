@@ -14,7 +14,7 @@ import '../styles/ProductPage.scss';
 
 const Product = (props) => {
 
-    const {product, isFetching, msg} = useContext(ProductsContext)
+    const {product, isFetching, msg, clearMessages} = useContext(ProductsContext)
     const {product_name} = product
     const [toast, setToast] = useToggle(false);
 
@@ -26,12 +26,13 @@ const Product = (props) => {
                     <ProductDetails {...props}/>
                     <EditForm {...props} toast={toast} setToast={setToast}/>  
                 </PageContent>
-                {msg && <ToastMessage 
+                {msg ? <ToastMessage 
                     title="Update Status" 
                     message={msg} 
                     showToast={toast}
-                    toggleToast={setToast}
-                />}
+                    toggleToast={setToast} 
+                    clear={clearMessages}
+                /> : null}
         </PageContainer>
     );
 }

@@ -42,7 +42,7 @@ const reducer = (state, action) => {
                 ...state,
                 error: true,
                 isFetching: false,
-                msg: action.payload
+                msg: action.payload.msg
             }
         
         case ADD_ITEM:
@@ -57,7 +57,7 @@ const reducer = (state, action) => {
         case ADD_ITEM_FAILED:
             return {
                 ...state,
-                msg: action.payload,
+                msg: action.payload.msg,
                 error: true
             }
         
@@ -76,7 +76,7 @@ const reducer = (state, action) => {
             }
 
         case SORT_AZ: 
-            return {
+            return { 
                 ...state,
                 products: state.products.sort((a, b) => a.product_name.localeCompare(b.product_name)),
                 sortProductsAZ: true

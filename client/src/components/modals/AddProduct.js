@@ -37,8 +37,8 @@ const AddProduct = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form className="AddProductForm" onSubmit={handleSubmit}>
-            {error && <Alert className="AddProductError" variant="danger">{msg.error}</Alert>}
+          <form className="AddProductForm" onSubmit={handleSubmit}> 
+            {/* {error && <Alert className="AddProductError" variant="danger">{msg.error}</Alert>} */}
             <input type="text" name="sku" onChange={handleChange} value={newProduct.sku} placeholder="SKU" required/>
             <input type="text" name="name" onChange={handleChange} value={newProduct.name} placeholder="Name" required/>
             <input type="text" name="category" onChange={handleChange} value={newProduct.category} placeholder="Category" required/>
