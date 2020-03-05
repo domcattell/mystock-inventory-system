@@ -1,88 +1,163 @@
 @import './GlobalStyles.scss';
 
 .EditFormRoot {
-    border: 1px solid $grey;
-    border-radius: 3px;
-    display: inline-block;
-    padding: 30px;
-    margin-left: 30px;
-    width: 50%;
+    padding: 40px;
+    margin: 0 30px 30px 30px;
+    background-color: white;
     color: $menuTextColour;
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 2px 2px 5px -1px rgba(0,0,0,0.2);
-
-    form {
-        // display: flex;
-        // flex-direction: column;
-
-        input[type="text"] {
-            @include defaultInput(80%, 1.5%)
-        }
-
-        input[type="number"] {
-            @include defaultInput(20%, 1.5%)
-        }
-
-        select {
-            @include defaultInput(80%, 1.5%)
-        }
-
-        select:disabled {
-            background-color: $grey;
-        }
-
-        button {
-            @include defaultBtn(100%, 20px);
-            background-color: $primaryColour;
-
-            &:hover {
-                background-color: $primaryAltColour;
-            }
-        }
-
-        button:disabled {
-            background-color: $menuTextColour;
-            color: white;
-        }
-
-        input:disabled {
-            background-color: $grey;
-        }
-    }
-
+    border: 1px solid $grey;
+    display: inline-block;
+   
     h5 {
         margin-bottom: 20px;
-        text-align: center;
     }
 }
 
-.EditFormRoot.loading {
+.EditForm {
+    width: 500px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    input[type="text"],
+    select {
+        @include defaultInput(100%, 10px);
+    }
+
+    input[type="number"] {
+        @include defaultInput(100%, 10px);
+        display: inline;
+    }
+
+    label {
+        display: block;
+        color: rgb(139, 139, 139);
+        font-size: 16px;
+        margin: 0;
+        margin-bottom: 3px;
+    }
+
+    button {
+        @include defaultBtn(100%, 15px);
+    }
+}
+
+.EditFormText {
+    flex: 0 0 100%;
 }
 
 .ProductPageFormLock {
     position: absolute;
     top: 0;
     right: 0;
-    margin: 25px;
-    font-size: 18px;
-    color: $menuTextColour;
-    padding: 5px;
+    margin: 0;
+    margin: 5px;
+    padding: 10px;
     cursor: pointer;
 }
 
-.FormInput {
-    display: inline;
 
-    label {
-        display: inline-block;
-        width: 90px;
-        text-align: right;
-        padding-right: 7px;
-        
+
+
+
+
+@media (max-width: 878px) {
+
+    .EditFormRoot {
+        width: 100%;
+        display: block;
+        margin: 0px;
+    }
+
+    .EditForm {
+        width: 100%;
     }
 }
+
+
+
+
+
+
+
+
+
+
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    // box-shadow: 2px 2px 5px -1px rgba(0,0,0,0.2);
+
+//     form {
+//         // display: flex;
+//         // flex-direction: column;
+
+//         input[type="text"] {
+//             @include defaultInput(400px, 10px)
+//         }
+
+//         input[type="number"] {
+//             @include defaultInput(400px, 10px)
+//         }
+
+//         select {
+//             @include defaultInput(400px, 10px)
+
+//         }
+
+//         select:disabled {
+//             background-color: $grey;
+//         }
+
+//         button {
+//             @include defaultBtn(100%, 20px);
+//             background-color: $primaryColour;
+
+//             &:hover {
+//                 background-color: $primaryAltColour;
+//             }
+//         }
+
+//         button:disabled {
+//             background-color: $menuTextColour;
+//             color: white;
+//         }
+
+//         input:disabled {
+//             background-color: $grey;
+//         }
+//     }
+
+//     h5 {
+//         margin-bottom: 20px;
+//         text-align: center;
+//     }
+// }
+
+// .EditFormRoot.loading {
+//     display: flex;
+//     justify-content: center;
+// }
+
+// .ProductPageFormLock {
+//     position: absolute;
+//     top: 0;
+//     right: 0;
+//     margin: 25px;
+//     font-size: 18px;
+//     color: $menuTextColour;
+//     padding: 5px;
+//     cursor: pointer;
+// }
+
+// .FormInput {
+//     display: inline;
+
+//     label {
+//         display: inline-block;
+//         width: 90px;
+//         text-align: right;
+//         padding-right: 7px;
+//     }
+// }

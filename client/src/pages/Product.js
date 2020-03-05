@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import { ProductsContext} from '../contexts/products.context'
 
 import ToastMessage from '../components/layout/ToastMessage';
@@ -7,25 +7,37 @@ import PageHeader from '../components/layout/PageHeader';
 import PageContainer from '../components/layout/PageContainer';
 import PageContent from '../components/layout/PageContent';
 import ProductDetails from '../components/ProductDetails';
+import Toolbar from '../components/Toolbar';
 import EditForm from '../components/EditForm';
-// import ProductsSortBy from '../components/ProductsSortBy';
 
 import '../styles/ProductPage.scss';
 
 const Product = (props) => {
 
-    const {product, isFetching, msg, clearMessages} = useContext(ProductsContext)
+    const {product, isFetching, msg, clearMessages, deleteProduct, getProduct, loading} = useContext(ProductsContext)
     const {product_name} = product
     const [toast, setToast] = useToggle(false);
+
+    useEffect(() => {
+        loading();
+        getProduct(props.match.params.id);
+    },[])
 
     return ( 
         <PageContainer>
             <PageHeader title={isFetching ? "Loading..." : product_name} />
-                <PageContent className="ProductPageWrapper">
-                    {/* <ProductsSortBy /> */}
+                <PageContent>
+                    <Toolbar
+                        actions={true}
+                        id={props.match.params.id}
+                        deleteFunction={deleteProduct}
+                    />
                     <ProductDetails {...props}/>
-                    <EditForm {...props} toast={toast} setToast={setToast}/>  
                 </PageContent>
+
+                
+                    <EditForm {...props} toast={toast} setToast={setToast}/>  
+               
                 {msg ? <ToastMessage 
                     title="Update Status" 
                     message={msg} 

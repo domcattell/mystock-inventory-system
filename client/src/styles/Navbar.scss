@@ -26,6 +26,10 @@
     transform: translateX(0);
     float: left;
     width: 220px;
+
+    @media (max-width: 800px) {
+        width: 100%;
+    }
 }
 
 .navbarUl {

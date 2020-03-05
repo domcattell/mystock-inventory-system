@@ -25,8 +25,7 @@ const DeleteProduct = (props) => {
                 </Modal.Header> 
                 <Modal.Body>
                     <h5 className="deleteText">
-                        Are you sure you want to delete this category? This will also
-                        delete all corresponding products that are in the category, and cannot be undone.
+                        
                     </h5>
                 </Modal.Body>
                 <Modal.Footer>  

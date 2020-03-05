@@ -1,41 +1,55 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import ReactLoading from 'react-loading'
 
 import { ProductsContext } from '../contexts/products.context'
 
-import DeleteProduct from '../components/modals/DeleteProduct'
-
-import useToggle from '../hooks/useToggle';
-
 import '../styles/ProductDetails.scss'
 
-const ProductPageDetails = (props) => {
-
-    const {product, getProduct, isFetching, loading} = useContext(ProductsContext)
-    const {product_name, qty, category, SKU, price, created_at} = product
-    const [deleteModal, toggleDeleteModal] = useToggle(false);
-
-    useEffect(() => {
-        loading();
-        getProduct(props.match.params.id)
-    },[])
+const ProductPageDetails = () => {
+    const {product, isFetching} = useContext(ProductsContext);
+    const {product_name, qty, category, SKU, price, created_at} = product;
 
     return (
         <div className={`ProductDetailsRoot ${isFetching && "loading"}`}>
             {isFetching ? <ReactLoading type="bars" color="gray"/> :
-                 <ul className="ProductPageDetailsList">
-                 <li><p className="ProductPageStat">SKU</p> <span className="ProductDetail">{SKU}</span></li>
-                 <li><p  className="ProductPageStat">Product Name</p> <span className="ProductDetail">{product_name}</span></li>
-                 <li><p  className="ProductPageStat">Category</p> <span className="ProductDetail">{category}</span></li>
-                 <li><p  className="ProductPageStat">Price</p> <span className="ProductDetail">£{price}</span></li>
-                 <li><p  className="ProductPageStat">Quantity</p> <span className="ProductDetail">{qty}</span></li>
-                 <li><p  className="ProductPageStat">Created</p> <span className="ProductDetail">25/02/2020</span></li>
-                 <button className="ProductPageDeleteBtn" onClick={toggleDeleteModal}>Delete</button>
-                </ul>
+                <div className="ProductDetails">
+                    <h5 className="ProductDetailsHeader">Product Details</h5>
+                    <ul>
+                        <li className="ProductDetailsItem">
+                            <span className="ProductDetailsTitle"><i className="fas fa-chevron-circle-right"></i>Product Name</span>
+                            <span className="ProductDetailsContent">{product_name}</span>
+                        </li>
+
+                        <li className="ProductDetailsItem">
+                            <span className="ProductDetailsTitle"><i className="fas fa-chevron-circle-right"></i>SKU</span>
+                            <span className="ProductDetailsContent">{SKU}</span>
+                        </li>
+
+                        <li className="ProductDetailsItem">
+                            <span className="ProductDetailsTitle"><i className="fas fa-chevron-circle-right"></i>Category</span>
+                            <span className="ProductDetailsContent">{category}</span>
+                        </li>
+
+                        <li className="ProductDetailsItem">
+                            <span className="ProductDetailsTitle"><i className="fas fa-chevron-circle-right"></i>Price</span>
+                            <span className="ProductDetailsContent">£{price}</span>
+                        </li>
+
+                        <li className="ProductDetailsItem">
+                            <span className="ProductDetailsTitle"><i className="fas fa-chevron-circle-right"></i>Quantity</span>
+                            <span className="ProductDetailsContent">{qty}</span>
+                        </li>
+
+                        <li className="ProductDetailsItem">
+                            <span className="ProductDetailsTitle"><i className="fas fa-chevron-circle-right"></i>Created</span>
+                            <span className="ProductDetailsContent">{created_at}</span>
+                        </li>
+                    </ul>
+
+                </div>
             }
-            <DeleteProduct show={deleteModal} onHide={toggleDeleteModal} productName={product_name} id={props.match.params.id} {...props}/>
         </div> 
     );
-}
+};
 
 export default ProductPageDetails;

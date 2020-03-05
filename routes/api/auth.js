@@ -14,28 +14,29 @@ router.post("/register", (req, res) => {
 
     //use bcrypt to encrypt user password field
     bcrpyt.hash(password, bcrpyt.genSaltSync(10), null, (err, hash) => {
-        if (err) console.log(err);
-        password = hash;
-
-        const sql = `INSERT INTO users (user_name, user_password) VALUES (?, ?);`
-        db.query(sql, [username.toLowerCase(), password], (error, result) => {
-            if(error) {
-                //checks mysql error code and sends back appropriate message back to the client
-                if (error.errno == 1062) {
-                    console.log("Username already taken");
-                    res.status(401).json({ msg: {error: "Username already taken" }});
-                }
-                else if (error.errno == 1406) {
-                    res.status(401).json({ msg: {error: "Username too long. Max 25 characters"} });
-                } else {
-                    res.status(500).send({ msg: {error: "Database error occured!"} });
-                }
-            } 
-            res.status(200).json({msg: {success: "Account created"}});
-            console.log(result) ;
-        }) 
-    })
-})
+        if (err) console.log(err) 
+        else {
+            password = hash;
+            const sql = `INSERT INTO users (user_name, user_password) VALUES (?, ?);`
+            db.query(sql, [username.toLowerCase(), password], (error, result) => {
+                if(error) {
+                    //checks mysql error code and sends back appropriate message back to the client
+                    if (error.errno == 1062) {
+                        console.log("Username already taken");
+                        res.status(401).json({ msg: {error: "Username already taken" }});
+                    }
+                    else if (error.errno == 1406) {
+                        res.status(401).json({ msg: {error: "Username too long. Max 25 characters"} });
+                    } else {
+                        res.status(500).send({ msg: {error: "Database error occured!"} });
+                    }
+                } 
+                res.status(200).json({msg: {success: "Account created"}});
+                console.log(result) ;
+            });
+        };
+    });
+});
 
 // checks if user already exists. sends request on state change (useEffect) in react to dynamically tell user if the username is available
 router.post("/register/validation", async (req, res) => {

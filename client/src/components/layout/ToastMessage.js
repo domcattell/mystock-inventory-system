@@ -13,7 +13,7 @@ const ToastMessage = (props) => {
         <Toast 
             show={props.showToast} 
             onClose={closeToast} 
-            style={{position: "absolute", top: 5, right: 5}} 
+            style={{position: "absolute", top: 50, right: 5, position: "fixed"}} 
             delay={3000} 
             autohide
         >
