@@ -1,25 +1,35 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
+import {Modal} from 'react-bootstrap';
 
-import useMultipleInputs from '../../hooks/useMultipleInputs'
+import useMultipleInputs from '../../hooks/useMultipleInputs';
+import useToggle from '../../hooks/useToggle';
 
 import { ProductsContext } from '../../contexts/products.context';
-import {Modal, Alert} from 'react-bootstrap'
+import {CategoryContext} from '../../contexts/category.context';
+
+import ToastMessage from '../layout/ToastMessage';
 
 import '../../styles/AddProduct.scss'
 
 const AddProduct = (props) => {
-  const [newProduct, handleChange, reset] = useMultipleInputs("")
-  const { addProduct, msg, error, clearMessages } = useContext(ProductsContext)
+  const [newProduct, handleChange, reset] = useMultipleInputs("");
+  const [toast, setToast] = useToggle(false);
+  const { addProduct, msg, clearMessages } = useContext(ProductsContext);
+  const {categories, getCategories} = useContext(CategoryContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         addProduct(newProduct);
+        !toast && setToast();
     }
 
-    //calls the hook from parent to hide modal, and clears error messages from context
+    useEffect(() => {
+      getCategories();
+    },[])
+
     const hideModal = () => {
       props.onHide();
-      clearMessages();
+      toast && setToast()
       reset();
     }
 
@@ -28,7 +38,6 @@ const AddProduct = (props) => {
         {...props}
         aria-labelledby="contained-modal-title-vcenter"
         centered
-        dialogClassName="AddProductDialog"
         onHide={hideModal}
       >
         <Modal.Header closeButton>
@@ -37,19 +46,41 @@ const AddProduct = (props) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form className="AddProductForm" onSubmit={handleSubmit}> 
-            {/* {error && <Alert className="AddProductError" variant="danger">{msg.error}</Alert>} */}
-            <input type="text" name="sku" onChange={handleChange} value={newProduct.sku} placeholder="SKU" required/>
-            <input type="text" name="name" onChange={handleChange} value={newProduct.name} placeholder="Name" required/>
-            <input type="text" name="category" onChange={handleChange} value={newProduct.category} placeholder="Category" required/>
-            <input type="number" name="price" onChange={handleChange} value={newProduct.price} placeholder="Price" required/>
-            <input type="number" name="qty" onChange={handleChange} value={newProduct.qty} placeholder="QTY" required/>
-            <button className="AddProductBtn">Add</button>
+          <form className="AddProduct__form" onSubmit={handleSubmit}>
+            <label className="AddProduct__form__label" htmlFor="name">Product Name:</label>
+            <input className="AddProduct__form__text" type="text" onChange={handleChange} name="name" value={newProduct.name} required/>
+
+            <label className="AddProduct__form__label" htmlFor="category">Category:</label>
+            <select className="AddProduct__form__text" value={newProduct.category} name="category" onChange={handleChange} required>
+              <option defaultValue="" hidden></option>
+              {categories.map(c => (
+                  <option key={c.category} value={c.category}>{c.category}</option>
+              ))}
+            </select>
+            
+            <div className="AddProduct__form__input-wrapper">
+              <label className="AddProduct__form__label" htmlFor="price">Price:</label>
+              <input className="AddProduct__form__number" type="number" onChange={handleChange} name="price" value={newProduct.price} required/>
+            </div>
+            
+            <div className="AddProduct__form__input-wrapper">
+              <label className="AddProduct__form__label" htmlFor="qty">Quantity:</label>
+              <input className="AddProduct__form__number" type="number" onChange={handleChange} name="qty" value={newProduct.qty} required/>
+            </div>
+
+            <button className="AddProduct__form__btn">Add</button>
           </form>
         </Modal.Body>
         <Modal.Footer>
-          <button className="AddProductCloseBtn" onClick={hideModal}>Close</button>
+          <button className="AddProduct__close-btn" onClick={hideModal}>Close</button>
         </Modal.Footer>
+        {msg ? <ToastMessage 
+          title="New Product"
+          message={msg}
+          showToast={toast}
+          toggleToast={setToast}
+          clear={clearMessages}
+        /> : null}
       </Modal>
     );
 }

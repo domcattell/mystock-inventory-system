@@ -1,57 +1,64 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
+import { Modal } from 'react-bootstrap';
 
 import { CategoryContext } from '../../contexts/category.context';
 
-import useInputState from '../../hooks/useInputState';
+import ToastMessage from '../layout/ToastMessage';
 
-import {Modal, Alert} from 'react-bootstrap';
+import useInputState from '../../hooks/useInputState';
+import useToggle from '../../hooks/useToggle';
 
 import '../../styles/AddCategory.scss';
 
 const AddCategory = (props) => {
-    const [newCategory, handleChange, reset] = useInputState("");
-    const {addCategory, categoryMsg, clearCategoryMessages, categoryError} = useContext(CategoryContext);
+  const [newCategory, handleChange, reset] = useInputState("");
+  const [toast, setToast] = useToggle(false);
+  const { addCategory, categoryMsg, clearCategoryMessages } = useContext(CategoryContext);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        addCategory(newCategory);
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    addCategory(newCategory);
+    !toast && setToast();
+  }
 
-    const hideModal = () => {
-        props.onHide();
-        clearCategoryMessages();
-        reset();
-    }
+  const hideModal = () => {
+    props.onHide();
+    clearCategoryMessages();
+    toast && setToast();
+    reset();
+  }
 
-    console.log(categoryMsg)
-    
-    return (
-        <Modal
-        {...props}
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
-        // dialogClassName="AddProductDialog"
-        onHide={hideModal}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Add Category
+  return (
+    <Modal
+      {...props}
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+      onHide={hideModal}
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Add Category
           </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form className="AddCategoryForm" onSubmit={handleSubmit}>
-            {categoryError && <Alert className="AddCategoryError" variant="danger">{categoryMsg.error}</Alert>}
-            <div className="AddCategoryFormWrapper">
-              <input type="text" className="AddCategoryInput" name="category" onChange={handleChange} value={newCategory.category} placeholder="Category" required/>
-              <button className="AddCategoryBtn" type="submit" >Add</button>
-            </div>
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <button className="AddCategoryCloseBtn" onClick={hideModal}>Close</button>
-        </Modal.Footer>
-      </Modal>
-    );
+      </Modal.Header>
+      <Modal.Body>
+        <form className="AddCategory__form" onSubmit={handleSubmit}>
+            <label className="AddCategory__form__label" htmlFor="category">Category:</label>
+            <input className="AddCategory__form__input" type="text" name="category" onChange={handleChange} value={newCategory.category} required />
+            <button className="AddCategory__form__btn" type="submit" >Add</button>
+        </form>
+      </Modal.Body>
+      <Modal.Footer>
+        <button className="AddCategory__close-btn" onClick={hideModal}>Close</button>
+      </Modal.Footer>
+      {categoryMsg ? <ToastMessage
+        title="New Category"
+        message={categoryMsg}
+        showToast={toast}
+        toggleToast={setToast}
+        clear={clearCategoryMessages}
+      /> : null}
+    </Modal>
+  );
 }
 
 export default AddCategory;

@@ -1,35 +1,24 @@
 @import './GlobalStyles.scss';
 
-.AddCategoryForm {
+.AddCategory__form {
     display: flex;
-    justify-content: center;
-    flex-direction: column; 
+    flex-direction: column;
 
-    .AddCategoryBtn {
-        @include defaultBtn(20%, 0);
-        display: inline-block;
-    }
-
-    .AddCategoryInput {
-        @include defaultInput(70%, 1.8%);
+    &__label {
+        color: $lightTxtColour;
         margin: 0;
+        margin-bottom: 3px;
     }
 
-    .AddCategoryFormWrapper {
-        display: flex;
-        justify-content: space-evenly;
+    &__input {
+        @include defaultInput(100%, 10px);
     }
 
-    .AddCategoryError {
-        text-align: center;
+    &__btn {
+        @include defaultBtn(100px, 10px);
     }
 }
 
-.AddCategoryCloseBtn {
-    @include defaultBtn(15%, 0);
-    background-color: $primaryColour;
-
-    &:hover {
-        background-color: $primaryAltColour;
-    }
+.AddCategory__close-btn {
+    @include defaultBtn(70px, 0);
 }

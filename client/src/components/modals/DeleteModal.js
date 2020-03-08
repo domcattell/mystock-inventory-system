@@ -1,8 +1,8 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {Modal} from 'react-bootstrap'
 
-import '../../styles/DeleteProduct.scss'
+import '../../styles/DeleteModal.scss'
 
 const DeleteProduct = (props) => {
     const handleDelete = (e) => {
@@ -24,13 +24,13 @@ const DeleteProduct = (props) => {
                     </Modal.Title>
                 </Modal.Header> 
                 <Modal.Body>
-                    <h5 className="deleteText">
-                        
+                    <h5 className="DeleteModal__header">
+                        Are you sure you want to delete? This cannot be un-done
                     </h5>
                 </Modal.Body>
                 <Modal.Footer>  
-                    <button className="confirmDelete" onClick={handleDelete}>Yes</button>
-                    <button className="cancelDelete" onClick={props.onHide}>No</button>
+                    <button className="DeleteModal__confirm-btn" onClick={handleDelete}>Yes</button>
+                    <button className="DeleteModal__cancel-btn" onClick={props.onHide}>No</button>
                 </Modal.Footer>
             </Modal>
         );

@@ -29,7 +29,7 @@ const RegisterForm = (props) => {
     return (
         <div className="RegisterFormWrapper"> 
         <form className="RegisterForm" onSubmit={handleSubmit} > 
-            <h4>Register</h4>
+            <h4>Create an account</h4>
             <div className="RegisterUsernameCheck">
             <p>Username available?</p>
             <i className={msg.userTaken ? "fas fa-times-circle" : "fas fa-check-circle"} style={{color: msg.userTaken ? "lightcoral" : "lightgreen"}}></i>

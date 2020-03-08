@@ -1,8 +1,11 @@
 import React, {useContext, useEffect} from 'react';
+
 import { ProductsContext} from '../contexts/products.context'
+import { CategoryContext } from '../contexts/category.context';
+
+import useToggle from '../hooks/useToggle';
 
 import ToastMessage from '../components/layout/ToastMessage';
-import useToggle from '../hooks/useToggle';
 import PageHeader from '../components/layout/PageHeader';
 import PageContainer from '../components/layout/PageContainer';
 import PageContent from '../components/layout/PageContent';
@@ -15,12 +18,15 @@ import '../styles/ProductPage.scss';
 const Product = (props) => {
 
     const {product, isFetching, msg, clearMessages, deleteProduct, getProduct, loading} = useContext(ProductsContext)
+    const { getCategories, categoriesLoading} = useContext(CategoryContext);
     const {product_name} = product
     const [toast, setToast] = useToggle(false);
 
     useEffect(() => {
         loading();
         getProduct(props.match.params.id);
+        categoriesLoading();
+        getCategories();
     },[])
 
     return ( 
@@ -34,10 +40,7 @@ const Product = (props) => {
                     />
                     <ProductDetails {...props}/>
                 </PageContent>
-
-                
-                    <EditForm {...props} toast={toast} setToast={setToast}/>  
-               
+                <EditForm {...props} toast={toast} setToast={setToast}/>  
                 {msg ? <ToastMessage 
                     title="Update Status" 
                     message={msg} 

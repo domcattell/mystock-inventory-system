@@ -1,44 +1,37 @@
 @import './GlobalStyles.scss';
 
-.AddProductBtn {
-    @include defaultBtn(100%, 0);
+.AddProduct__form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
     
-}
+    &__label {
+        color: rgb(139, 139, 139);
+        margin: 0;
+        margin-bottom: 3px;
+    }
 
-.AddProductCloseBtn {
-    @include defaultBtn(15%, 10px);
-    background-color: $primaryColour;
+    &__text {
+        @include defaultInput(100%, 10px);
+        flex: 0 0 100%;
+    }
 
-    &:hover {
-        background-color: $primaryAltColour;
+    &__number {
+        @include defaultInput(100%, 10px);
+    }
+
+    &__input-wrapper {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__btn {
+        @include defaultBtn(100px, 10px);
+        flex: 0 0 100px;
     }
 }
 
-.AddProductForm {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 20px; 
-    
-
-     input[type="text"] {
-        @include defaultInput(100%, 1.8%);
-
-     }
-
-     input[type="number"] {
-        @include defaultInput(20%, 1.8%);
-     }
-}
-
-.AddProductQty {
-   @include defaultInput(60%, 0);
-}
-
-.AddProductDialog {
-    width: 450px !important;
-}
-
-.AddProductError {
-    text-align: center;
+.AddProduct__close-btn {
+    @include defaultBtn(70px, 0);
 }

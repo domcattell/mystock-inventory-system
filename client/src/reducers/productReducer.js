@@ -48,8 +48,8 @@ const reducer = (state, action) => {
         case ADD_ITEM:
             return {
                 ...state,
-                products: [...state.products, action.payload],
-                qtyAmount: state.qtyAmount + parseInt(action.payload.qty),
+                products: [...state.products, action.payload.newProduct],
+                qtyAmount: state.qtyAmount + parseInt(action.payload.newProduct.qty),
                 msg: action.payload.msg
             }
         
@@ -57,8 +57,7 @@ const reducer = (state, action) => {
         case ADD_ITEM_FAILED:
             return {
                 ...state,
-                msg: action.payload.msg,
-                error: true
+                msg: action.payload.msg
             }
         
         case DELETE_ITEM:
@@ -70,9 +69,9 @@ const reducer = (state, action) => {
         case EDIT_ITEM:
             return {
                 ...state,
-                products: state.products.map(product => product.id === action.id) ? [action.payload.updatedProduct] : state.products,
-                product: action.payload.updatedProduct,
-                msg: action.payload.msg
+                products: state.products.map(product => product.id === action.payload.updatedProduct[0]) ? [action.payload.updatedProduct[0]] : state.products,
+                product: action.payload.updatedProduct[0],
+                msg: action.payload.msg  
             }
 
         case SORT_AZ: 

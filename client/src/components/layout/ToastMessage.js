@@ -14,7 +14,7 @@ const ToastMessage = (props) => {
             show={props.showToast} 
             onClose={closeToast} 
             style={{position: "absolute", top: 50, right: 5, position: "fixed"}} 
-            delay={3000} 
+            delay={5000} 
             autohide
         >
         <Toast.Header>

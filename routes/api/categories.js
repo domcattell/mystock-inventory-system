@@ -32,8 +32,7 @@ router.post("/add", (req, res) => {
                 category: category,
                 id: result.insertId
             };
-            res.status(200).json(newCategory);
-            console.log(newCategory);
+            res.status(200).json({newCategory, msg: {success: `Successfully added ${category} as a category`}});
         };
     });
 });

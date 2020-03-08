@@ -1,7 +1,7 @@
 import {useState} from 'react';
 
 const useInputState = (init) => {
-    const [newValue, setValue] = useState({init})
+    const [newValue, setValue] = useState(init)
 
     const handleChange = (e) => {
         const {name, value} = e.target
@@ -11,11 +11,15 @@ const useInputState = (init) => {
         }))
     }
 
+    const currentFormData = (init) => {
+        setValue(init)
+    }
+
     const reset = () => {
-        setValue({init});
+        setValue(init);
     }
     
-    return [newValue, handleChange, reset]
+    return [newValue, handleChange, reset, currentFormData,]
 }
 
 export default useInputState;

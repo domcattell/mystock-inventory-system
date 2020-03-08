@@ -14,17 +14,15 @@ const Menubar = () => {
     const [navState, navToggle] = useToggle(true)
 
     return (
-        <div className="hellore">
-            <div className="menubarRoot">
-                <div onClick={navToggle} className="menubarToggle">
-                    <i className="fas fa-bars"></i>
-                </div>
-                <div className="menubarLogo">
-                    <h2>myStock</h2>
-                </div>
-                <div className="menubarUser">
-                    <i className="fas fa-user"></i>
-                    <h2>{currentUser}</h2>
+        <div className="Menubar__root">
+            <div className="Menubar">
+                <button onClick={navToggle} className="Menubar__toggle-btn">
+                    <i className="fas fa-bars Menubar__toggle-icon"></i>
+                </button>
+                <h2 className="Menubar__header">myStock</h2>
+                <div className="Menubar__usr-wrapper">
+                    <i className="fas fa-user Menubar__usr-icon"></i>
+                    <h2 className="Menubar__usr-wrapper__header">{currentUser}</h2>
                 </div>
             </div>
             <Navbar visible={navState} />

@@ -1,0 +1,16 @@
+@import './GlobalStyles.scss';
+
+.DeleteModal__header {
+    color: $menuTextColour;
+    font-size: 16px;
+}
+
+.DeleteModal__confirm-btn {
+    @include defaultBtn(70px, 0);
+}
+
+.DeleteModal__cancel-btn {
+    @include defaultBtn(70px, 0);
+    background-color: $primaryColour;
+}
+

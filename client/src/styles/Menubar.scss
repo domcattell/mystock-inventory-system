@@ -1,6 +1,6 @@
 @import './GlobalStyles.scss';
 
-.menubarRoot {
+.Menubar {
     width: 100%;
     background-color: $secondaryColour;
     display: flex;
@@ -9,41 +9,47 @@
     padding: 3px;
     font-family: 'Roboto', sans-serif;
     padding: 5px 0 5px 0;
-}
 
-.menubarLogo {
-    h2 {
+    &__toggle-btn {
+        margin-right: 10px;
+        margin-left: 10px;
+        cursor: pointer;
+        width: 40px;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        transition: all 0.5s ease;
+        border: 0;
+        background-color: transparent;
+        
+        &:hover {
+            background-color: $secondaryHover;
+            outline: none;
+        }
+
+        &:focus {
+            outline: none;
+        }
+    
+        .fas.fa-bars {
+            border-radius: 50%;
+            font-size: 18px;
+            color: white;
+            outline: none;
+        }
+    }
+
+    &__header {
         font-size: 24px;
         font-weight: 400;
         margin: 0;
         margin-left: 15px;
-
     }
 }
 
-.menubarToggle {
-    margin-right: 10px;
-    margin-left: 10px;
-    cursor: pointer;
-    width: 40px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    transition: all 0.5s ease;
-
-    &:hover {
-        background-color: $secondaryHover;
-    }
-
-    i {
-        border-radius: 50%;
-        font-size: 18px;
-    }
-}
-
-.menubarUser {
+.Menubar__usr-wrapper {
     position: absolute;
     right: 0;
     display: flex;
@@ -51,7 +57,12 @@
     align-items: center;
     font-size: 12px;
 
-    i {
+    &__header {
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .fas.fa-user {
         background-color: white;
         border-radius: 50%;
         height: 25px;
@@ -61,10 +72,5 @@
         align-items: center;
         color: $secondaryColour;
         margin-right: 10px;
-    }
-
-    h2 {
-        font-size: 16px;
-        margin: 0;
     }
 }

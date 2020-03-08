@@ -74,8 +74,7 @@ export const ProductsProvider = (props) => {
         } catch (err) {
             dispatch({
                 type: GET_ITEMS_FAILED,
-                payload: err,
-                isFetching: false
+                payload: err
             })
         }
     }

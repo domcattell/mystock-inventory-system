@@ -27,7 +27,8 @@ const reducer = (state, action) => {
         case ADD_CATEGORY: {
             return {
                 ...state,
-                categories: [...state.categories, action.payload]
+                categories: [...state.categories, action.payload.newCategory],
+                categoryMsg: action.payload.msg
             }
         }
 
