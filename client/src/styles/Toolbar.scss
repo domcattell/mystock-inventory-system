@@ -1,6 +1,6 @@
 @import './GlobalStyles.scss';
 
-.ToolbarRoot {
+.Toolbar {
     background-color: rgb(255, 255, 255);
     border-bottom: 1px solid $grey;
     margin: 0 30px;
@@ -10,50 +10,50 @@
     align-items: center;
     position: relative;
     color: $menuTextColour;
-}
 
-.ToolbarMenu {
-    left: 0;
-    margin-left: 10px;
-}
-
-#ToolbarToggle {
-    background-color: transparent;
-    border: none;
-    color: $menuTextColour;
-    border-radius: 3px;
-    display: flex;
-    align-items: center;
-
-    &:focus {
-        box-shadow: none;
+    &__menu {
+        margin-right: 5px;
     }
 
-    &:hover {
-        background-color: rgb(245, 245, 245);
-    }
-}
+    //using !important here to over ride the react-bootstrap default styles.
+    &__toggle {
+        background-color: transparent !important;
+        border: none !important;
+        color: $menuTextColour !important;
+        border-radius: 3px !important;
+        display: flex !important;
+        align-items: center !important;
 
-#ToolbarToggle::after {
-    margin-left: 10px;
-}
+        &:focus {
+            box-shadow: none !important;
+        }
 
-#DropDownItem {
-    color: $menuTextColour;
-
-    &:active {
-        box-shadow: none;
-        color: $menuTextColour;
-        outline: none;
-    }
-
-    &:hover {
-        background-color: rgb(245, 245, 245);
+        &:hover {
+            background-color: rgb(245, 245, 245) !important;
+        }
     }
 
-    &:focus {
-        background-color: rgb(238, 238, 238);
-        box-shadow: none;
-        outline: none;
+    &__toggle::after {
+        margin-left: 10px !important;
+    }
+
+    &__dropdown-item {
+        color: $menuTextColour !important;
+
+        &:active {
+            box-shadow: none !important;
+            color: $menuTextColour !important;
+            outline: none;
+        }
+    
+        &:hover {
+            background-color: rgb(245, 245, 245) !important;
+        }
+    
+        &:focus {
+            background-color: rgb(238, 238, 238) !important;
+            box-shadow: none !important;
+            outline: none !important;
+        }
     }
 }

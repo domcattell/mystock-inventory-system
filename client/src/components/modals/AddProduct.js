@@ -1,8 +1,8 @@
 import React, {useContext, useEffect} from 'react';
 import {Modal} from 'react-bootstrap';
 
-import useMultipleInputs from '../../hooks/useMultipleInputs';
 import useToggle from '../../hooks/useToggle';
+import useInputState from '../../hooks/useInputState';
 
 import { ProductsContext } from '../../contexts/products.context';
 import {CategoryContext} from '../../contexts/category.context';
@@ -12,7 +12,7 @@ import ToastMessage from '../layout/ToastMessage';
 import '../../styles/AddProduct.scss'
 
 const AddProduct = (props) => {
-  const [newProduct, handleChange, reset] = useMultipleInputs("");
+  const [newProduct, handleChange, reset] = useInputState("");
   const [toast, setToast] = useToggle(false);
   const { addProduct, msg, clearMessages } = useContext(ProductsContext);
   const {categories, getCategories} = useContext(CategoryContext);

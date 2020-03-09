@@ -3,8 +3,8 @@ import '../../styles/GlobalStyles.scss';
 
 const PageHeader = (props) => {
     return (
-        <div className="pageHeader">
-            <h3>{props.title}</h3>
+        <div className="PageHeader">
+            <h3 className="PageHeader__header">{props.title}</h3>
         </div>
     );
 }

@@ -3,7 +3,7 @@ import '../../styles/GlobalStyles.scss';
 
 const PageContainer = (props) => {
     return (
-        <div className="pageContainer">
+        <div className="PageContainer">
             {props.children}
         </div>
     );

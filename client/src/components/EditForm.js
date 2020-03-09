@@ -1,4 +1,4 @@
-import React,{ useContext, useEffect, useState } from 'react';
+import React,{ useContext, useEffect } from 'react';
 import ReactLoading from 'react-loading';
 
 import { ProductsContext } from '../contexts/products.context';
@@ -13,7 +13,7 @@ const EditForm = (props) => {
     
     const {product, editProduct, isFetching} = useContext(ProductsContext);
     const {categories} = useContext(CategoryContext);
-    const {product_name, qty, category, price} = product
+    const {product_name, qty, category, price} = product;
 
     const [enableForm, toggleForm] = useToggle(true);
 
@@ -22,13 +22,13 @@ const EditForm = (props) => {
         price: price,
         qty: qty,
         category: category
-    }
+    };
     
     const [updateProduct, handleChange, reset, currentProduct] = useInputState("");
     
     useEffect(() => {
         currentProduct(defaultInput);
-    },[product])
+    },[product]);
 
     const enableEdit = () => {
         toggleForm();
@@ -41,43 +41,42 @@ const EditForm = (props) => {
     };
 
     return (
-        <div className={`EditFormRoot ${isFetching && "loading"}`}>
+        <div className={`EditForm ${isFetching && "EditForm--loading"}`}>
+            <h5 className="EditForm__header">Update Product</h5>
             {isFetching ? <ReactLoading type="bars" color="gray"/> :
-            <div>
-                <h5>Update Product</h5>
-                <div onClick={enableEdit} className="ProductPageFormLock"> 
+            <>
+                <div onClick={enableEdit} className="EditForm__padlock-icn"> 
                     {enableForm ? <i className="fas fa-lock-open"></i> : <i className="fas fa-lock"></i>}
                 </div>
-                <form className="EditForm" onSubmit={handleSubmit}>
+                <form className="EditForm__form" onSubmit={handleSubmit}>
 
-                    <div className="EditFormText">
-                        <label htmlFor="name">Name:</label>
-                        <input type="text" name="name" onChange={handleChange} value={updateProduct.name || ""} disabled={enableForm} placeholder={product_name} required/>
+                    <div className="EditForm__txt-input-wrapper">
+                        <label className="EditForm__label" htmlFor="name">Name:</label>
+                        <input className="EditForm__txt-input" type="text" name="name" onChange={handleChange} value={updateProduct.name || ""} disabled={enableForm} placeholder={product_name} required/>
                     </div>
                         
-                    <div className="EditFormText">
-                        <label htmlFor="category">Category:</label>
-                        <select name="category" disabled={enableForm} value={updateProduct.category || ""} onChange={handleChange} >
-                            {/* <option hidden>{category}</option> */}
+                    <div className="EditForm__txt-input-wrapper">
+                        <label className="EditForm__label" htmlFor="category">Category:</label>
+                        <select className="EditForm__txt-input" name="category" disabled={enableForm} value={updateProduct.category || ""} onChange={handleChange} >
                             {categories.map(c => (
                                 <option key={c.category} value={c.category}>{c.category}</option>
                             ))}
                         </select>
                     </div>
                     
-                    <div className="EditFormNum">
-                        <label htmlFor="price">Price:</label>
-                        <input type="number" name="price" onChange={handleChange} value={updateProduct.price || ""} disabled={enableForm} placeholder={price} required/>
+                    <div className="EditForm__num-input-wrapper">
+                        <label className="EditForm__label" htmlFor="price">Price:</label>
+                        <input className="EditForm__num-input" type="number" name="price" onChange={handleChange} value={updateProduct.price || ""} disabled={enableForm} placeholder={price} required/>
                     </div>
 
-                    <div className="EditFormNum">
-                        <label htmlFor="qty">Quantity:</label>
-                        <input type="number" name="qty" onChange={handleChange} value={updateProduct.qty || ""} disabled={enableForm} placeholder={qty} required/>
+                    <div className="EditForm__num-input-wrapper">
+                        <label className="EditForm__label" htmlFor="qty">Quantity:</label>
+                        <input className="EditForm__num-input" type="number" name="qty" onChange={handleChange} value={updateProduct.qty || ""} disabled={enableForm} placeholder={qty} required/>
                     </div>
                            
-                    <button name="submit" type="submit" disabled={enableForm}>Save Changes</button>
+                    <button className="EditForm__submit-btn" name="submit" type="submit" disabled={enableForm}>Save Changes</button>
                 </form>
-            </div>
+            </>
             }
         </div>
     );

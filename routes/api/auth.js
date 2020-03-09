@@ -31,7 +31,7 @@ router.post("/register", (req, res) => {
                         res.status(500).send({ msg: {error: "Database error occured!"} });
                     }
                 } 
-                res.status(200).json({msg: {success: "Account created"}});
+                res.status(200).json({msg: {created: true}});
                 console.log(result) ;
             });
         };

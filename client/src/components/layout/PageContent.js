@@ -3,7 +3,7 @@ import '../../styles/GlobalStyles.scss';
 
 const PageContent = (props) => {
     return (
-        <div className={`pageContent ${props.className}`}>
+        <div className="PageContent">
             {props.children}
         </div>
     );

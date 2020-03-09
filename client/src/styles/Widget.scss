@@ -1,44 +1,41 @@
 @import './GlobalStyles.scss';
 
-.WidgetContainer {
+.Widget {
     border: 1px solid $grey;
     background-color: white;
     color: white;
-}
+    border-radius: 3px;
+    box-shadow: 2px 2px 5px -1px rgba(0,0,0,0.1);
 
-.widgetTitle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px;
-    background-color: $primaryColour;
-    position: relative;
+    &__header-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px;
+        background-color: $primaryColour;
+        position: relative;
+    }
 
-
-    h5 {
+    &__header {
         font-size: 16px;
         margin: 0;
         text-transform: uppercase;
     }
 
-    i {
+    &__content-container {
+        font-size: 30px;
+        color: $menuTextColour;
+        padding: 10px;
+    }
+
+    &__content {
+        margin: 0;
+        text-align: center;
+    }
+    
+    .fa-chart-bar {
         font-size: 24px;
         position: absolute;
         left: 10px;
     }
 }
-
-.widgetContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    color: $menuTextColour;
-    padding: 10px;
-
-    p {
-        margin: 0;
-    }
-}
-

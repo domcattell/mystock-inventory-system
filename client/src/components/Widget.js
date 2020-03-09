@@ -4,13 +4,13 @@ import '../styles/Widget.scss'
 
 const Widget = (props) => {
     return (
-        <div className="WidgetContainer">
-            <div className="widgetTitle">
+        <div className="Widget">
+            <div className="Widget__header-container">
                 <i className="fas fa-chart-bar"></i>
-                <h5>{props.title}</h5>
+                <h5 className="Widget__header">{props.title}</h5>
             </div>
-            <div className="widgetContent">
-                <p>{props.content}</p>
+            <div className="Widget__content-container">
+                <p className="Widget__content">{props.content}</p>
             </div>
         </div>
     );

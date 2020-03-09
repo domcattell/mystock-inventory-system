@@ -1,52 +1,49 @@
 import React, {useContext} from 'react';
-import ReactLoading from 'react-loading'
+import ReactLoading from 'react-loading';
 
-import { ProductsContext } from '../contexts/products.context'
+import { ProductsContext } from '../contexts/products.context';
 
-import '../styles/ProductDetails.scss'
+import '../styles/ProductDetails.scss';
 
 const ProductPageDetails = () => {
     const {product, isFetching} = useContext(ProductsContext);
     const {product_name, qty, category, SKU, price, created_at} = product;
 
     return (
-        <div className={`ProductDetailsRoot ${isFetching && "loading"}`}>
+        <div className={`ProductDetails ${isFetching && "ProductDetails--loading"}`}>
+            <h5 className="ProductDetails__header">Product Details</h5>
             {isFetching ? <ReactLoading type="bars" color="gray"/> :
-                <div className="ProductDetails">
-                    <h5 className="ProductDetailsHeader">Product Details</h5>
-                    <ul>
-                        <li className="ProductDetailsItem">
-                            <span className="ProductDetailsTitle"><i className="fas fa-chevron-circle-right"></i>Product Name</span>
-                            <span className="ProductDetailsContent">{product_name}</span>
-                        </li>
+            <ul>
+                <li className="ProductDetails__item">
+                    <span className="ProductDetails__sub-heading"><i className="fas fa-chevron-circle-right"></i>Product Name</span>
+                    <span className="ProductDetails__content">{product_name}</span>
+                </li>
 
-                        <li className="ProductDetailsItem">
-                            <span className="ProductDetailsTitle"><i className="fas fa-chevron-circle-right"></i>SKU</span>
-                            <span className="ProductDetailsContent">{SKU}</span>
-                        </li>
+                <li className="ProductDetails__item">
+                    <span className="ProductDetails__sub-heading"><i className="fas fa-chevron-circle-right"></i>SKU</span>
+                    <span className="ProductDetails__content">{SKU}</span>
+                </li>
 
-                        <li className="ProductDetailsItem">
-                            <span className="ProductDetailsTitle"><i className="fas fa-chevron-circle-right"></i>Category</span>
-                            <span className="ProductDetailsContent">{category}</span>
-                        </li>
+                <li className="ProductDetails__item">
+                    <span className="ProductDetails__sub-heading"><i className="fas fa-chevron-circle-right"></i>Category</span>
+                    <span className="ProductDetails__content">{category}</span>
+                </li>
 
-                        <li className="ProductDetailsItem">
-                            <span className="ProductDetailsTitle"><i className="fas fa-chevron-circle-right"></i>Price</span>
-                            <span className="ProductDetailsContent">£{price}</span>
-                        </li>
+                <li className="ProductDetails__item">
+                    <span className="ProductDetails__sub-heading"><i className="fas fa-chevron-circle-right"></i>Price</span>
+                    <span className="ProductDetails__content">£{price}</span>
+                </li>
 
-                        <li className="ProductDetailsItem">
-                            <span className="ProductDetailsTitle"><i className="fas fa-chevron-circle-right"></i>Quantity</span>
-                            <span className="ProductDetailsContent">{qty}</span>
-                        </li>
+                <li className="ProductDetails__item">
+                    <span className="ProductDetails__sub-heading"><i className="fas fa-chevron-circle-right"></i>Quantity</span>
+                    <span className="ProductDetails__content">{qty}</span>
+                </li>
 
-                        <li className="ProductDetailsItem">
-                            <span className="ProductDetailsTitle"><i className="fas fa-chevron-circle-right"></i>Created</span>
-                            <span className="ProductDetailsContent">{created_at}</span>
-                        </li>
-                    </ul>
-
-                </div>
+                <li className="ProductDetails__item">
+                    <span className="ProductDetailsTitle"><i className="fas fa-chevron-circle-right"></i>Created</span>
+                    <span className="ProductDetails__content">{created_at}</span>
+                </li>
+            </ul>
             }
         </div> 
     );

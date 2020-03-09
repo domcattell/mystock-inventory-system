@@ -1,80 +1,38 @@
 @import './GlobalStyles.scss';
 
-.ProductDetailsRoot {
+.ProductDetails {
     color: $menuTextColour;
     margin: 30px 30px 0 30px;
-}
 
-.ProductDetailsRoot.loading {
-    height: 300px;
-}
+    &--loading {
+        height: 300px;
+    }
 
-.ProductDetailsHeader {
-    margin-bottom: 20px;
-    font-size: 22px;
-}
+    &__header {
+        margin-bottom: 20px;
+        font-size: 22px;
+    }
 
-.ProductDetailsItem {
-    border-bottom: 1px solid rgb(235, 235, 235);
-    padding: 15px 0;
-}
+    &__item {
+        border-bottom: 1px solid rgb(235, 235, 235);
+        padding: 15px 0;
+    }
 
-.ProductDetailsItem:last-child {
-    border-bottom: none;
-}
+    &__item:last-child {
+        border-bottom: none;
+    }
 
-.ProductDetailsTitle {
-    font-size: 16px;
+    &__sub-heading {
+        font-size: 16px;
+    }
 
-    i {
+    &__content {
+        color: rgb(141, 141, 141);
+        float: right;
+    }
+
+    .fa-chevron-circle-right {
         margin-right: 10px;
     }
 }
 
-.ProductDetailsContent {
-    color: rgb(141, 141, 141);
-    float: right;
-}
-
-
-
-// .ProductDetailsRoot {
-//     background-color: white;
-//     display: inline-block;
-//     padding: 20px;
-//     width: 60%;
-// }
-
-// .ProductPageDetailsList {
-//     margin: 0;
-
-//     li {
-//         border: 1px solid $grey;
-//         color: $menuTextColour; 
-//         margin: 14px;
-//         border-radius: 3px;
-//         padding: 10px 20px;
-//     }
-// }
-
-// .ProductPageDeleteBtn {
-//     @include defaultBtn(100px, 0);
-//     margin-left: 14px;
-// }
-
-// .ProductPageStat {
-//     margin: 0;
-//     display: inline-block;
-//     width: 120px;
-//     border-right: 1px solid $grey;
-// }
-
-// .ProductDetail {
-//     padding-left: 10px;
-// }
-
-// .ProductDetailsRoot.loading {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-// }

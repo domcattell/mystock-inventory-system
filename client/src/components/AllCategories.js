@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { CategoryContext } from '../contexts/category.context';
 
 import CardLink from './CardLink';
-import CompactCardLink from './CompactCardLink';
 import GridContainer from './layout/GridContainer';
 
 const AllCategories = (props) => {
