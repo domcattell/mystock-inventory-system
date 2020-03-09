@@ -8,7 +8,7 @@ import ToastMessage from '../layout/ToastMessage';
 import useInputState from '../../hooks/useInputState';
 import useToggle from '../../hooks/useToggle';
 
-import '../../styles/AddCategory.scss';
+import '../../styles/modals/AddCategory.scss';
 
 const AddCategory = (props) => {
   const [newCategory, handleChange, reset] = useInputState("");

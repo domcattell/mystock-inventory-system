@@ -9,7 +9,7 @@ import {CategoryContext} from '../../contexts/category.context';
 
 import ToastMessage from '../layout/ToastMessage';
 
-import '../../styles/AddProduct.scss'
+import '../../styles/modals/AddProduct.scss'
 
 const AddProduct = (props) => {
   const [newProduct, handleChange, reset] = useInputState("");

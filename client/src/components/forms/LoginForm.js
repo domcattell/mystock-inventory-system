@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 
-import { AuthContext } from '../contexts/auth.context';
+import { AuthContext } from '../../contexts/auth.context';
 
-import useRegisterInput from '../hooks/useRegisterInput';
+import useRegisterInput from '../../hooks/useRegisterInput';
 
-import '../styles/LoginForm.scss';
+import '../../styles/forms/LoginForm.scss';
 
 const LoginForm = (props) => {
 

@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { CategoryContext } from '../contexts/category.context';
+import { CategoryContext } from '../../contexts/category.context';
 
-import CardLink from './CardLink';
-import GridContainer from './layout/GridContainer';
+import ItemCard from '../tools/ItemCard';
+import GridContainer from '../layout/GridContainer';
 
 const AllCategories = (props) => {
     const { getCategories, categories, fetchingCategories, categoriesLoading } = useContext(CategoryContext);
@@ -19,7 +19,7 @@ const AllCategories = (props) => {
         <GridContainer>
             {categories.map(category => (
                 <Link to={`/categories/${category.id}`}>
-                    <CardLink
+                    <ItemCard
                         key={category.id}
                         name={category.category}
                         itemOne="See all products for"

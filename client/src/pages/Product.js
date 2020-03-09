@@ -9,11 +9,9 @@ import ToastMessage from '../components/layout/ToastMessage';
 import PageHeader from '../components/layout/PageHeader';
 import PageContainer from '../components/layout/PageContainer';
 import PageContent from '../components/layout/PageContent';
-import ProductDetails from '../components/ProductDetails';
-import Toolbar from '../components/Toolbar';
-import EditForm from '../components/EditForm';
-
-import '../styles/ProductPage.scss';
+import ProductDetails from '../components/content/ProductDetails';
+import Toolbar from '../components/tools/Toolbar';
+import EditProductForm from '../components/forms/EditProductForm';
 
 const Product = (props) => {
 
@@ -40,7 +38,7 @@ const Product = (props) => {
                     />
                     <ProductDetails {...props}/>
                 </PageContent>
-                <EditForm {...props} toast={toast} setToast={setToast}/>  
+                <EditProductForm {...props} toast={toast} setToast={setToast}/>  
                 {msg ? <ToastMessage 
                     title="Update Status" 
                     message={msg} 

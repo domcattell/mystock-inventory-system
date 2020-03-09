@@ -1,13 +1,13 @@
 import React,{useContext} from 'react';
 import {DropdownButton, Dropdown} from 'react-bootstrap';
 
-import { ProductsContext } from '../contexts/products.context';
+import { ProductsContext } from '../../contexts/products.context';
 
-import useToggle from '../hooks/useToggle';
+import useToggle from '../../hooks/useToggle';
 
-import DeleteModal from '../components/modals/DeleteModal';
+import DeleteModal from '../modals/DeleteModal';
 
-import '../styles/Toolbar.scss';
+import '../../styles/tools/Toolbar.scss';
 
 const Toolbar = (props) => {
     const {sortAZ, sortZA, sortProductsAZ } = useContext(ProductsContext);

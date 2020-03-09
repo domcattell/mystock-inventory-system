@@ -1,6 +1,6 @@
-@import './GlobalStyles.scss';
+@import '../GlobalStyles.scss';
 
-.CategoryDetails {
+.ProductDetails {
     color: $menuTextColour;
     margin: 30px 30px 0 30px;
 
@@ -18,8 +18,8 @@
         padding: 15px 0;
     }
 
-    &__item:first-child {
-        border-top: 1px solid rgb(235, 235, 235);
+    &__item:last-child {
+        border-bottom: none;
     }
 
     &__sub-heading {
@@ -27,7 +27,7 @@
     }
 
     &__content {
-        color: $lightTxtColour;
+        color: rgb(141, 141, 141);
         float: right;
     }
 
@@ -36,21 +36,3 @@
     }
 }
 
-
-.CategoryDetails__form {
-    text-align: center;
-
-    &__label {
-        padding-right: 15px;
-    }
-
-    &__input {
-        @include defaultInput(300px, 9px);
-    }
-
-    &__submit-btn {
-        @include defaultBtn(140px, 0);
-        margin-left: 15px;
-        
-    }
-}

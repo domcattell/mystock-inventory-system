@@ -1,6 +1,6 @@
 import React  from 'react';
 
-import LoginForm from '../components/LoginForm';
+import LoginForm from '../components/forms/LoginForm';
 import AuthPageContainer from '../components/layout/AuthPageContainer';
 
 const Login = (props) => {

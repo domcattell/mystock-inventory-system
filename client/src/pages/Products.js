@@ -1,7 +1,7 @@
 import React, {memo} from 'react';
 
-import AllProducts from '../components/AllProducts'
-import Toolbar from '../components/Toolbar'
+import AllProducts from '../components/content/AllProducts'
+import Toolbar from '../components/tools/Toolbar'
 import PageHeader from '../components/layout/PageHeader';
 import PageContainer from '../components/layout/PageContainer';
 import PageContent from '../components/layout/PageContent';

@@ -1,10 +1,10 @@
 import React, {useContext, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 
-import { ProductsContext } from '../contexts/products.context';
+import { ProductsContext } from '../../contexts/products.context';
 
-import CardLink from './CardLink';
-import GridContainer from './layout/GridContainer';
+import ItemCard from '../tools/ItemCard';
+import GridContainer from '../layout/GridContainer';
 
 const AllProducts = () => {
     const { getProducts, products, loading, isFetching } = useContext(ProductsContext)
@@ -18,7 +18,7 @@ const AllProducts = () => {
         <GridContainer>
             {products.map(product => (
                 <Link to={`/products/${product.id}`}>
-                    <CardLink 
+                    <ItemCard
                         key={product.id} 
                         name={product.product_name} 
                         itemOne="SKU"

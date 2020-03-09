@@ -1,0 +1,23 @@
+@import '../GlobalStyles.scss';
+
+.EditCategoryForm {
+    
+    &__form {
+        text-align: center;
+    }
+
+    &__label {
+        padding-right: 15px;
+    }
+
+    &__input {
+        @include defaultInput(300px, 9px);
+        margin: 0;
+    }
+
+    &__submit-btn {
+        @include defaultBtn(140px, 0);
+        margin-left: 15px;
+        
+    }
+}

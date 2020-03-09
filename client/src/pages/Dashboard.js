@@ -4,7 +4,7 @@ import PageHeader from '../components/layout/PageHeader'
 import PageContainer from '../components/layout/PageContainer'
 import PageContent from '../components/layout/PageContent'
 import GridContainer from '../components/layout/GridContainer';
-import Widget from '../components/Widget'
+import Widget from '../components/tools/Widget'
 
 import { ProductsContext } from '../contexts/products.context';
 import { CategoryContext } from '../contexts/category.context';

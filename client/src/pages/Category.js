@@ -6,14 +6,15 @@ import {CategoryContext} from '../contexts/category.context';
 
 import useToggle from '../hooks/useToggle';
 
-import CardLink from '../components/CardLink';
+import ItemCard from '../components/tools/ItemCard';
 import GridContainer from '../components/layout/GridContainer';
 import PageContainer from '../components/layout/PageContainer';
 import PageContent from '../components/layout/PageContent';
 import PageHeader from '../components/layout/PageHeader';
-import Toolbar from '../components/Toolbar';
-import CategoryDetails from '../components/CategoryDetails';
+import Toolbar from '../components/tools/Toolbar';
 import ToastMessage from '../components/layout/ToastMessage';
+import CategoryDetails from '../components/content/CategoryDetails';
+import EditCategoryForm from '../components/forms/EditCategoryForm';
 
 const Category = (props) => {
     const {products, getCategoryProducts, isFetching, loading} = useContext(ProductsContext);
@@ -39,14 +40,18 @@ const Category = (props) => {
                     id={props.match.params.id}
                     deleteFunction={deleteCategory}
                 />
-                <CategoryDetails {...props} toast={toast} setToast={setToast}/>
+                <CategoryDetails/>
+            </PageContent>
+
+            <PageContent>
+                <EditCategoryForm {...props} toast={toast} setToast={setToast}/>
             </PageContent>
 
             <PageContent>
                 <GridContainer>
                 {products.map(product => (
                     <Link to={`/products/${product.id}`}>
-                        <CardLink 
+                        <ItemCard
                             key={product.id} 
                             name={product.product_name} 
                             itemOne="SKU"

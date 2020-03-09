@@ -8,7 +8,7 @@ import useToggle from '../../hooks/useToggle';
 import AddProduct from '../../components/modals/AddProduct';
 import AddCategory from '../../components/modals/AddCategory';
 
-import '../../styles/Navbar.scss'
+import '../../styles/navbar/Navbar.scss'
 
 const Navbar = (props) => {
     const { logoutUser } = useContext(AuthContext)

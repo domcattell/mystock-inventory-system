@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../styles/Widget.scss'
+import '../../styles/tools/Widget.scss'
 
 const Widget = (props) => {
     return (

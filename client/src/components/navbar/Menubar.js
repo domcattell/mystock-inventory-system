@@ -6,7 +6,7 @@ import useToggle from '../../hooks/useToggle'
 
 import Navbar from './Navbar'
 
-import '../../styles/Menubar.scss'
+import '../../styles/navbar/Menubar.scss'
 
 const Menubar = () => {
 

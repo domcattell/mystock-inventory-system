@@ -1,9 +1,9 @@
 import React, {useContext} from 'react';
 import ReactLoading from 'react-loading';
 
-import { ProductsContext } from '../contexts/products.context';
+import { ProductsContext } from '../../contexts/products.context';
 
-import '../styles/ProductDetails.scss';
+import '../../styles/content/ProductDetails.scss';
 
 const ProductPageDetails = () => {
     const {product, isFetching} = useContext(ProductsContext);

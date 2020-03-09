@@ -2,7 +2,7 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {Modal} from 'react-bootstrap'
 
-import '../../styles/DeleteModal.scss'
+import '../../styles/modals/DeleteModal.scss'
 
 const DeleteProduct = (props) => {
     const handleDelete = (e) => {

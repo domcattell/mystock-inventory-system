@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import ReactLoading from 'react-loading'
 
-import '../styles/ProductCard.scss'
+import '../../styles/tools/ItemCard.scss'
 
-const CardLink = (props) => {
+const ItemCard = (props) => {
     return (
         <div className={`${props.className} CardRoot ${props.fetching && "loading"}`}>
             {props.fetching ? <ReactLoading type="bars" color="gray" size="sm"/> :
@@ -24,5 +24,5 @@ const CardLink = (props) => {
     );
 }
 
-export default CardLink;
+export default ItemCard;
 
