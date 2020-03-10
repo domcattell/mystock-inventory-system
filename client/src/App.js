@@ -3,7 +3,6 @@ import { AuthProvider } from './contexts/auth.context';
 import { ProductsProvider } from './contexts/products.context';
 import {CategoryProvider} from './contexts/category.context'
 
-
 import Routes from './routes/Routes';
 
 import './reset.css';

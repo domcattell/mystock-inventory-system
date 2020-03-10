@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import ReactLoading from 'react-loading';
 
 import { CategoryContext } from '../../contexts/category.context';
@@ -6,9 +6,14 @@ import { ProductsContext } from '../../contexts/products.context';
 
 import '../../styles/content/CategoryDetails.scss';
 
-const CategoryDetails = () => {
-    const { category, fetchingCategories } = useContext(CategoryContext);
+const CategoryDetails = (props) => {
+    const { category, fetchingCategories, loadingCategories, getCategory } = useContext(CategoryContext);
     const { products } = useContext(ProductsContext);
+
+    useEffect(() => {
+        loadingCategories();
+        getCategory(props.match.params.id);
+    },[])
 
     return (
         <div className={`CategoryDetails ${fetchingCategories && "CategoryDetails--loading"}`}>

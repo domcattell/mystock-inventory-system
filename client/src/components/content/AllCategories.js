@@ -6,13 +6,13 @@ import { CategoryContext } from '../../contexts/category.context';
 import ItemCard from '../tools/ItemCard';
 import GridContainer from '../layout/GridContainer';
 
-const AllCategories = (props) => {
+const AllCategories = () => {
     const { getCategories, categories, fetchingCategories, loadingCategories } = useContext(CategoryContext);
 
     useEffect(() => {
         loadingCategories();
         getCategories();
-    }, [])
+    }, []);
 
     return (
         <GridContainer>

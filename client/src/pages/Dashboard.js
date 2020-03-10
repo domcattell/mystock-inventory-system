@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, memo} from 'react';
+import React, {useContext, useEffect} from 'react';
 
 import PageHeader from '../components/layout/PageHeader'
 import PageContainer from '../components/layout/PageContainer'
@@ -10,13 +10,13 @@ import { ProductsContext } from '../contexts/products.context';
 import { CategoryContext } from '../contexts/category.context';
 
 const Dashboard = () => {
-    const { products, getProducts, qtyAmount} = useContext(ProductsContext)
-    const { categories, getCategories } = useContext(CategoryContext)
+    const { products, getProducts, qtyAmount} = useContext(ProductsContext);
+    const { categories, getCategories } = useContext(CategoryContext);
 
     useEffect(() => {
         getProducts();
         getCategories();
-    },[])
+    },[]);
 
     return (
         <PageContainer> 
@@ -32,4 +32,4 @@ const Dashboard = () => {
     );
 }
 
-export default memo(Dashboard);
+export default Dashboard;

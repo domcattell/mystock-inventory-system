@@ -3,17 +3,21 @@ import React, {useContext} from 'react';
 import { CategoryContext } from '../../contexts/category.context';
 
 import useInputState from '../../hooks/useInputState';
+import useToggle from '../../hooks/useToggle';
+
+import ToastMessage from '../layout/ToastMessage';
 
 import '../../styles/forms/EditCategoryForm.scss'
 
 const EditCategoryForm = (props) => {
-    const { editCategory, fetchingCategories } = useContext(CategoryContext);
+    const {categoryMsg, clearCategoryMessages, editCategory} = useContext(CategoryContext);
     const [categoryName, handleChange] = useInputState("");
+    const [toast, setToast] = useToggle(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         editCategory(categoryName, props.match.params.id);
-        props.toast == false && props.setToast();
+        toast == false && setToast();
     }
 
     return (
@@ -23,6 +27,13 @@ const EditCategoryForm = (props) => {
                 <input className="EditCategoryForm__input" type="text" name="category" value={categoryName.category} onChange={handleChange} placeholder="Category" required />
                 <button className="EditCategoryForm__submit-btn" type="submit">Change Name</button>
             </form>
+            {categoryMsg && <ToastMessage 
+                    title="Update Status" 
+                    message={categoryMsg} 
+                    showToast={toast}
+                    toggleToast={setToast}
+                    clear={clearCategoryMessages}
+                />}
         </div>
     );
 }

@@ -10,8 +10,11 @@ const AllProducts = () => {
     const { getProducts, products, loadingProducts, fetchingProducts } = useContext(ProductsContext)
 
     useEffect(() => {
-        loadingProducts();
-        getProducts();
+        if(products.length === 0) {
+            loadingProducts();
+            getProducts();
+            console.log("I have fired")
+        }
     }, [])
 
     return (

@@ -1,13 +1,18 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import ReactLoading from 'react-loading';
 
 import { ProductsContext } from '../../contexts/products.context';
 
 import '../../styles/content/ProductDetails.scss';
 
-const ProductPageDetails = () => {
-    const {product, fetchingProducts} = useContext(ProductsContext);
+const ProductPageDetails = (props) => {
+    const {product, fetchingProducts, loadingProducts, getProduct} = useContext(ProductsContext);
     const {product_name, qty, category, SKU, price, created_at} = product;
+
+    useEffect(() =>  {
+        loadingProducts();
+        getProduct(props.match.params.id);
+    },[]);
 
     return (
         <div className={`ProductDetails ${fetchingProducts && "ProductDetails--loading"}`}>
