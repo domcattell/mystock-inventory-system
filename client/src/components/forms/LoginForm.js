@@ -10,7 +10,7 @@ import '../../styles/forms/LoginForm.scss';
 const LoginForm = (props) => {
 
     const [user, handleChange, reset] = useRegisterInput("");
-    const { loginUser, clearMessages, msg, token} = useContext(AuthContext);
+    const { loginUser, clearMessages, authMsg, token} = useContext(AuthContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -28,8 +28,8 @@ const LoginForm = (props) => {
     token && props.history.push("/dashboard");
 
     return (
-        <div className={msg ? "LoginForm LoginForm--shake" : "LoginForm"}>
-            {msg && <p className="LoginForm__error-msg">{msg.error}</p>} 
+        <div className={authMsg.error ? "LoginForm LoginForm--shake" : "LoginForm"}>
+            {authMsg.error && <p className="LoginForm__error-msg">{authMsg.error}</p>} 
             <form className="LoginForm__form" onSubmit={handleSubmit} >
                 <h4 className="LoginForm__header">Please Login</h4>
                 <input className="LoginForm__input" type="text" name="username" onChange={handleChange} value={user.username} autoComplete="username" placeholder="username" />

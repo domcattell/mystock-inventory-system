@@ -80,7 +80,7 @@ router.get("/:id/category_products", (req, res) => {
                 ON products.category_id = categories.id 
                 WHERE categories.id = ?`
     db.query(sql,[id], (err, categoryProducts) => {
-        if(err) res.status(500).json({error: "Database error occured"}) 
+        if(err) res.status(500).json({msg: {error: "Database error occured"}}) 
         else {
             res.status(200).json(categoryProducts);
         };
@@ -92,7 +92,7 @@ router.get("/:id", (req, res) => {
     const {id} = req.params;
     const sql = `SELECT * FROM categories WHERE id = ?`
     db.query(sql, [id], (err, category) => {
-        if(err) res.status(500).json({error: "Database error occured"})
+        if(err) res.status(500).json({msg: {error: "Database error occured"}})
         else {
             res.status(200).json(category);
         };

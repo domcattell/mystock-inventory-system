@@ -43,12 +43,12 @@ router.post("/register/validation", async (req, res) => {
     let { username } = req.body;
     const sql = "SELECT user_name FROM users WHERE user_name = ?";
     await db.query(sql, [username], (error, result) => {
-        if (error) res.status(500).send({ error: "Database error occured!" });
+        if (error) res.status(500).send({ msg: {error: "Database error occured!"} });
         else {
             if (!result.length) {
-                res.status(200).json({ userTaken: false});
+                res.status(200).json({ msg: {userTaken: false}});
             } else if (username.toLowerCase() === result[0].user_name) {
-                res.status(200).json({ userTaken: true }); 
+                res.status(200).json({ msg: {userTaken: true} }); 
             };
         };
     });
@@ -65,19 +65,19 @@ router.post("/login", async (req, res) => {
         } else {
             if (!result.length) {
                 console.log("wrong username or password");
-                res.status(401).json({ error: "Wrong username or password" });
+                res.status(401).json({ msg: {error: "Wrong username or password"} });
             } else {
+                //compare password user typed in with encrypted password saved on DB
                 bcrpyt.compare(password, result[0].user_password, (err, result) => {
                     if (result == true) {
                         const payload = { username };
                         const token = jwt.sign(payload, secret, {
                             expiresIn: '60m'
                         });
-                        res.json({ token });
-                        res.status(200);
+                        res.status(200).json({token});
                     } else {
                         console.log("wrong username or password")
-                        res.status(401).json({ error: "Wrong username or password" });
+                        res.status(401).json({ msg: {error: "Wrong username or password"} });
                     };
                 });
             };
@@ -92,11 +92,10 @@ router.get("/auth", auth, (req, res) => {
     db.query(sql, [req.username], (error, result) => {
         if (error) {
             console.log(error);
-            res.status(500).json({ error: "Database error has occured!" });
+            res.status(500).json({ msg: {error: "Database error has occured!"} });
         } else {
             const currentUser = result[0].user_name;
-            res.json({ currentUser });
-            res.status(200);
+            res.status(200).json({currentUser});
         };
     });
 });

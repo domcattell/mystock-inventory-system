@@ -26,9 +26,8 @@ const Routes = () => {
 
     useEffect(() => {
         checkAuth();
+        console.log("hello")
     },[])
-
-    console.log(token)
 
     return (
         <Switch>

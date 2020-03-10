@@ -1,4 +1,4 @@
-import React, { createContext, useReducer} from 'react';
+import React, { createContext, useReducer, useEffect} from 'react';
 import { CHECK_AUTH_ERROR, CLEAR_MESSAGES, USER_LOADED, USER_LOADING, AUTH_ERROR, CHECK_USERNAME, LOGIN_SUCCESS, LOGOUT_SUCCESS, REGISTER_FAIL, REGISTER_SUCCESS } from '../actions/types'
 import authReducer from '../reducers/authReducer'
 import axios from 'axios';
@@ -9,11 +9,10 @@ export const AuthContext = createContext()
 export const AuthProvider = (props) => {
 
     const initialState = {
-        authLoading: true,
-        msg: "",
+        loadingAuth: false,
+        authMsg: "",
         token: localStorage.getItem('token'),
         currentUser: null,
-        error: false
     }
 
     const [state, dispatch] = useReducer(authReducer, initialState)
@@ -28,13 +27,18 @@ export const AuthProvider = (props) => {
         if(localStorage.token) {
             authToken(localStorage.token)
         }
+
+        const config = {
+            'Content-Type:': 'application/json'
+        }
     
         try {
-            const res = await axios.get('/api/auth')
+            const res = await axios.get('/api/auth', config);
             dispatch({
                 type: USER_LOADED,
                 payload: res.data
             })
+
             console.log("SSSUCCESSS")
         } catch (err) {
             dispatch({
@@ -109,11 +113,11 @@ export const AuthProvider = (props) => {
                 checkAuth, 
                 checkUsername, 
                 loginUser, 
-                token: state.token, 
+                token: state.token,
                 error: state.error,  
                 currentUser: state.currentUser, 
-                msg: state.msg, 
-                authLoading: state.authLoading}}>
+                authMsg: state.authMsg, 
+                loadingAuth: state.loadingAuth}}>
             {props.children}
         </AuthContext.Provider>
     )
