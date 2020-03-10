@@ -9,14 +9,14 @@ export const CategoryProvider = (props) => {
 
     const initialState = {
         fetchingCategories: false,
-        categories: [],
         category: {},
+        categories: [],
         categoryMsg: null
     }
 
     const [state, dispatch] = useReducer(categoriesReducer, initialState)
 
-    const categoriesLoading = () => {
+    const loadingCategories = () => {
         dispatch({
             type: CATEGORIES_LOADING
         })
@@ -102,7 +102,7 @@ export const CategoryProvider = (props) => {
         <CategoryContext.Provider value={{
                 clearCategoryMessages, 
                 editCategory, 
-                categoriesLoading, 
+                loadingCategories, 
                 deleteCategory, 
                 addCategory, 
                 getCategories,

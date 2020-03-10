@@ -7,7 +7,7 @@ import useInputState from '../../hooks/useInputState';
 import '../../styles/forms/EditCategoryForm.scss'
 
 const EditCategoryForm = (props) => {
-    const { editCategory, categoriesFetching } = useContext(CategoryContext);
+    const { editCategory, fetchingCategories } = useContext(CategoryContext);
     const [categoryName, handleChange] = useInputState("");
 
     const handleSubmit = (e) => {

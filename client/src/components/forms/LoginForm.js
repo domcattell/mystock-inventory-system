@@ -10,18 +10,18 @@ import '../../styles/forms/LoginForm.scss';
 const LoginForm = (props) => {
 
     const [user, handleChange, reset] = useRegisterInput("");
-    const { loginUser, clearMessages, authMsg, token} = useContext(AuthContext);
+    const { loginUser, clearAuthMessages, authMsg, token} = useContext(AuthContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         loginUser(user);
         reset();
-        clearMessages();
+        clearAuthMessages();
     }
 
     useEffect(() => {
         return () => {
-            clearMessages()
+            clearAuthMessages()
         };
     },[]);
 

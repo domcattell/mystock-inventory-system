@@ -17,14 +17,14 @@ import CategoryDetails from '../components/content/CategoryDetails';
 import EditCategoryForm from '../components/forms/EditCategoryForm';
 
 const Category = (props) => {
-    const {products, getCategoryProducts, isFetching, loading} = useContext(ProductsContext);
-    const {category, deleteCategory, getCategory, categoryMsg, clearCategoryMessages, categoriesLoading, fetchingCategories} = useContext(CategoryContext);
+    const {products, getCategoryProducts, fetchingProducts, loadingProducts} = useContext(ProductsContext);
+    const {category, deleteCategory, getCategory, categoryMsg, clearCategoryMessages, loadingCategories, fetchingCategories} = useContext(CategoryContext);
     const [toast, setToast] = useToggle(false);
 
 
     useEffect(() => {
-        loading();
-        categoriesLoading();
+        loadingProducts();
+        loadingCategories();
         getCategoryProducts(props.match.params.id);
         getCategory(props.match.params.id);
     },[])
@@ -60,7 +60,7 @@ const Category = (props) => {
                             itemOneContent={product.SKU}
                             itemTwoContent={product.qty}
                             itemThreeContent={product.category}
-                            fetching={isFetching}
+                            fetching={fetchingProducts}
                             />
                         </Link>
                     ))}

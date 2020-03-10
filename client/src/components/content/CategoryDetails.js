@@ -6,14 +6,14 @@ import { ProductsContext } from '../../contexts/products.context';
 
 import '../../styles/content/CategoryDetails.scss';
 
-const CategoryDetails = (props) => {
-    const { category, categoriesFetching } = useContext(CategoryContext);
+const CategoryDetails = () => {
+    const { category, fetchingCategories } = useContext(CategoryContext);
     const { products } = useContext(ProductsContext);
 
     return (
-        <div className={`CategoryDetails ${categoriesFetching && "CategoryDetails--loading"}`}>
+        <div className={`CategoryDetails ${fetchingCategories && "CategoryDetails--loading"}`}>
             <h5 className="CategoryDetails__header">Category Details</h5>
-            {categoriesFetching ? <ReactLoading type="bars" color="gray" /> :
+            {fetchingCategories ? <ReactLoading type="bars" color="gray" /> :
             <div className="CategoryDetails__info-wrapper">
                 <ul className="CategoryDetails__ul">
                     <li className="CategoryDetails__item">

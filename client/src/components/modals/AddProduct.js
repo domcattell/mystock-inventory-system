@@ -14,7 +14,7 @@ import '../../styles/modals/AddProduct.scss'
 const AddProduct = (props) => {
   const [newProduct, handleChange, reset] = useInputState("");
   const [toast, setToast] = useToggle(false);
-  const { addProduct, msg, clearMessages } = useContext(ProductsContext);
+  const { addProduct, productsMsg, clearProductMessages } = useContext(ProductsContext);
   const {categories, getCategories} = useContext(CategoryContext);
 
     const handleSubmit = (e) => {
@@ -74,12 +74,12 @@ const AddProduct = (props) => {
         <Modal.Footer>
           <button className="AddProduct__close-btn" onClick={hideModal}>Close</button>
         </Modal.Footer>
-        {msg ? <ToastMessage 
+        {productsMsg ? <ToastMessage 
           title="New Product"
-          message={msg}
+          message={productsMsg}
           showToast={toast}
           toggleToast={setToast}
-          clear={clearMessages}
+          clear={clearProductMessages}
         /> : null}
       </Modal>
     );

@@ -102,11 +102,11 @@ export const AuthProvider = (props) => {
 
     const logoutUser = () => dispatch({type: LOGOUT_SUCCESS})
 
-    const clearMessages = () => dispatch({type: CLEAR_MESSAGES})
+    const clearAuthMessages = () => dispatch({type: CLEAR_MESSAGES})
 
     return (
         <AuthContext.Provider value={{
-                clearMessages, 
+                clearAuthMessages, 
                 registerUser, 
                 userLoading, 
                 logoutUser, 

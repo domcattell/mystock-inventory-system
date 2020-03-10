@@ -5,20 +5,20 @@ const reducer = (state, action) => {
         case ITEMS_LOADING:
             return {
                 ...state,
-                isFetching: true,
+                fetchingProducts: true,
             }
             
         case GET_ITEMS:
             return {
                 ...state,
-                isFetching: false,
+                fetchingProducts: false,
                 products: action.payload,
             }
         
         case GET_SINGLE_ITEM:
             return {
                 ...state,
-                isFetching: false,
+                fetchingProducts: false,
                 product: action.payload[0]
             }
 
@@ -26,23 +26,21 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 product: {},
-                isFetching: true
+                fetchingProducts: true
             }
 
         case GET_CATEGORY_PRODUCTS:
             return {
                 ...state,
                 products: action.payload,
-                isFetching: false,
-                error: false
+                fetchingProducts: false,
             }
             
         case GET_ITEMS_FAILED:
             return {
                 ...state,
-                error: true,
-                isFetching: false,
-                msg: action.payload.msg
+                fetchingProducts: false,
+                productsMsg: action.payload.msg
             }
         
         case ADD_ITEM:
@@ -50,14 +48,14 @@ const reducer = (state, action) => {
                 ...state,
                 products: [...state.products, action.payload.newProduct],
                 qtyAmount: state.qtyAmount + parseInt(action.payload.newProduct.qty),
-                msg: action.payload.msg
+                productsMsg: action.payload.msg
             }
         
         case UPDATE_ITEM_FAILED:
         case ADD_ITEM_FAILED:
             return {
                 ...state,
-                msg: action.payload.msg
+                productsMsg: action.payload.msg
             }
         
         case DELETE_ITEM:
@@ -71,7 +69,7 @@ const reducer = (state, action) => {
                 ...state,
                 products: state.products.map(product => product.id === action.payload.updatedProduct[0]) ? [action.payload.updatedProduct[0]] : state.products,
                 product: action.payload.updatedProduct[0],
-                msg: action.payload.msg  
+                productsMsg: action.payload.msg  
             }
 
         case SORT_AZ: 
@@ -97,8 +95,7 @@ const reducer = (state, action) => {
         case CLEAR_MESSAGES:
             return {
                 ...state,
-                msg: null,
-                error: false
+                productsMsg: null,
             }
             
         default:

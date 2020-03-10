@@ -11,7 +11,7 @@ import '../../styles/forms/EditForm.scss';
 
 const EditProductForm = (props) => {
     
-    const {product, editProduct, isFetching} = useContext(ProductsContext);
+    const {product, editProduct, fetchingProducts} = useContext(ProductsContext);
     const {categories} = useContext(CategoryContext);
     const {product_name, qty, category, price} = product;
 
@@ -45,9 +45,9 @@ const EditProductForm = (props) => {
     };
 
     return (
-        <div className={`EditProductForm ${isFetching && "EditProductForm--loading"}`}>
+        <div className={`EditProductForm ${fetchingProducts && "EditProductForm--loading"}`}>
             <h5 className="EditProductForm__header">Update Product</h5>
-            {isFetching ? <ReactLoading type="bars" color="gray"/> :
+            {fetchingProducts ? <ReactLoading type="bars" color="gray"/> :
             <>
                 <div onClick={enableEdit} className="EditProductForm__padlock-icn"> 
                     {enableForm ? <i className="fas fa-lock-open"></i> : <i className="fas fa-lock"></i>}

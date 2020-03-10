@@ -7,9 +7,9 @@ import useRegisterInput from '../../hooks/useRegisterInput';
 
 import '../../styles/forms/RegisterForm.scss';
 
-const RegisterForm = (props) => {
+const RegisterForm = () => {
     const [newUser, handleChange] = useRegisterInput("");
-    const {registerUser, clearMessages, checkUsername, authMsg, token} = useContext(AuthContext);
+    const {registerUser, clearAuthMessages, checkUsername, authMsg, token} = useContext(AuthContext);
 
     const handleSubmit = (e) => {
         e.preventDefault(); 
@@ -20,7 +20,7 @@ const RegisterForm = (props) => {
         checkUsername(newUser);
 
         return () => {
-            clearMessages();
+            clearAuthMessages();
         };
     },[newUser]);
 

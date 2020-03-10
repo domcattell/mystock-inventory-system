@@ -7,14 +7,13 @@ import ItemCard from '../tools/ItemCard';
 import GridContainer from '../layout/GridContainer';
 
 const AllCategories = (props) => {
-    const { getCategories, categories, fetchingCategories, categoriesLoading } = useContext(CategoryContext);
+    const { getCategories, categories, fetchingCategories, loadingCategories } = useContext(CategoryContext);
 
     useEffect(() => {
-        categoriesLoading();
+        loadingCategories();
         getCategories();
     }, [])
 
-    
     return (
         <GridContainer>
             {categories.map(category => (

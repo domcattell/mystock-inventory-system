@@ -15,15 +15,15 @@ import EditProductForm from '../components/forms/EditProductForm';
 
 const Product = (props) => {
 
-    const {product, isFetching, msg, clearMessages, deleteProduct, getProduct, loading} = useContext(ProductsContext)
-    const { getCategories, categoriesLoading} = useContext(CategoryContext);
+    const {product, isFetching, productsMsg, clearProductMessages, deleteProduct, getProduct, loadingProducts} = useContext(ProductsContext)
+    const { getCategories, loadingCategories} = useContext(CategoryContext);
     const {product_name} = product
     const [toast, setToast] = useToggle(false);
 
     useEffect(() => {
-        loading();
+        loadingProducts();
         getProduct(props.match.params.id);
-        categoriesLoading();
+        loadingCategories();
         getCategories();
     },[])
 
@@ -39,12 +39,12 @@ const Product = (props) => {
                     <ProductDetails {...props}/>
                 </PageContent>
                 <EditProductForm {...props} toast={toast} setToast={setToast}/>  
-                {msg ? <ToastMessage 
+                {productsMsg ? <ToastMessage 
                     title="Update Status" 
-                    message={msg} 
+                    message={productsMsg} 
                     showToast={toast}
                     toggleToast={setToast} 
-                    clear={clearMessages}
+                    clear={clearProductMessages}
                 /> : null}
         </PageContainer>
     );

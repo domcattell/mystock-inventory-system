@@ -7,10 +7,10 @@ import ItemCard from '../tools/ItemCard';
 import GridContainer from '../layout/GridContainer';
 
 const AllProducts = () => {
-    const { getProducts, products, loading, isFetching } = useContext(ProductsContext)
+    const { getProducts, products, loadingProducts, fetchingProducts } = useContext(ProductsContext)
 
     useEffect(() => {
-        loading();
+        loadingProducts();
         getProducts();
     }, [])
 
@@ -27,7 +27,7 @@ const AllProducts = () => {
                         itemOneContent={product.SKU}
                         itemTwoContent={product.qty}
                         itemThreeContent={product.category}
-                        fetching={isFetching}
+                        fetching={fetchingProducts}
                     />
                 </Link>
             ))}

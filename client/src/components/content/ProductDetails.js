@@ -6,13 +6,13 @@ import { ProductsContext } from '../../contexts/products.context';
 import '../../styles/content/ProductDetails.scss';
 
 const ProductPageDetails = () => {
-    const {product, isFetching} = useContext(ProductsContext);
+    const {product, fetchingProducts} = useContext(ProductsContext);
     const {product_name, qty, category, SKU, price, created_at} = product;
 
     return (
-        <div className={`ProductDetails ${isFetching && "ProductDetails--loading"}`}>
+        <div className={`ProductDetails ${fetchingProducts && "ProductDetails--loading"}`}>
             <h5 className="ProductDetails__header">Product Details</h5>
-            {isFetching ? <ReactLoading type="bars" color="gray"/> :
+            {fetchingProducts ? <ReactLoading type="bars" color="gray"/> :
             <ul>
                 <li className="ProductDetails__item">
                     <span className="ProductDetails__sub-heading"><i className="fas fa-chevron-circle-right"></i>Product Name</span>
