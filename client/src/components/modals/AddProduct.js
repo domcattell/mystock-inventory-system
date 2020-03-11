@@ -10,6 +10,7 @@ import { CategoryContext, CategoryActionsContext } from '../../contexts/category
 import ToastMessage from '../layout/ToastMessage';
 
 import '../../styles/modals/AddProduct.scss'
+import { CATEGORIES_LOADING } from '../../actions/types';
 
 const AddProduct = (props) => {
   const { categories } = useContext(CategoryContext);
@@ -26,7 +27,9 @@ const AddProduct = (props) => {
   }
 
   useEffect(() => {
-    getCategories();
+    if(categories.length === 0) {
+      getCategories();
+    }
   }, [])
 
   const hideModal = () => {

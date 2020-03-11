@@ -33,14 +33,12 @@ export const ProductsProvider = (props) => {
             dispatch({
                 type: GET_ITEMS,
                 payload: res.data,
-                isFetching: false
             });
             totalQty();
         } catch (err) {
             dispatch({
                 type: GET_ITEMS_FAILED,
-                payload: err,
-                isFetching: false
+                payload: err.response.data
             });
         };
     };
@@ -57,7 +55,7 @@ export const ProductsProvider = (props) => {
         } catch (err) {
             dispatch({
                 type: GET_ITEMS_FAILED,
-                payload: err
+                payload: err.response.data
             });
         };
     };
@@ -74,7 +72,7 @@ export const ProductsProvider = (props) => {
         } catch (err) {
             dispatch({
                 type: GET_ITEMS_FAILED,
-                payload: err
+                payload: err.response.data
             });
         };
     };

@@ -94,7 +94,11 @@ router.get("/:id", (req, res) => {
     db.query(sql, [id], (err, category) => {
         if(err) res.status(500).json({msg: {error: "Database error occured"}})
         else {
-            res.status(200).json(category);
+            if(category.length === 0) {
+                res.status(404).json({msg: {error: "Category not found"}})
+            } else {
+                res.status(200).json(category);
+            }
         };
     });
 });
