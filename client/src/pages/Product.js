@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { ProductsContext } from '../contexts/products.context'
+import { ProductsContext, ProductsActionsContext } from '../contexts/products.context'
 
 import PageHeader from '../components/layout/PageHeader';
 import PageContainer from '../components/layout/PageContainer';
@@ -10,12 +10,13 @@ import Toolbar from '../components/tools/Toolbar';
 import EditProductForm from '../components/forms/EditProductForm';
 
 const Product = (props) => {
-    const { product, isFetching, deleteProduct } = useContext(ProductsContext);
+    const { product, fetchingProducts } = useContext(ProductsContext);
+    const { deleteProduct } = useContext(ProductsActionsContext);
     const { product_name } = product;
 
     return (
         <PageContainer>
-            <PageHeader title={isFetching ? "Loading..." : product_name} />
+            <PageHeader title={fetchingProducts ? "Loading..." : product_name} />
             <PageContent>
                 <Toolbar
                     actions={true}

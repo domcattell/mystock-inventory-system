@@ -4,6 +4,7 @@ import axios from 'axios'
 import { GET_CATEGORY, CLEAR_MESSAGES, CATEGORIES_LOADING, ADD_CATEGORY, GET_CATEGORIES, EDIT_CATEGORY, DELETE_CATEGORY, CATEGORIES_FAILED, GET_CATEGORY_PRODUCTS } from "../actions/types"
 
 export const CategoryContext = createContext();
+export const CategoryActionsContext = createContext();
 
 export const CategoryProvider = (props) => {
 
@@ -99,7 +100,8 @@ export const CategoryProvider = (props) => {
     const clearCategoryMessages = () => {dispatch({type: CLEAR_MESSAGES})}
 
     return (
-        <CategoryContext.Provider value={{
+        <CategoryContext.Provider value={state}>
+            <CategoryActionsContext.Provider value={{
                 clearCategoryMessages, 
                 editCategory, 
                 loadingCategories, 
@@ -107,12 +109,10 @@ export const CategoryProvider = (props) => {
                 addCategory, 
                 getCategories,
                 getCategory,
-                fetchingCategories: state.fetchingCategories, 
-                categories: state.categories,
-                category: state.category,
-                categoryMsg: state.categoryMsg}}>
-            {props.children}
+            }}>
+                {props.children}
+            </CategoryActionsContext.Provider>
         </CategoryContext.Provider>
-    )
+    );
+};
 
-}

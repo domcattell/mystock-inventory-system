@@ -1,7 +1,7 @@
-import React, { useContext, memo } from 'react';
+import React, { useContext } from 'react';
 import { NavLink, Link } from 'react-router-dom'
 
-import { AuthContext } from '../../contexts/auth.context'
+import { AuthActionsContext } from '../../contexts/auth.context'
 
 import useToggle from '../../hooks/useToggle';
 
@@ -11,7 +11,7 @@ import AddCategory from '../../components/modals/AddCategory';
 import '../../styles/navbar/Navbar.scss'
 
 const Navbar = (props) => {
-    const { logoutUser } = useContext(AuthContext)
+    const { logoutUser } = useContext(AuthActionsContext)
     const [addProductShowing, toggleAddProduct] = useToggle(false);
     const [addCategoryShowing, toggleAddCategory] = useToggle(false);
 

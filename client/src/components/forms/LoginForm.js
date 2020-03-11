@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 
-import { AuthContext } from '../../contexts/auth.context';
+import { AuthContext, AuthActionsContext } from '../../contexts/auth.context';
 
 import useRegisterInput from '../../hooks/useRegisterInput';
 
@@ -10,7 +10,8 @@ import '../../styles/forms/LoginForm.scss';
 const LoginForm = (props) => {
 
     const [user, handleChange, reset] = useRegisterInput("");
-    const { loginUser, clearAuthMessages, authMsg, token} = useContext(AuthContext);
+    const { authMsg, token } = useContext(AuthContext);
+    const { loginUser, clearAuthMessages } = useContext(AuthActionsContext);
 
     const handleSubmit = (e) => {
         e.preventDefault();

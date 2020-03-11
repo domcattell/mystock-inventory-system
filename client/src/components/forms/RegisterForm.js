@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 
-import {AuthContext} from '../../contexts/auth.context';
+import {AuthContext, AuthActionsContext} from '../../contexts/auth.context';
 
 import useRegisterInput from '../../hooks/useRegisterInput';
 
@@ -9,7 +9,8 @@ import '../../styles/forms/RegisterForm.scss';
 
 const RegisterForm = () => {
     const [newUser, handleChange] = useRegisterInput("");
-    const {registerUser, clearAuthMessages, checkUsername, authMsg, token} = useContext(AuthContext);
+    const { checkUsername, authMsg } = useContext(AuthContext);
+    const { registerUser, clearAuthMessages } = useContext(AuthActionsContext);
 
     const handleSubmit = (e) => {
         e.preventDefault(); 

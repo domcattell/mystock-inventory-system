@@ -1,21 +1,21 @@
 import React, {useContext, useEffect} from 'react';
 import {Link} from 'react-router-dom';
 
-import { ProductsContext } from '../../contexts/products.context';
+import { ProductsContext, ProductsActionsContext } from '../../contexts/products.context';
 
 import ItemCard from '../tools/ItemCard';
 import GridContainer from '../layout/GridContainer';
 
 const AllProducts = () => {
-    const { getProducts, products, loadingProducts, fetchingProducts } = useContext(ProductsContext)
+    const { products, fetchingProducts } = useContext(ProductsContext);
+    const { getProducts, loadingProducts } = useContext(ProductsActionsContext);
 
     useEffect(() => {
-        if(products.length === 0) {
-            loadingProducts();
-            getProducts();
-            console.log("I have fired")
-        }
-    }, [])
+       if(products.length === 0) {
+        loadingProducts();
+        getProducts();
+       }
+    }, [products]);
 
     return (
         <GridContainer>
@@ -36,6 +36,6 @@ const AllProducts = () => {
             ))}
         </GridContainer>
     );
-}
+};
 
 export default AllProducts;

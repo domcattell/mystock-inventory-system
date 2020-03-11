@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
-import {CategoryContext} from '../contexts/category.context';
+import { CategoryContext, CategoryActionsContext } from '../contexts/category.context';
 
 import PageContainer from '../components/layout/PageContainer';
 import PageContent from '../components/layout/PageContent';
@@ -11,25 +11,30 @@ import EditCategoryForm from '../components/forms/EditCategoryForm';
 import CategoryProducts from '../components/content/CategoryProducts';
 
 const Category = (props) => {
-    const {category, deleteCategory, fetchingCategories} = useContext(CategoryContext);
+    const { category, fetchingCategories } = useContext(CategoryContext);
+    const { deleteCategory } = useContext(CategoryActionsContext);
+
+    useEffect(() => {
+        console.log("test")
+    }, [])
 
     return (
         <PageContainer>
-            <PageHeader title={fetchingCategories ? "Loading..." : category.category}/>
+            <PageHeader title={fetchingCategories ? "Loading..." : category.category} />
             <PageContent>
-                <Toolbar 
-                    sort={true} 
-                    actions={true} 
+                <Toolbar
+                    sort={true}
+                    actions={true}
                     id={props.match.params.id}
                     deleteFunction={deleteCategory}
                 />
-                <CategoryDetails {...props}/>
+                <CategoryDetails {...props} />
             </PageContent>
             <PageContent>
-                <EditCategoryForm {...props}/>
+                <EditCategoryForm {...props} />
             </PageContent>
             <PageContent>
-                <CategoryProducts {...props}/>
+                <CategoryProducts {...props} />
             </PageContent>
         </PageContainer>
     );

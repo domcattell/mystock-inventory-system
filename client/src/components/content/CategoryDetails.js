@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import ReactLoading from 'react-loading';
 
-import { CategoryContext } from '../../contexts/category.context';
+import { CategoryContext, CategoryActionsContext } from '../../contexts/category.context';
 import { ProductsContext } from '../../contexts/products.context';
 
 import '../../styles/content/CategoryDetails.scss';
 
 const CategoryDetails = (props) => {
-    const { category, fetchingCategories, loadingCategories, getCategory } = useContext(CategoryContext);
+    const { category, fetchingCategories } = useContext(CategoryContext);
+    const { loadingCategories, getCategory } = useContext(CategoryActionsContext);
     const { products } = useContext(ProductsContext);
 
     useEffect(() => {

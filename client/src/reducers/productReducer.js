@@ -1,4 +1,4 @@
-import {GET_CATEGORY_PRODUCTS, CLEAR_SINGLE_ITEM, CLEAR_MESSAGES, ADD_ITEM_FAILED, UPDATE_ITEM_FAILED, TOTAL_QTY, SORT_AZ, SORT_ZA, GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING} from '../actions/types'
+import {CLEAR_PRODUCTS, GET_CATEGORY_PRODUCTS, CLEAR_SINGLE_ITEM, CLEAR_MESSAGES, ADD_ITEM_FAILED, UPDATE_ITEM_FAILED, TOTAL_QTY, SORT_AZ, SORT_ZA, GET_ITEMS, ADD_ITEM, DELETE_ITEM, GET_ITEMS_FAILED, GET_SINGLE_ITEM, EDIT_ITEM, ITEMS_LOADING} from '../actions/types'
 
 const reducer = (state, action) => {
     switch(action.type) {
@@ -61,13 +61,15 @@ const reducer = (state, action) => {
         case DELETE_ITEM:
             return {
                 ...state,
-                products: state.products.filter(product => product.id !== action.payload)
+                products: state.products.filter(product => product.id != action.payload)
             }
 
         case EDIT_ITEM:
+            const editedProduct = action.payload.updatedProduct[0]
+            console.log(editedProduct.id)
             return {
                 ...state,
-                products: state.products.map(product => product.id === action.payload.updatedProduct[0]) ? [action.payload.updatedProduct[0]] : state.products,
+                products: state.products.map(product => (product.id == action.payload.updatedProduct[0].id ? action.payload.updatedProduct[0] : product)),
                 product: action.payload.updatedProduct[0],
                 productsMsg: action.payload.msg  
             }
@@ -96,6 +98,12 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 productsMsg: null,
+            }
+
+        case CLEAR_PRODUCTS:
+            return {
+                ...state,
+                products: []
             }
             
         default:

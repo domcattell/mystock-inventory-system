@@ -5,6 +5,7 @@ import axios from 'axios';
 import authToken from '../helpers/authToken'
 
 export const AuthContext = createContext()
+export const AuthActionsContext = createContext();
 
 export const AuthProvider = (props) => {
 
@@ -106,6 +107,13 @@ export const AuthProvider = (props) => {
 
     return (
         <AuthContext.Provider value={{
+            token: state.token,
+            error: state.error,  
+            currentUser: state.currentUser, 
+            authMsg: state.authMsg, 
+            loadingAuth: state.loadingAuth
+        }}>
+            <AuthActionsContext.Provider value={{
                 clearAuthMessages, 
                 registerUser, 
                 userLoading, 
@@ -113,12 +121,11 @@ export const AuthProvider = (props) => {
                 checkAuth, 
                 checkUsername, 
                 loginUser, 
-                token: state.token,
-                error: state.error,  
-                currentUser: state.currentUser, 
-                authMsg: state.authMsg, 
-                loadingAuth: state.loadingAuth}}>
-            {props.children}
+            }}>
+                {props.children}
+            </AuthActionsContext.Provider>
         </AuthContext.Provider>
     )
 }
+
+

@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from 'react';
 import { Route, Router, Switch, Redirect, withRouter } from 'react-router-dom';
 
-import {AuthContext} from '../contexts/auth.context'
+import {AuthActionsContext} from '../contexts/auth.context'
 import {CategoryContext} from '../contexts/category.context'
 
 import authToken from '../helpers/authToken'
@@ -22,7 +22,7 @@ const Routes = () => {
         authToken(localStorage.token);
     }
 
-    const {checkAuth, token} = useContext(AuthContext);
+    const {checkAuth} = useContext(AuthActionsContext);
 
     useEffect(() => {
         checkAuth();
@@ -43,7 +43,6 @@ const Routes = () => {
                     <PrivateRoute exact path="/products/all" component={Products} />
                     <PrivateRoute exact path="/products/:id" component={Product} />
                     <Route>{`404`}</Route>
-
                 </Switch>
             </>
             <Route>{`404`}</Route>

@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import ReactLoading from 'react-loading';
 
-import { ProductsContext } from '../../contexts/products.context';
-import { CategoryContext } from '../../contexts/category.context';
+import { ProductsContext, ProductsActionsContext } from '../../contexts/products.context';
+import { CategoryContext, CategoryActionsContext } from '../../contexts/category.context';
 
 import useInputState from '../../hooks/useInputState';
 import useToggle from '../../hooks/useToggle';
@@ -13,8 +13,9 @@ import '../../styles/forms/EditForm.scss';
 
 const EditProductForm = (props) => {
 
-    const { product, editProduct, fetchingProducts, productsMsg, clearProductMessages} = useContext(ProductsContext);
-    const {getCategories} = useContext(CategoryContext);
+    const { editProduct, clearProductMessages } = useContext(ProductsActionsContext);
+    const { product, fetchingProducts, productsMsg } = useContext(ProductsContext);
+    const { getCategories } = useContext(CategoryActionsContext);
     const { categories } = useContext(CategoryContext);
     const { product_name, qty, category, price } = product;
 

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Modal } from 'react-bootstrap';
 
-import { CategoryContext } from '../../contexts/category.context';
+import { CategoryContext, CategoryActionsContext } from '../../contexts/category.context';
 
 import ToastMessage from '../layout/ToastMessage';
 
@@ -13,7 +13,8 @@ import '../../styles/modals/AddCategory.scss';
 const AddCategory = (props) => {
   const [newCategory, handleChange, reset] = useInputState("");
   const [toast, setToast] = useToggle(false);
-  const { addCategory, categoryMsg, clearCategoryMessages } = useContext(CategoryContext);
+  const { categoryMsg } = useContext(CategoryContext);
+  const { addCategory, clearCategoryMessages } = useContext(CategoryActionsContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();

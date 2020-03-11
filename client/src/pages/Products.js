@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 
 import AllProducts from '../components/content/AllProducts'
 import Toolbar from '../components/tools/Toolbar'
@@ -18,4 +18,4 @@ const Products = () => {
     );
 }
 
-export default memo(Products);
+export default Products;

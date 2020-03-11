@@ -1,17 +1,20 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { CategoryContext } from '../../contexts/category.context';
+import { CategoryContext, CategoryActionsContext } from '../../contexts/category.context';
 
 import ItemCard from '../tools/ItemCard';
 import GridContainer from '../layout/GridContainer';
 
 const AllCategories = () => {
-    const { getCategories, categories, fetchingCategories, loadingCategories } = useContext(CategoryContext);
+    const { categories, fetchingCategories } = useContext(CategoryContext);
+    const { getCategories, loadingCategories } = useContext(CategoryActionsContext);
 
     useEffect(() => {
+      if(categories.length === 0) {
         loadingCategories();
         getCategories();
+      }
     }, []);
 
     return (

@@ -35,14 +35,14 @@ const reducer = (state, action) => {
         case DELETE_CATEGORY: {
             return {
                 ...state,
-                categories: state.categories.filter(category => category.id !== action.payload)
+                categories: state.categories.filter(category => category.id != action.payload)
             }
         }
 
         case EDIT_CATEGORY: {
             return {
                 ...state,
-                categories: state.categories.map(category => category.id === action.id) ? [action.payload.updatedCategory] : state.categories,
+                categories: state.categories.map(category => (category.id == action.payload.updatedCategory.id ? action.payload.updatedCategory : category)),
                 category: action.payload.updatedCategory,
                 categoryMsg: action.payload.msg
             }
