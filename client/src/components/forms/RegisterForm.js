@@ -1,4 +1,4 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, memo} from 'react';
 import {Link} from 'react-router-dom';
 
 import {AuthContext, AuthActionsContext} from '../../contexts/auth.context';
@@ -19,7 +19,6 @@ const RegisterForm = () => {
 
     useEffect(() => {
         checkUsername(newUser);
-
         return () => {
             clearAuthMessages();
         };
@@ -42,4 +41,4 @@ const RegisterForm = () => {
     );
 };
 
-export default RegisterForm;
+export default memo(RegisterForm);

@@ -7,7 +7,7 @@ import '../../styles/modals/DeleteModal.scss'
 const DeleteProduct = (props) => {
     const handleDelete = (e) => {
         e.preventDefault();
-        props.deleteFunction(props.id);
+        props.deletefunction(props.id);
         props.history.goBack();
     }    
 

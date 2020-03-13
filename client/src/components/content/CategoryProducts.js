@@ -17,12 +17,12 @@ const CategoryProducts = (props) => {
         return () => {
             clearProducts()
         };
-    }, []);
+    }, [props.match.params.id]);
 
     return (
         <GridContainer>
             {products.map(product => (
-                <Link to={`/products/${product.id}`}>
+                <Link key={product.id} to={`/products/${product.id}`}>
                     <ItemCard
                         key={product.id}
                         name={product.product_name}

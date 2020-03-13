@@ -150,23 +150,25 @@ export const ProductsProvider = (props) => {
 
     const clearProducts = () => dispatch({type: CLEAR_PRODUCTS})
   
+    const actions = {
+        clearProductMessages,
+        totalQty, 
+        sortAZ, 
+        sortZA, 
+        getProducts, 
+        getProduct, 
+        addProduct, 
+        deleteProduct, 
+        editProduct, 
+        loadingProducts,
+        clearProduct,
+        getCategoryProducts,
+        clearProducts
+    }
+
     return (
         <ProductsContext.Provider value={state}>
-            <ProductsActionsContext.Provider value={{
-                clearProductMessages, 
-                totalQty, 
-                sortAZ, 
-                sortZA, 
-                getProducts, 
-                getProduct, 
-                addProduct, 
-                deleteProduct, 
-                editProduct, 
-                loadingProducts,
-                clearProduct,
-                getCategoryProducts,
-                clearProducts
-            }}>
+            <ProductsActionsContext.Provider value={actions}>
                 {props.children}
             </ProductsActionsContext.Provider>
         </ProductsContext.Provider>

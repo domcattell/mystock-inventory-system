@@ -28,6 +28,7 @@ const Routes = () => {
 
     useEffect(() => {
         checkAuth();
+        console.log("test")
     }, [])
 
     return (

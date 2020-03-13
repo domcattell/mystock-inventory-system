@@ -11,7 +11,7 @@ import EditCategoryForm from '../components/forms/EditCategoryForm';
 import CategoryProducts from '../components/content/CategoryProducts';
 
 const Category = (props) => {
-    const { category, fetchingCategories, categoryMsg } = useContext(CategoryContext);
+    const { category, fetchingCategories } = useContext(CategoryContext);
     const { deleteCategory, clearCategoryMessages } = useContext(CategoryActionsContext);
 
     useEffect(() => {
@@ -22,8 +22,6 @@ const Category = (props) => {
 
     return (
         <PageContainer>
-            {categoryMsg ? <h4>{categoryMsg.error}</h4> :
-            <div>
             <PageHeader title={fetchingCategories ? "Loading..." : category.category} />
             <PageContent>
                 <Toolbar
@@ -40,8 +38,6 @@ const Category = (props) => {
             <PageContent>
                 <CategoryProducts {...props} />
             </PageContent>
-            </div>
-            }
         </PageContainer>
     );
 }

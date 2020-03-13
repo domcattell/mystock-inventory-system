@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, memo } from 'react';
 import {Link} from 'react-router-dom';
 
 import { AuthContext, AuthActionsContext } from '../../contexts/auth.context';
@@ -42,4 +42,4 @@ const LoginForm = (props) => {
     );
 };
 
-export default LoginForm;
+export default memo(LoginForm);

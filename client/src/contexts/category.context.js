@@ -99,17 +99,19 @@ export const CategoryProvider = (props) => {
 
     const clearCategoryMessages = () => {dispatch({type: CLEAR_MESSAGES})}
 
+    const actions = {
+        clearCategoryMessages, 
+        editCategory, 
+        loadingCategories, 
+        deleteCategory, 
+        addCategory, 
+        getCategories,
+        getCategory
+    };
+
     return (
         <CategoryContext.Provider value={state}>
-            <CategoryActionsContext.Provider value={{
-                clearCategoryMessages, 
-                editCategory, 
-                loadingCategories, 
-                deleteCategory, 
-                addCategory, 
-                getCategories,
-                getCategory,
-            }}>
+            <CategoryActionsContext.Provider value={actions}>
                 {props.children}
             </CategoryActionsContext.Provider>
         </CategoryContext.Provider>

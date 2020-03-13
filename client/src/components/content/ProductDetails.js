@@ -13,7 +13,7 @@ const ProductPageDetails = (props) => {
     useEffect(() => {
         loadingProducts();
         getProduct(props.match.params.id);
-    }, []);
+    }, [props.match.params]);
 
     return (
         <div className={`ProductDetails ${fetchingProducts && "ProductDetails--loading"}`}>

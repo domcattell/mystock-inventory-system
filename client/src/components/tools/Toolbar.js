@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
-import { DropdownButton, Dropdown } from 'react-bootstrap';
+import { Dropdown } from 'react-bootstrap';
 
 import { ProductsContext, ProductsActionsContext } from '../../contexts/products.context';
 
 import useToggle from '../../hooks/useToggle';
 
 import DeleteModal from '../modals/DeleteModal';
+import Search from '../tools/Search';
 
 import '../../styles/tools/Toolbar.scss';
 
@@ -25,7 +26,7 @@ const Toolbar = (props) => {
                         show={deleteModal}
                         onHide={toggleDeleteModal}
                         id={props.id}
-                        deleteFunction={props.deleteFunction}
+                        deletefunction={props.deleteFunction}
                     // the props on this component are passed down from the Toolbar component,
                     // and so none of these props have to be adjusted. 
                     />
@@ -63,6 +64,14 @@ const Toolbar = (props) => {
                     </Dropdown>
                 </div>
             }
+
+            {props.search &&
+             <Search 
+                list={props.searchList}
+                itemProperty={props.itemProperty}
+                itemLink={props.itemLink}
+                placeholderText={props.placeholderText}
+             />}
         </div>
     );
 };

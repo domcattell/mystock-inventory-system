@@ -65,8 +65,6 @@ const reducer = (state, action) => {
             }
 
         case EDIT_ITEM:
-            const editedProduct = action.payload.updatedProduct[0]
-            console.log(editedProduct.id)
             return {
                 ...state,
                 products: state.products.map(product => (product.id == action.payload.updatedProduct[0].id ? action.payload.updatedProduct[0] : product)),

@@ -38,19 +38,19 @@ const Navbar = (props) => {
                     </NavLink>
                 </li>
                 <li onClick={toggleAddProduct} className="Navbar__item">
-                    <Link className="Navbar__link">
+                    <button className="Navbar__link">
                         <i className="fas fa-cart-plus"></i>Add Product
-                    </Link>
+                    </button>
                 </li>
                 <li onClick={toggleAddCategory} className="Navbar__item">
-                    <Link className="Navbar__link" >
+                    <button className="Navbar__link" >
                         <i className="fas fa-plus"></i>Add Category
-                    </Link>
+                    </button>
                 </li>
                 <li className="Navbar__item">
-                    <Link className="Navbar__link" onClick={logout}>
+                    <button className="Navbar__link" onClick={logout}>
                         <i className="fas fa-sign-out-alt"></i>Sign Out
-                    </Link>
+                    </button>
                 </li>
             </ul>
             <AddProduct show={addProductShowing} onHide={toggleAddProduct} />

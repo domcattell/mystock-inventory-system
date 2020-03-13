@@ -1,10 +1,11 @@
-import React, {  useContext } from 'react';
+import React, { useContext } from 'react';
 
 import { AuthContext } from '../../contexts/auth.context';
 
 import useToggle from '../../hooks/useToggle'
 
 import Navbar from './Navbar'
+import Search from '../tools/Search';
 
 import '../../styles/navbar/Menubar.scss'
 

@@ -10,7 +10,7 @@ import Toolbar from '../components/tools/Toolbar';
 import EditProductForm from '../components/forms/EditProductForm';
 
 const Product = (props) => {
-    const { product, fetchingProducts, productsMsg } = useContext(ProductsContext);
+    const { product, fetchingProducts } = useContext(ProductsContext);
     const { deleteProduct, clearProductMessages } = useContext(ProductsActionsContext);
     const { product_name } = product;
 
@@ -22,8 +22,6 @@ const Product = (props) => {
 
     return (
         <PageContainer>
-            {productsMsg ? <h4>{productsMsg.error}</h4> :
-            <div>
             <PageHeader title={fetchingProducts ? "Loading..." : product_name} />
             <PageContent>
                 <Toolbar
@@ -34,8 +32,6 @@ const Product = (props) => {
                 <ProductDetails {...props} />
             </PageContent> 
             <EditProductForm {...props} /> 
-            </div>
-            }
         </PageContainer>
     );
 }

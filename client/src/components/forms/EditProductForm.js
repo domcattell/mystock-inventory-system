@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, memo } from 'react';
 import ReactLoading from 'react-loading';
 
 import { ProductsContext, ProductsActionsContext } from '../../contexts/products.context';
@@ -99,4 +99,4 @@ const EditProductForm = (props) => {
     );
 }
 
-export default EditProductForm;
+export default memo(EditProductForm);

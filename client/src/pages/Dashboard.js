@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import PageHeader from '../components/layout/PageHeader'
 import PageContainer from '../components/layout/PageContainer'
@@ -22,8 +22,8 @@ const Dashboard = () => {
         if(categories.length === 0) {
             getCategories()
         }
-    }, [products]);
-
+    }, [products, categories]);
+    
     return (
         <PageContainer>
             <PageHeader title="Dashboard" />

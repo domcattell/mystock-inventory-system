@@ -13,7 +13,7 @@ const ToastMessage = (props) => {
         <Toast
             show={props.showToast}
             onClose={closeToast}
-            style={{ position: "absolute", top: 50, right: 5, position: "fixed" }}
+            style={{ top: 50, right: 5, position: "fixed" }}
             delay={5000}
             autohide
         >
@@ -30,7 +30,7 @@ const ToastMessage = (props) => {
             </Toast.Header>
             {/* Same as the header, but instead displays the server message */}
             <Toast.Body>{
-                props.message.success ?
+                    props.message.success ?
                     props.message.success :
                     props.message.error
                     && props.message.error}

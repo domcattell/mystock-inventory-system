@@ -15,12 +15,12 @@ const AllCategories = () => {
         loadingCategories();
         getCategories();
       }
-    }, []);
+    }, [categories]);
 
     return (
         <GridContainer>
             {categories.map(category => (
-                <Link to={`/categories/${category.id}`}>
+                <Link key={category.id} to={`/categories/${category.id}`}>
                     <ItemCard
                         key={category.id}
                         name={category.category}

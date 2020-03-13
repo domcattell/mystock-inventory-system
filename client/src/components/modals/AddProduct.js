@@ -10,7 +10,6 @@ import { CategoryContext, CategoryActionsContext } from '../../contexts/category
 import ToastMessage from '../layout/ToastMessage';
 
 import '../../styles/modals/AddProduct.scss'
-import { CATEGORIES_LOADING } from '../../actions/types';
 
 const AddProduct = (props) => {
   const { categories } = useContext(CategoryContext);
@@ -53,10 +52,10 @@ const AddProduct = (props) => {
       <Modal.Body>
         <form className="AddProduct__form" onSubmit={handleSubmit}>
           <label className="AddProduct__form__label" htmlFor="name">Product Name:</label>
-          <input className="AddProduct__form__text" type="text" onChange={handleChange} name="name" value={newProduct.name} required />
+          <input className="AddProduct__form__text" type="text" onChange={handleChange} name="name" value={newProduct.name || ""} required />
 
           <label className="AddProduct__form__label" htmlFor="category">Category:</label>
-          <select className="AddProduct__form__text" value={newProduct.category} name="category" onChange={handleChange} required>
+          <select className="AddProduct__form__text" value={newProduct.category || ""} name="category" onChange={handleChange} required>
             <option defaultValue="" hidden></option>
             {categories.map(c => (
               <option key={c.category} value={c.category}>{c.category}</option>
@@ -65,12 +64,12 @@ const AddProduct = (props) => {
 
           <div className="AddProduct__form__input-wrapper">
             <label className="AddProduct__form__label" htmlFor="price">Price:</label>
-            <input className="AddProduct__form__number" type="number" onChange={handleChange} name="price" value={newProduct.price} required />
+            <input className="AddProduct__form__number" type="number" onChange={handleChange} name="price" value={newProduct.price || ""} required />
           </div>
 
           <div className="AddProduct__form__input-wrapper">
             <label className="AddProduct__form__label" htmlFor="qty">Quantity:</label>
-            <input className="AddProduct__form__number" type="number" onChange={handleChange} name="qty" value={newProduct.qty} required />
+            <input className="AddProduct__form__number" type="number" onChange={handleChange} name="qty" value={newProduct.qty || ""} required />
           </div>
 
           <button className="AddProduct__form__btn">Add</button>

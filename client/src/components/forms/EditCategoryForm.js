@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, memo } from 'react';
 
 import { CategoryContext, CategoryActionsContext } from '../../contexts/category.context';
 
@@ -18,7 +18,7 @@ const EditCategoryForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         editCategory(categoryName, props.match.params.id);
-        toast == false && setToast();
+        toast === false && setToast();
     }
 
     return (
@@ -39,4 +39,4 @@ const EditCategoryForm = (props) => {
     );
 };
 
-export default EditCategoryForm;
+export default memo(EditCategoryForm);

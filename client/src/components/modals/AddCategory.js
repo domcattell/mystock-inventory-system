@@ -44,7 +44,7 @@ const AddCategory = (props) => {
       <Modal.Body>
         <form className="AddCategory__form" onSubmit={handleSubmit}>
             <label className="AddCategory__form__label" htmlFor="category">Category:</label>
-            <input className="AddCategory__form__input" type="text" name="category" onChange={handleChange} value={newCategory.category} required />
+            <input className="AddCategory__form__input" type="text" name="category" onChange={handleChange} value={newCategory.category || ""} required />
             <button className="AddCategory__form__btn" type="submit" >Add</button>
         </form>
       </Modal.Body>

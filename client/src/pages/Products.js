@@ -10,10 +10,7 @@ const Products = () => {
     return (
         <PageContainer>
             <PageHeader title="Products" />
-            <PageContent>
-            <Toolbar sort={true}/>
             <AllProducts />
-            </PageContent>
         </PageContainer>
     );
 }

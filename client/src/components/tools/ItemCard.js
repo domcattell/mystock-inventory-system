@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import ReactLoading from 'react-loading'
 
 import '../../styles/tools/ItemCard.scss'
@@ -22,7 +22,7 @@ const ItemCard = (props) => {
             }
         </div>
     );
-}
+};
 
 export default ItemCard;
 
