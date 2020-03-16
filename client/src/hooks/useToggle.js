@@ -5,7 +5,7 @@ const useToggleState = (init) => {
     const toggle = () => {
         setState(!state);
     }
-    return [state, toggle] 
+    return [state, toggle];
 }
 
 export default useToggleState;

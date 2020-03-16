@@ -14,7 +14,7 @@ const CategoryDetails = (props) => {
     useEffect(() => {
         loadingCategories();
         getCategory(props.match.params.id);
-    },[props.match.params.id])
+    },[props.match.params.id]);
 
     return (
         <div className={`CategoryDetails ${fetchingCategories && "CategoryDetails--loading"}`}>

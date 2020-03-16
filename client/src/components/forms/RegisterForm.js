@@ -9,8 +9,8 @@ import '../../styles/forms/RegisterForm.scss';
 
 const RegisterForm = () => {
     const [newUser, handleChange] = useRegisterInput("");
-    const { checkUsername, authMsg } = useContext(AuthContext);
-    const { registerUser, clearAuthMessages } = useContext(AuthActionsContext);
+    const { authMsg } = useContext(AuthContext);
+    const { registerUser, clearAuthMessages, checkUsername, } = useContext(AuthActionsContext);
 
     const handleSubmit = (e) => {
         e.preventDefault(); 
@@ -39,6 +39,6 @@ const RegisterForm = () => {
             </form>
         </div>
     );
-};
+}
 
 export default memo(RegisterForm);

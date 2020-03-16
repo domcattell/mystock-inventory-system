@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { ProductsContext, ProductsActionsContext } from '../../contexts/products.context';
 
 import ItemCard from '../tools/ItemCard';
-import GridContainer from '../layout/GridContainer'
+import GridContainer from '../layout/GridContainer';
 
 const CategoryProducts = (props) => {
     const { products, fetchingProducts } = useContext(ProductsContext);
@@ -12,7 +12,7 @@ const CategoryProducts = (props) => {
 
     useEffect(() => {
         loadingProducts();
-        getCategoryProducts(props.match.params.id)
+        getCategoryProducts(props.match.params.id);
 
         return () => {
             clearProducts()

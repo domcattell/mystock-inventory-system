@@ -1,28 +1,29 @@
 import React from 'react';
-import ReactLoading from 'react-loading'
+import ReactLoading from 'react-loading';
 
-import '../../styles/tools/ItemCard.scss'
+import '../../styles/tools/ItemCard.scss';
 
 const ItemCard = (props) => {
+    const { itemOne, itemTwo, itemThree, itemOneContent, itemTwoContent, itemThreeContent, fetching, name } = props;
+
     return (
-        <div className={`${props.className} CardRoot ${props.fetching && "loading"}`}>
-            {props.fetching ? <ReactLoading type="bars" color="gray" size="sm"/> :
-            <div>
-                <div className="CardName">
-                    <i className="fas fa-list-ul CardIcon"></i>
-                    <h4>{props.name}</h4>
+        <div className={`CardRoot ${props.fetching && "loading"}`}>
+            {fetching ? <ReactLoading type="bars" color="gray" size="sm" /> :
+                <div>
+                    <div className="CardName">
+                        <i className="fas fa-list-ul CardIcon"></i>
+                        <h4>{name}</h4>
+                    </div>
+                    <div className="CardDetails">
+                        {itemOne && <h5>{itemOne}: {itemOneContent}</h5>}
+                        {itemTwo && <h5>{itemTwo}: {itemTwoContent}</h5>}
+                        {itemThree && <h5>{itemThree}: {itemThreeContent}</h5>}
+                    </div>
                 </div>
-                <div className="CardDetails">
-                    {props.itemOne && <h5>{props.itemOne}: {props.itemOneContent}</h5>}
-                    {props.itemTwo && <h5>{props.itemTwo}: {props.itemTwoContent}</h5>}
-                    {props.itemThree && <h5>{props.itemThree}: {props.itemThreeContent}</h5>}
-                </div>
-            </div>
-            
             }
         </div>
     );
-};
+}
 
 export default ItemCard;
 

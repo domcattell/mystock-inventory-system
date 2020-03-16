@@ -2,16 +2,17 @@ import React, { memo } from 'react';
 import { Toast } from 'react-bootstrap';
 
 const ToastMessage = (props) => {
+    const { toggleToast, clear, showToast, message } = props;
 
     //toggle the toast state to false, and clear the server message
     const closeToast = () => {
-        props.toggleToast();
-        props.clear();
+        toggleToast();
+        clear();
     }
 
     return (
         <Toast
-            show={props.showToast}
+            show={showToast}
             onClose={closeToast}
             style={{ top: 50, right: 5, position: "fixed" }}
             delay={5000}
@@ -22,18 +23,18 @@ const ToastMessage = (props) => {
             as the header depending on the server message. This could also be it's own
             function that returns the message based on the props.message object */}
                 <strong className="mr-auto">{
-                    props.message.success ?
+                    message.success ?
                         "Success" :
-                        props.message.error
+                        message.error
                         && "Error "}
                 </strong>
             </Toast.Header>
             {/* Same as the header, but instead displays the server message */}
             <Toast.Body>{
-                    props.message.success ?
-                    props.message.success :
-                    props.message.error
-                    && props.message.error}
+                message.success ?
+                    message.success :
+                    message.error
+                    && message.error}
             </Toast.Body>
         </Toast>
     );

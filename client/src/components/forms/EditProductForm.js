@@ -12,7 +12,6 @@ import ToastMessage from '../layout/ToastMessage';
 import '../../styles/forms/EditForm.scss';
 
 const EditProductForm = (props) => {
-
     const { editProduct, clearProductMessages } = useContext(ProductsActionsContext);
     const { product, fetchingProducts, productsMsg } = useContext(ProductsContext);
     const { getCategories } = useContext(CategoryActionsContext);
@@ -47,7 +46,7 @@ const EditProductForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         editProduct(updateProduct, props.match.params.id);
-        toast === false && setToast()
+        toast === false && setToast();
     };
 
     return (

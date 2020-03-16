@@ -1,8 +1,8 @@
 // $primarycColour: #403F59;
 // $primaryaAltColour: #011140;
-$primaryColour: #B34B4B;
+$primaryColour: #b34b4b;
 $primaryAltColour: #733030;
-$secondaryColour: #F26666;
+$secondaryColour: #f26666;
 $secondaryHover: rgb(180, 79, 79);
 $fontSecondaryColour: rgb(236, 151, 148);
 $fontPrimaryColour: rgb(236, 151, 148);
@@ -10,119 +10,138 @@ $grey: rgb(221, 221, 221);
 $menuTextColour: rgb(85, 82, 82);
 $menuTextColourHover: rgb(241, 241, 241);
 $lightTxtColour: rgb(139, 139, 139);
-$altColour: #B34B4B;
-
+$altColour: #b34b4b;
 
 //**default element styles**//
 @mixin defaultBtn($width, $margin-top) {
-    border: none;
-    background-color: $secondaryColour;
-    color: white;
-    padding: 10px 10px;
-    border-radius: 5px;
-    transition: all 0.5s ease;
-    margin-top: $margin-top;
-    width: $width;
+	border: none;
+	background-color: $secondaryColour;
+	color: white;
+	padding: 10px 10px;
+	border-radius: 5px;
+	transition: all 0.5s ease;
+	margin-top: $margin-top;
+	width: $width;
 
-        &:hover {
-            background-color: $secondaryHover;
-        }
+	&:hover {
+		background-color: $secondaryHover;
+	}
 }
 
 @mixin deletetBtn($width, $margin) {
-    border: none;
-    background-color: $secondaryColour;
-    color: white;
-    padding: 10px 10px;
-    border-radius: 5px;
-    transition: all 0.5s ease;
-    margin-top: $margin;
-    width: $width;
+	border: none;
+	background-color: $secondaryColour;
+	color: white;
+	padding: 10px 10px;
+	border-radius: 5px;
+	transition: all 0.5s ease;
+	margin-top: $margin;
+	width: $width;
 
-        &:hover {
-            background-color: $secondaryHover;
-        }
+	&:hover {
+		background-color: $secondaryHover;
+	}
 }
 
 @mixin defaultInput($width, $padding) {
-    width: $width;
-    margin-bottom: 12px;
-    padding: $padding;
-    border-radius: 3px;
-    border: none;
-    border: 1px solid $grey;
-    background-color: rgb(243, 243, 243);
+	width: $width;
+	margin-bottom: 12px;
+	padding: $padding;
+	border-radius: 3px;
+	border: none;
+	border: 1px solid $grey;
+	background-color: rgb(243, 243, 243);
 }
 //**default element styles**//
 
 //**Global layout styles**//
 .PageContainer {
-    height: 100vh;
-    background-color: rgb(243, 243, 243);
-    overflow: scroll;
-    position: relative;
-    padding-bottom: 30px;
+	height: 100vh;
+	background-color: rgb(245, 245, 245);
+	overflow: auto;
+	padding-bottom: 30px;
+
+	@media (max-width: 576px) {
+        height: -webkit-fill-available;
+	}
 }
 
 .PageHeader {
-    padding-top: 30px;
-    padding-left: 30px;
-    padding-right: 30px;
-    display: flex;
-    position: relative;
+	padding-top: 30px;
+	padding-left: 30px;
+	padding-right: 30px;
 
-    &__header {
-        margin: 0;
-        font-size: 32px;
-        color: $menuTextColour;
-    }
+	&__header {
+		margin: 0;
+		font-size: 32px;
+		color: $menuTextColour;
+	}
+
+	@media (max-width: 576px) {
+		text-align: center;
+	}
 }
 
 .PageContent {
-    margin: 30px 30px 30px 30px;
-    background-color: white;
-    border: 1px solid $grey;
-    padding: 15px;
+	margin: 30px 30px 30px 30px;
+	background-color: white;
+	border: 1px solid $grey;
+	padding: 15px;
 
-    @media (max-width: 800px) {
-        margin: 0 0 30px 0;
-    }
+	@media (max-width: 576px) {
+		margin: 0;
+		margin-bottom: 15px;
+		margin-top: 30px;
+		border: none;
+		border-top: 1px solid $grey;
+		border-bottom: 1px solid $grey;
+	}
 }
 
 .AuthPageContainer {
-    //background SVG from SVGBackgrounds.com
-    background-color: #403f59;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23f26666' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23aa4848' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23dd5d5d' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23b84e4e' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%23c85454' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%23c65454' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%23b44c4c' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%23d55a5a' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%23a04343' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%23e36060' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%238c3b3b' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23f26666' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
-    background-attachment: fixed;
-    background-size: cover;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+	//background SVG from SVGBackgrounds.com
+	background-color: #403f59;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1600 900'%3E%3Cpolygon fill='%23f26666' points='957 450 539 900 1396 900'/%3E%3Cpolygon fill='%23aa4848' points='957 450 872.9 900 1396 900'/%3E%3Cpolygon fill='%23dd5d5d' points='-60 900 398 662 816 900'/%3E%3Cpolygon fill='%23b84e4e' points='337 900 398 662 816 900'/%3E%3Cpolygon fill='%23c85454' points='1203 546 1552 900 876 900'/%3E%3Cpolygon fill='%23c65454' points='1203 546 1552 900 1162 900'/%3E%3Cpolygon fill='%23b44c4c' points='641 695 886 900 367 900'/%3E%3Cpolygon fill='%23d55a5a' points='587 900 641 695 886 900'/%3E%3Cpolygon fill='%23a04343' points='1710 900 1401 632 1096 900'/%3E%3Cpolygon fill='%23e36060' points='1710 900 1401 632 1365 900'/%3E%3Cpolygon fill='%238c3b3b' points='1210 900 971 687 725 900'/%3E%3Cpolygon fill='%23f26666' points='943 900 1210 900 971 687'/%3E%3C/svg%3E");
+	background-attachment: fixed;
+	background-size: cover;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
     font-family: 'Roboto', sans-serif;
+    
+    @media (max-width: 576px) {
+        height: -webkit-fill-available;
+	}
 
-    &__logo-header {
-        color: white;
-        font-size: 42px;
-        font-weight: 700;
-        margin: 20px;
-    }
+	&__logo-header {
+		color: white;
+		font-size: 42px;
+		font-weight: 700;
+		margin: 20px;
+	}
 
-    &__sub-text {
-        font-size: 18px;
-        font-weight: 400;
-    }
+	&__sub-text {
+		font-size: 18px;
+		font-weight: 400;
+	}
 }
 
 .GridContainer {
-    margin: 30px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
-    grid-gap: 30px 30px;
+	margin: 30px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(370px, 1fr));
+	grid-gap: 30px 30px;
 
-    a:hover {
-        text-decoration: none;
-    }
+	a:hover {
+		text-decoration: none;
+	}
+
+	@media (max-width: 576px) {
+		margin: 0;
+		margin-top: 30px;
+		grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+	}
 }
 //**Global layout styles**//

@@ -1,7 +1,8 @@
 html {
     box-sizing: border-box;
     overflow: hidden;
-    font-size: 16px; 
+    font-size: 16px;
+    -webkit-overflow-scrolling: touch;
   }
   
   *, *:before, *:after {

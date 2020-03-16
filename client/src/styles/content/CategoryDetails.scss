@@ -1,56 +1,64 @@
 @import '../GlobalStyles.scss';
 
 .CategoryDetails {
-    color: $menuTextColour;
-    margin: 30px 30px 0 30px;
+	color: $menuTextColour;
+	margin: 30px 30px 0 30px;
 
-    &--loading {
-        height: 300px;
-    }
+	@media (max-width: 576px) {
+		margin: 0;
+		margin-top: 30px;
+	}
 
-    &__header {
-        margin-bottom: 20px;
-        font-size: 22px;
-    }
+	&--loading {
+		height: 300px;
+	}
 
-    &__item {
-        border-bottom: 1px solid rgb(235, 235, 235);
-        padding: 15px 0;
-    }
+	&__header {
+		margin-bottom: 20px;
+		font-size: 22px;
+	}
 
-    &__item:first-child {
-        border-top: 1px solid rgb(235, 235, 235);
-    }
+	&__item {
+		border-bottom: 1px solid rgb(235, 235, 235);
+		padding: 15px 0;
+	}
 
-    &__sub-heading {
-        font-size: 16px;
-    }
+	&__item:last-child {
+		border-bottom: none;
+	}
 
-    &__content {
-        color: $lightTxtColour;
-        float: right;
-    }
+	&__sub-heading {
+		font-size: 16px;
+	}
 
-    .fa-chevron-circle-right {
-        margin-right: 10px;
-    }
+	&__content {
+		color: $lightTxtColour;
+		float: right;
+
+		@media (max-width: 576px) {
+			float: initial;
+			display: block;
+		}
+	}
+
+	.fa-chevron-circle-right {
+		margin-right: 10px;
+	}
 }
 
-
 .CategoryDetails__form {
-    text-align: center;
+	text-align: center;
 
-    &__label {
-        padding-right: 15px;
-    }
+	&__label {
+		padding-right: 15px;
+	}
 
-    &__input {
-        @include defaultInput(300px, 9px);
-    }
+	&__input {
+		@include defaultInput(300px, 9px);
+	}
 
-    &__submit-btn {
-        @include defaultBtn(140px, 0);
-        margin-left: 15px;
-        
-    }
+	&__submit-btn {
+		@include defaultBtn(140px, 0);
+		margin-left: 15px;
+	}
 }

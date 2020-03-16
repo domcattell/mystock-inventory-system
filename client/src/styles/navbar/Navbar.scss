@@ -3,54 +3,56 @@
 .Navbar {
     width: 0px;
     height: 100vh;
-    transform: translateX(-100%);
-    transition: all 0.5s ease;
-    display: flex;
-    justify-content: center;
+    transition: width 0.3s ease;
+    -webkit-transition: width .03s linear;
+    -webkit-transition: width 0.3s ease;
     font-size: 15px;
     float: left;
     overflow-x: hidden;
     border-right: 1px solid $grey;
+    background-color: white;
 
-    &--open {
-        transform: translateX(0);
-        float: left;
-        width: 220px;
+    @media (max-width: 576px) {
+        height: -webkit-fill-available;
+	}
     
-        @media (max-width: 800px) {
-            width: 100%;
+    &--open {
+        width: 220px;
+
+        @media (max-width: 576px) {
+            width: 60%;
         }
     }
 
     &__link {
         color: $menuTextColour;
         display: block;
-        width: 100%;
         padding: 14px;
 
         &:hover {
             color: $menuTextColour;
             text-decoration: none;
+            background-color: rgb(240, 240, 240);
+        }
+
+        @media (max-width: 576px) {
+            font-size: 18px;
+            padding: 12px 18px;
+            height: max-content;
+            overflow: hidden;
         }
     }
 
     &__ul {
-        width: 220px;
-        position: absolute;
+        width: 100%;
+        white-space: nowrap;
+        display: flex;
+        flex-direction: column;
     }
 
     &__item {
         width: 100%;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-
-        &:hover {
-            background-color: rgb(245, 245, 245);
-        }
-
-        &:active {
-            background-color: rgb(238, 238, 238);
-        }
+        display: inline-block;
 
         .fas {
             margin-right: 14px;
@@ -62,6 +64,7 @@
             border: none;
             background-color: inherit;
             text-align: left;
+            width: 100%;
             
             &:focus {
                 outline: none;

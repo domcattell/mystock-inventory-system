@@ -53,6 +53,6 @@ const ProductPageDetails = (props) => {
             }
         </div>
     );
-};
+}
 
 export default ProductPageDetails;

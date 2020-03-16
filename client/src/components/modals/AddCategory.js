@@ -3,10 +3,10 @@ import { Modal } from 'react-bootstrap';
 
 import { CategoryContext, CategoryActionsContext } from '../../contexts/category.context';
 
-import ToastMessage from '../layout/ToastMessage';
-
 import useInputState from '../../hooks/useInputState';
 import useToggle from '../../hooks/useToggle';
+
+import ToastMessage from '../layout/ToastMessage';
 
 import '../../styles/modals/AddCategory.scss';
 
@@ -43,9 +43,9 @@ const AddCategory = (props) => {
       </Modal.Header>
       <Modal.Body>
         <form className="AddCategory__form" onSubmit={handleSubmit}>
-            <label className="AddCategory__form__label" htmlFor="category">Category:</label>
-            <input className="AddCategory__form__input" type="text" name="category" onChange={handleChange} value={newCategory.category || ""} required />
-            <button className="AddCategory__form__btn" type="submit" >Add</button>
+          <label className="AddCategory__form__label" htmlFor="category">Category:</label>
+          <input className="AddCategory__form__input" type="text" name="category" onChange={handleChange} value={newCategory.category || ""} required />
+          <button className="AddCategory__form__btn" type="submit" >Add</button>
         </form>
       </Modal.Body>
       <Modal.Footer>
@@ -60,6 +60,6 @@ const AddCategory = (props) => {
       /> : null}
     </Modal>
   );
-}
+};
 
 export default AddCategory;

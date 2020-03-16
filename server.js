@@ -1,6 +1,4 @@
-
 const express = require("express"),
-
 //routes
 productRoutes = require("./routes/api/products"),
 authRoutes = require("./routes/api/auth")
@@ -16,9 +14,9 @@ app.use(express.urlencoded({
 const port = process.env.PORT || 5000;
 
 //routes setup
-app.use('/api/', authRoutes)
-app.use('/api/products/', productRoutes)
-app.use('/api/products/categories', categoryRoutes)
+app.use('/api/', authRoutes);
+app.use('/api/products/', productRoutes);
+app.use('/api/products/categories', categoryRoutes);
 
 // app.get('*', (req, res) => {
 //     res.sendfile(path.join(__dirname, './client/public', 'index.html'));
@@ -26,7 +24,7 @@ app.use('/api/products/categories', categoryRoutes)
 
 app.listen(port, () => {
     console.log("server started")
-})
+});
 
 
 

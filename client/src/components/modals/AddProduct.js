@@ -1,17 +1,18 @@
 import React, { useContext, useEffect } from 'react';
 import { Modal } from 'react-bootstrap';
 
-import useToggle from '../../hooks/useToggle';
-import useInputState from '../../hooks/useInputState';
-
 import { ProductsContext, ProductsActionsContext } from '../../contexts/products.context';
 import { CategoryContext, CategoryActionsContext } from '../../contexts/category.context';
 
+import useToggle from '../../hooks/useToggle';
+import useInputState from '../../hooks/useInputState';
+
 import ToastMessage from '../layout/ToastMessage';
 
-import '../../styles/modals/AddProduct.scss'
+import '../../styles/modals/AddProduct.scss';
 
 const AddProduct = (props) => {
+  const {onHide} = props;
   const { categories } = useContext(CategoryContext);
   const { getCategories } = useContext(CategoryActionsContext);
   const { addProduct, clearProductMessages } = useContext(ProductsActionsContext);
@@ -32,7 +33,7 @@ const AddProduct = (props) => {
   }, [])
 
   const hideModal = () => {
-    props.onHide();
+    onHide();
     toast && setToast()
     reset();
   }
@@ -87,6 +88,6 @@ const AddProduct = (props) => {
       /> : null}
     </Modal>
   );
-}
+};
 
 export default AddProduct;

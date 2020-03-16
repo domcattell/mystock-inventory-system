@@ -1,23 +1,23 @@
 import React, { useContext } from 'react';
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 
-import { AuthActionsContext } from '../../contexts/auth.context'
+import { AuthActionsContext } from '../../contexts/auth.context';
 
 import useToggle from '../../hooks/useToggle';
 
 import AddProduct from '../../components/modals/AddProduct';
 import AddCategory from '../../components/modals/AddCategory';
 
-import '../../styles/navbar/Navbar.scss'
+import '../../styles/navbar/Navbar.scss';
 
 const Navbar = (props) => {
-    const { logoutUser } = useContext(AuthActionsContext)
+    const { logoutUser } = useContext(AuthActionsContext);
     const [addProductShowing, toggleAddProduct] = useToggle(false);
     const [addCategoryShowing, toggleAddCategory] = useToggle(false);
 
     const logout = () => {
         logoutUser();
-    }
+    };
 
     return (
         <nav className={props.visible ? "Navbar Navbar--open" : "Navbar"}>

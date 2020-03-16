@@ -119,6 +119,6 @@ export const AuthProvider = (props) => {
             </AuthActionsContext.Provider>
         </AuthContext.Provider>
     );
-};
+}
 
 

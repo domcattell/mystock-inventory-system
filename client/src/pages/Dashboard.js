@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 
-import PageHeader from '../components/layout/PageHeader'
-import PageContainer from '../components/layout/PageContainer'
-import PageContent from '../components/layout/PageContent'
-import GridContainer from '../components/layout/GridContainer';
-import Widget from '../components/tools/Widget'
-
 import { ProductsContext, ProductsActionsContext } from '../contexts/products.context';
 import { CategoryContext, CategoryActionsContext } from '../contexts/category.context';
+
+import PageHeader from '../components/layout/PageHeader';
+import PageContainer from '../components/layout/PageContainer';
+import PageContent from '../components/layout/PageContent';
+import GridContainer from '../components/layout/GridContainer';
+import Widget from '../components/tools/Widget';
 
 const Dashboard = () => {
     const { products, qtyAmount } = useContext(ProductsContext);
@@ -18,10 +18,10 @@ const Dashboard = () => {
     useEffect(() => {
         if(products.length === 0) {
             getProducts();
-        }
+        };
         if(categories.length === 0) {
-            getCategories()
-        }
+            getCategories();
+        };
     }, [products, categories]);
     
     return (
@@ -36,6 +36,6 @@ const Dashboard = () => {
             </PageContent>
         </PageContainer>
     );
-};
+}
 
 export default Dashboard;

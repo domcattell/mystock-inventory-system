@@ -17,7 +17,7 @@ export const ProductsProvider = (props) => {
         productsMsg: null
     };
 
-    const [state, dispatch] = useReducer(productReducer, initialState)
+    const [state, dispatch] = useReducer(productReducer, initialState);
 
     const loadingProducts = () => {
         dispatch({
@@ -148,7 +148,7 @@ export const ProductsProvider = (props) => {
 
     const clearProductMessages = () => dispatch({type: CLEAR_MESSAGES});
 
-    const clearProducts = () => dispatch({type: CLEAR_PRODUCTS})
+    const clearProducts = () => dispatch({type: CLEAR_PRODUCTS});
   
     const actions = {
         clearProductMessages,
@@ -164,7 +164,7 @@ export const ProductsProvider = (props) => {
         clearProduct,
         getCategoryProducts,
         clearProducts
-    }
+    };
 
     return (
         <ProductsContext.Provider value={state}>
@@ -172,5 +172,5 @@ export const ProductsProvider = (props) => {
                 {props.children}
             </ProductsActionsContext.Provider>
         </ProductsContext.Provider>
-    )
+    );
 }

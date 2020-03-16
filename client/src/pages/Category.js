@@ -18,7 +18,7 @@ const Category = (props) => {
         return () => {
             clearCategoryMessages();
         }
-    }, [])
+    }, []);
 
     return (
         <PageContainer>

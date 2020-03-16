@@ -5,12 +5,10 @@ import { AuthContext } from '../../contexts/auth.context';
 import useToggle from '../../hooks/useToggle'
 
 import Navbar from './Navbar'
-import Search from '../tools/Search';
 
 import '../../styles/navbar/Menubar.scss'
 
 const Menubar = () => {
-
     const { currentUser } = useContext(AuthContext)
     const [navState, navToggle] = useToggle(true)
 

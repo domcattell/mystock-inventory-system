@@ -4,12 +4,16 @@
     display: flex;
     flex-direction: column;
     width: 500px;
-    height: 40%;
+    height: 350px;
     background: rgba($color: white, $alpha: 1);
     border-radius: 5px;
     overflow: hidden;
     position: relative;
     box-shadow: 10px 10px 17px -6px rgba(0,0,0,0.25);
+
+    @media (max-width: 576px) {
+		width: 95%;
+	}
 
     &__header {
         color: $menuTextColour;
@@ -47,11 +51,19 @@
     }
 
     &__input {
-        @include defaultInput(60%, 8px);
+        @include defaultInput(300px, 8px);
+
+        @media (max-width: 576px) {
+            width: 80%;
+          }
     }
 
     &__register-btn {
-        @include defaultBtn(60%, 10px);
+        @include defaultBtn(300px, 10px);
+
+        @media (max-width: 576px) {
+            width: 80%;
+          }
     }
 
     &__register-btn:disabled {

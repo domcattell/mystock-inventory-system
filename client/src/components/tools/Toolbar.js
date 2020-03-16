@@ -19,7 +19,8 @@ const Toolbar = (props) => {
     // hard to follow, but also make it easily re-usable across the app.
     return (
         <div className="Toolbar">
-            {/* only render the modal if the actions prop is set to true */}
+            {/* only render the modal if the actions prop is set to true. Delete is 
+            in it's own component to allow it to be used outside of the roolbar if needed */}
             {props.actions &&
                 <div className="Toolbar__menu">
                     <DeleteModal
@@ -28,7 +29,8 @@ const Toolbar = (props) => {
                         id={props.id}
                         deletefunction={props.deleteFunction}
                     // the props on this component are passed down from the Toolbar component,
-                    // and so none of these props have to be adjusted. 
+                    // and so none of these props have to be adjusted.
+                    
                     />
                     <Dropdown>
                         <Dropdown.Toggle className="Toolbar__toggle">Actions</Dropdown.Toggle>
@@ -65,6 +67,9 @@ const Toolbar = (props) => {
                 </div>
             }
 
+            {/* only render if search.props is true. Search is built in it's own component
+            to allow it to be used outside of the toolbar if needed, such as the menubar
+            or dashboard */}
             {props.search &&
              <Search 
                 list={props.searchList}
@@ -74,6 +79,6 @@ const Toolbar = (props) => {
              />}
         </div>
     );
-};
+}
 
 export default Toolbar;

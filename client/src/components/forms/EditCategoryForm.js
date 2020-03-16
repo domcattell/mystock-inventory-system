@@ -19,7 +19,7 @@ const EditCategoryForm = (props) => {
         e.preventDefault();
         editCategory(categoryName, props.match.params.id);
         toast === false && setToast();
-    }
+    };
 
     return (
         <div className="EditCategoryForm__form-wrapper">
@@ -37,6 +37,6 @@ const EditCategoryForm = (props) => {
             />}
         </div>
     );
-};
+}
 
 export default memo(EditCategoryForm);

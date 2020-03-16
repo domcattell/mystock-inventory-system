@@ -11,6 +11,11 @@
     position: relative;
     color: $menuTextColour;
 
+    @media (max-width: 576px) {
+        width: 100%;
+        margin: 0;
+    }
+
     &__menu {
         margin-right: 5px;
     }
