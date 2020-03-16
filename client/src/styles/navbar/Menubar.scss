@@ -3,24 +3,23 @@
 .Menubar {
     width: 100%;
     background-color: $secondaryColour;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
     color: white;
+    -webkit-align-items: center;
     align-items: center;
+    // justify-content: space-between;
     font-family: 'Roboto', sans-serif;
     padding: 3px 0 3px 0;
     z-index: 1;
-
-    @media (max-width: 576px) {
-
-
-    }
+    position: relative;
 
     &__toggle-btn {
         margin-right: 10px;
         margin-left: 10px;
         cursor: pointer;
-        width: 40px;
-        height: 35px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -28,6 +27,7 @@
         transition: all 0.5s ease;
         border: 0;
         background-color: transparent;
+        padding: 8px 10px;
         
         &:hover {
             background-color: $secondaryHover;
@@ -39,7 +39,6 @@
         }
     
         .fas.fa-bars {
-            border-radius: 50%;
             font-size: 18px;
             color: white;
             outline: none;
@@ -62,7 +61,7 @@
         font-size: 24px;
         font-weight: 400;
         margin: 0;
-        margin-left: 15px;
+        margin-left: 5px;
 
         @media (max-width: 576px) {
             font-size: 20px;
@@ -74,10 +73,14 @@
 
 .Menubar__usr-wrapper {
     position: absolute;
+    top: 0;
     right: 0;
+    height: 100%;
     display: flex;
-    margin-right: 30px;
+    display: -webkit-flex;
+    justify-content : center;
     align-items: center;
+    margin-right: 30px;
     font-size: 12px;
 
     &__header {
